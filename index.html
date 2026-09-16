@@ -798,6 +798,71 @@
       filter:drop-shadow(0 2px 5px rgba(255,195,30,.35));
     }
 
+    .whack-wrong-ring{
+      position:absolute;
+      left:50%;
+      top:48%;
+      width:34px;
+      height:34px;
+      border:4px solid rgba(255,116,116,.95);
+      border-radius:50%;
+      transform:translate(-50%,-50%) scale(.35);
+      opacity:1;
+      pointer-events:none;
+      z-index:8;
+      animation:whackWrongRing .5s ease-out forwards;
+      box-shadow:0 0 16px rgba(255,116,116,.45);
+    }
+
+    .whack-xmark{
+      position:absolute;
+      left:50%;
+      top:16%;
+      transform:translate(-50%,0);
+      z-index:10;
+      font-size:1.2rem;
+      font-weight:900;
+      color:#ef5b5b;
+      text-shadow:0 2px 0 #fff,0 0 10px rgba(239,91,91,.35);
+      pointer-events:none;
+      animation:whackXPop .62s ease-out forwards;
+    }
+
+    .whack-wrong-word{
+      position:absolute;
+      left:50%;
+      bottom:8px;
+      transform:translate(-50%,10px) scale(.92);
+      z-index:10;
+      min-width:74px;
+      max-width:92%;
+      padding:4px 8px;
+      border-radius:11px;
+      background:rgba(255,255,255,.96);
+      color:#c84949;
+      font-size:.84rem;
+      line-height:1.12;
+      font-weight:900;
+      text-align:center;
+      white-space:normal;
+      word-break:break-word;
+      box-shadow:0 3px 10px rgba(47,65,90,.10);
+      pointer-events:none;
+      opacity:0;
+      animation:whackWrongWordIn .5s ease forwards;
+    }
+
+    .whack-wrong-spark{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      z-index:11;
+      animation:whackWrongSpark .56s ease-out forwards;
+      filter:drop-shadow(0 1px 4px rgba(239,91,91,.28));
+    }
+
     @keyframes holeHitShake{
       0%,100%{transform:translateX(0)}
       25%{transform:translateX(-5px)}
@@ -833,6 +898,37 @@
                     calc(-50% + var(--wy,0px)))
           scale(1.25)
           rotate(160deg);
+      }
+    }
+
+    @keyframes whackWrongRing{
+      0%{opacity:1;transform:translate(-50%,-50%) scale(.35)}
+      100%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}
+    }
+
+    @keyframes whackXPop{
+      0%{opacity:0;transform:translate(-50%,8px) scale(.7)}
+      25%{opacity:1;transform:translate(-50%,-1px) scale(1.12)}
+      100%{opacity:0;transform:translate(-50%,-22px) scale(.95)}
+    }
+
+    @keyframes whackWrongWordIn{
+      0%{opacity:0;transform:translate(-50%,10px) scale(.92)}
+      100%{opacity:1;transform:translate(-50%,0) scale(1)}
+    }
+
+    @keyframes whackWrongSpark{
+      0%{
+        opacity:.95;
+        transform:translate(-50%,-50%) scale(.45);
+      }
+      100%{
+        opacity:0;
+        transform:
+          translate(calc(-50% + var(--sx,0px)),
+                    calc(-50% + var(--sy,0px)))
+          scale(1.05)
+          rotate(110deg);
       }
     }
 
@@ -888,6 +984,8 @@
       .whack-mole img{width:58px;height:58px}
       .whack-plus{font-size:1.05rem;top:14%}
       .whack-word-pop{font-size:.72rem;padding:3px 5px;bottom:5px}
+      .whack-xmark{font-size:1rem;top:12%}
+      .whack-wrong-word{font-size:.7rem;padding:3px 5px;bottom:5px}
       .whack-feedback{height:30px;line-height:30px;font-size:1rem}
     }
 
@@ -1177,7 +1275,7 @@
           <div class="mode-zh">分類遊戲</div>
         </button>
 
-        <button class="game-mode-btn" onclick="openWhackMenu()">
+        <button class="game-mode-btn" onclick="startWhackGame()">
           <img id="homeWhackModeImage" class="mode-icon" src="images/vehicles/ambulance.webp" alt="Whack a Word" loading="eager" decoding="async">
           <div class="mode-en">Whack-a-Word</div>
           <div class="mode-zh">打地鼠</div>
@@ -1337,7 +1435,7 @@
 
   <section id="whackGame" class="screen">
     <div class="topbar">
-      <div id="whackCategoryLabel" class="pill topic-pill">Animals</div>
+      <div id="whackCategoryLabel" class="pill topic-pill">All Words</div>
       <div class="pill">⭐ 分數：<span id="whackScore">0</span></div>
       <div class="pill">第<span id="whackQnum">1</span>題/<span id="whackTotalQuestions">10</span></div>
     </div>
@@ -1707,7 +1805,13 @@
     }
 
     function makeWhackQuestions(){
-      const items = categories[whackCategory] || [];
+      // 打地鼠直接混合全部素材，不再區分Animals/Fruits/Vehicles
+      const items = [
+        ...animals,
+        ...fruits,
+        ...vehicles
+      ];
+
       const count = Math.min(QUESTION_COUNT,items.length);
       const targets = shuffle(items).slice(0,count);
 
@@ -1778,16 +1882,8 @@
     }
 
     async function startWhackGame(){
-      if(!whackCategory) return;
-
       currentMode = 'whack';
       speechSynthesis.cancel();
-
-      const startButton = document.getElementById('whackStartButton');
-      startButton.disabled = true;
-      startButton.textContent = '載入中...';
-
-      await preloadCategory(whackCategory);
 
       whackQuestions = makeWhackQuestions();
       whackCurrent = 0;
@@ -1796,11 +1892,14 @@
 
       document.getElementById('whackScore').textContent = whackScore;
       document.getElementById('whackTotalQuestions').textContent = whackQuestions.length;
-      document.getElementById('whackCategoryLabel').textContent =
-        categoryInfo[whackCategory].label;
+      document.getElementById('whackCategoryLabel').textContent = 'All Words';
 
-      startButton.disabled = false;
-      startButton.textContent = '▶ 開始打地鼠';
+      // 只預載這一局實際會出現的圖片，避免手機一次載入全部素材
+      const whackRoundItems = [];
+      whackQuestions.forEach(q=>{
+        q.options.forEach(item=>whackRoundItems.push(item));
+      });
+      await preloadItems(whackRoundItems);
 
       showScreen('whackGame');
       renderWhackQuestion();
@@ -1941,6 +2040,48 @@
       setTimeout(()=>hole.classList.remove('hit-shake'),380);
     }
 
+    function showWhackWrongEffects(opt,btn,hole){
+      hole.classList.remove('hit-shake');
+      void hole.offsetWidth;
+      hole.classList.add('hit-shake');
+
+      const ring = document.createElement('span');
+      ring.className = 'whack-wrong-ring';
+      hole.appendChild(ring);
+
+      const xmark = document.createElement('span');
+      xmark.className = 'whack-xmark';
+      xmark.textContent = '✖';
+      hole.appendChild(xmark);
+
+      const word = document.createElement('span');
+      word.className = 'whack-wrong-word';
+      word.textContent = capitalize(opt.word);
+      hole.appendChild(word);
+
+      const count = 8;
+      for(let i=0;i<count;i++){
+        const spark = document.createElement('span');
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - .5) * .18;
+        const distance = 22 + Math.random() * 18;
+
+        spark.className = 'whack-wrong-spark';
+        spark.textContent = Math.random() > .5 ? '✦' : '•';
+        spark.style.fontSize = `${.52 + Math.random() * .32}rem`;
+        spark.style.color = Math.random() > .5 ? '#ff8e8e' : '#ffb1b1';
+        spark.style.setProperty('--sx', `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty('--sy', `${Math.sin(angle) * distance}px`);
+
+        hole.appendChild(spark);
+        setTimeout(()=>spark.remove(),620);
+      }
+
+      setTimeout(()=>ring.remove(),560);
+      setTimeout(()=>xmark.remove(),650);
+      setTimeout(()=>word.remove(),820);
+      setTimeout(()=>hole.classList.remove('hit-shake'),380);
+    }
+
     function checkWhackAnswer(opt,btn,hole){
       if(whackLocked) return;
 
@@ -1990,11 +2131,14 @@
         feedback.textContent = '再試一次！';
         feedback.style.color = '#d64c4c';
 
+        // 選錯圖片時：洞口震動＋紅色光圈＋X浮字＋英文單字顯示＋紅色小粒子
+        showWhackWrongEffects(opt,btn,hole);
+
         playListenWrongSound();
 
         setTimeout(()=>{
           btn.classList.remove('wrong-hit');
-        },390);
+        },420);
       }
     }
 
@@ -2528,7 +2672,7 @@
         document.getElementById('resultSubtitle').textContent =
           '你完成打地鼠關卡了！';
         document.getElementById('resultBackButton').textContent =
-          '← 選其他主題';
+          '← 回首頁';
       }else{
         document.getElementById('resultSubtitle').textContent =
           categoryInfo[selectedCategory].result;
@@ -2563,8 +2707,6 @@
 
       if(currentMode==='listen'){
         showScreen('listenMenu');
-      }else if(currentMode==='whack'){
-        showScreen('whackMenu');
       }else{
         showScreen('home');
       }
