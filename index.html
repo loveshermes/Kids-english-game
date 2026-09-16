@@ -306,16 +306,17 @@
       top:18px;
       transform:translateX(-50%);
       width:120px !important;
-      min-height:112px !important;
+      min-height:118px !important;
       border:none;
-      border-radius:28px;
+      border-radius:22px;
       background:#fff;
       box-shadow:0 12px 26px rgba(47,65,90,.14), inset 0 0 0 4px #edf4fb;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-      padding:8px 6px 9px;
+      justify-content:flex-start;
+      padding:8px 6px 40px;
+      overflow:hidden;
       cursor:grab;
       user-select:none;
       -webkit-user-select:none;
@@ -427,17 +428,36 @@
     }
 
     .sort-item-img{
-      width:78px !important;
-      height:78px !important;
+      width:72px !important;
+      height:72px !important;
       object-fit:contain;
       display:block;
+      margin-top:2px;
     }
 
     .sort-word{
-      font-size:clamp(1.35rem,3vw,2rem);
+      position:absolute;
+      left:7px;
+      right:7px;
+      bottom:7px;
+      font-size:.82rem;
+      line-height:1.15;
       font-weight:900;
       color:#42526a;
-      margin-top:6px;
+      margin-top:0;
+      min-height:30px;
+      padding:4px 6px;
+      border-radius:11px;
+      background:rgba(255,255,255,.95);
+      box-shadow:0 2px 8px rgba(47,65,90,.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      white-space:normal;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      overflow:hidden;
     }
 
     .sort-category-grid{
@@ -538,12 +558,12 @@
 
       .drag-instruction{font-size:.9rem;margin:2px 0 7px}
       .drag-stage{min-height:340px;border-radius:20px;margin:6px 0 10px}
-      .drag-item{width:100px !important;min-height:94px !important;padding:5px 4px 6px;border-radius:16px}
+      .drag-item{width:100px !important;min-height:100px !important;padding:5px 4px 34px;border-radius:16px;overflow:hidden}
       .drop-zone-grid{gap:7px;bottom:8px;padding:0 2px}
       .drop-zone{min-height:108px;border-radius:18px}
 
-      .sort-item-img{width:64px !important;height:64px !important}
-      .sort-word{font-size:.88rem;margin-top:1px}
+      .sort-item-img{width:58px !important;height:58px !important}
+      .sort-word{font-size:.74rem;line-height:1.12;margin-top:0;left:5px;right:5px;bottom:5px;min-height:26px;padding:3px 5px;border-radius:10px}
       .sort-category-grid{gap:7px;margin-top:5px}
       .sort-category-btn{min-height:112px;padding:7px 4px;border-radius:18px}
       .sort-category-img{width:58px;height:58px}
@@ -716,16 +736,40 @@
       width:120px !important;
       min-width:120px !important;
       max-width:120px !important;
-      min-height:112px !important;
-      max-height:132px !important;
+      min-height:118px !important;
+      max-height:118px !important;
+      padding:8px 6px 40px !important;
+      overflow:hidden !important;
     }
 
     #sortGame #sortItemImage{
-      width:78px !important;
-      height:78px !important;
-      max-width:78px !important;
-      max-height:78px !important;
+      width:72px !important;
+      height:72px !important;
+      max-width:72px !important;
+      max-height:72px !important;
       object-fit:contain !important;
+    }
+
+    #sortGame #sortItemWord{
+      position:absolute !important;
+      left:7px !important;
+      right:7px !important;
+      bottom:7px !important;
+      min-height:30px !important;
+      padding:4px 6px !important;
+      border-radius:11px !important;
+      background:rgba(255,255,255,.95) !important;
+      box-shadow:0 2px 8px rgba(47,65,90,.08) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      text-align:center !important;
+      white-space:normal !important;
+      word-break:break-word !important;
+      overflow-wrap:anywhere !important;
+      overflow:hidden !important;
+      line-height:1.15 !important;
+      font-size:.82rem !important;
     }
 
     @media(max-width:600px){
@@ -733,15 +777,28 @@
         width:100px !important;
         min-width:100px !important;
         max-width:100px !important;
-        min-height:94px !important;
-        max-height:112px !important;
+        min-height:100px !important;
+        max-height:100px !important;
+        padding:5px 4px 34px !important;
+        overflow:hidden !important;
       }
 
       #sortGame #sortItemImage{
-        width:64px !important;
-        height:64px !important;
-        max-width:64px !important;
-        max-height:64px !important;
+        width:58px !important;
+        height:58px !important;
+        max-width:58px !important;
+        max-height:58px !important;
+      }
+
+      #sortGame #sortItemWord{
+        left:5px !important;
+        right:5px !important;
+        bottom:5px !important;
+        min-height:26px !important;
+        padding:3px 5px !important;
+        border-radius:10px !important;
+        font-size:.74rem !important;
+        line-height:1.12 !important;
       }
     }
 
