@@ -192,7 +192,10 @@
       q.options.forEach(opt=>{
         const btn = document.createElement('button');
         btn.className='choice';
-        btn.innerHTML=`<div class="emoji">${opt.emoji}</div><div class="label">${capitalize(opt.word)}</div>`;
+        btn.innerHTML=`
+  <img class="animal-img" src="${opt.image}" alt="${opt.word}">
+  <div class="label">${capitalize(opt.word)}</div>
+`;
         btn.onclick=()=>checkAnswer(opt,btn);
         box.appendChild(btn);
       });
