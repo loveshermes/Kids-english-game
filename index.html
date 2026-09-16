@@ -131,6 +131,10 @@
     .stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
     .star{position:absolute;font-size:2rem;animation:floatStar 1.2s ease-out forwards}
     @keyframes floatStar{0%{opacity:0;transform:translateY(15px) scale(.3) rotate(0deg)}30%{opacity:1}100%{opacity:0;transform:translateY(-180px) scale(1.25) rotate(220deg)}}
+    .trail-star{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:18;animation:trailSpark .55s ease-out forwards;filter:drop-shadow(0 2px 6px rgba(255,205,60,.35))}
+    .zone-burst-star{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:22;animation:zoneBurst .72s ease-out forwards;filter:drop-shadow(0 2px 8px rgba(255,205,60,.4))}
+    @keyframes trailSpark{0%{opacity:.95;transform:translate(-50%,-50%) scale(.5) rotate(0deg)}100%{opacity:0;transform:translate(-50%,-95%) scale(1.15) rotate(120deg)}}
+    @keyframes zoneBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.45)}100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px))) scale(1.25) rotate(160deg)}}
     .result-score{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;margin:12px 0;color:#f2a900}
     .result-stars{font-size:clamp(2.2rem,6vw,4rem);letter-spacing:5px;margin:8px 0 20px}
     .small-note{font-size:1rem;color:#6b7890;margin-top:18px}
@@ -373,31 +377,47 @@
 
     @keyframes glowAnimals{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(104,180,255,0)}
-      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #d9edff,0 0 22px rgba(104,180,255,.45)}
+      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #d9edff,0 0 34px rgba(104,180,255,.72)}
     }
 
     @keyframes glowFruits{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(118,210,139,0)}
-      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #ddf7e2,0 0 22px rgba(118,210,139,.45)}
+      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #ddf7e2,0 0 34px rgba(118,210,139,.72)}
     }
 
     @keyframes glowVehicles{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(190,150,255,0)}
-      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #eee4ff,0 0 22px rgba(190,150,255,.45)}
+      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #eee4ff,0 0 34px rgba(190,150,255,.72)}
     }
 
     .drop-zone.active-zone{
       animation:none !important;
     }
 
+    .drop-zone.magnetic-zone{
+      transform:scale(1.05);
+      box-shadow:0 0 0 8px #ffd56b,0 0 46px rgba(255,213,107,.92),0 12px 28px rgba(47,65,90,.14);
+      background:#fffdf4;
+    }
+
     .drop-zone.correct{
       animation:correctGlow .65s ease-out forwards !important;
     }
 
+    .drop-zone.flash-zone{
+      animation:zoneFlash .46s ease-out 2 !important;
+    }
+
     @keyframes correctGlow{
       0%{transform:scale(1);box-shadow:0 0 0 0 rgba(99,217,122,.1)}
-      45%{transform:scale(1.07);box-shadow:0 0 0 9px rgba(99,217,122,.35),0 0 34px rgba(99,217,122,.85)}
-      100%{transform:scale(1);box-shadow:0 0 0 7px #8be28c,0 0 24px rgba(99,217,122,.55)}
+      45%{transform:scale(1.08);box-shadow:0 0 0 10px rgba(99,217,122,.45),0 0 48px rgba(99,217,122,1)}
+      100%{transform:scale(1);box-shadow:0 0 0 8px #8be28c,0 0 34px rgba(99,217,122,.75)}
+    }
+
+    @keyframes zoneFlash{
+      0%{filter:brightness(1);transform:scale(1)}
+      30%{filter:brightness(1.18);transform:scale(1.06)}
+      100%{filter:brightness(1);transform:scale(1)}
     }
 
     .drag-item.fly-in{
@@ -1067,7 +1087,10 @@
       offsetX:0,
       offsetY:0,
       itemStartLeft:0,
-      itemStartTop:0
+      itemStartTop:0,
+      lastX:0,
+      lastY:0,
+      lastTrailTime:0
     };
 
     let audioCtx = null;
@@ -1120,6 +1143,11 @@
 
       const seq = notes[category] || notes.animals;
       seq.forEach((freq,i)=>playTone(freq,.12,i*.09,.06));
+    }
+
+    function playSuccessSound(category){
+      playCategorySound(category);
+      playTone(1046.50,.14,.28,.055);
     }
 
     function playWrongSound(){
@@ -1335,7 +1363,7 @@
 
     function clearDropZoneState(){
       document.querySelectorAll('.drop-zone').forEach(zone=>{
-        zone.classList.remove('active-zone','correct','wrong');
+        zone.classList.remove('active-zone','correct','wrong','magnetic-zone','flash-zone');
       });
     }
 
@@ -1350,13 +1378,104 @@
       return null;
     }
 
+    function getNearestMagneticZone(x,y){
+      const zones = [...document.querySelectorAll('.drop-zone')];
+      let bestZone = null;
+      let bestDistance = Infinity;
+
+      for(const zone of zones){
+        const rect = zone.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distance = Math.hypot(x - centerX, y - centerY);
+
+        // 手機/平板放大磁吸判定範圍，幼兒不用拖得很精準
+        const isTouchSize = window.matchMedia('(max-width:760px)').matches;
+        const thresholdMultiplier = isTouchSize ? 1.35 : .9;
+        const threshold = Math.max(rect.width, rect.height) * thresholdMultiplier;
+
+        if(distance <= threshold && distance < bestDistance){
+          bestZone = zone;
+          bestDistance = distance;
+        }
+      }
+
+      return { zone:bestZone, distance:bestDistance };
+    }
+
     function highlightZoneAtPoint(x,y){
       clearDropZoneState();
-      const zone = getZoneFromPoint(x,y);
+
+      let zone = getZoneFromPoint(x,y);
+      let magnetic = false;
+
+      if(!zone){
+        const nearest = getNearestMagneticZone(x,y);
+        zone = nearest.zone;
+        magnetic = Boolean(zone);
+      }
+
       if(zone){
         zone.classList.add('active-zone');
+        if(magnetic){
+          zone.classList.add('magnetic-zone');
+        }
       }
-      return zone;
+
+      return { zone, magnetic };
+    }
+
+    function spawnDragTrailStar(x,y){
+      const stage = document.getElementById('dragStage');
+      if(!stage) return;
+
+      const rect = stage.getBoundingClientRect();
+      const icons = ['⭐','✨','🌟'];
+
+      // 每次移動產生2顆小星星，拖尾更密
+      for(let i=0;i<2;i++){
+        const star = document.createElement('div');
+        const jitterX = (Math.random() - .5) * 18;
+        const jitterY = (Math.random() - .5) * 14;
+
+        star.className = 'trail-star';
+        star.textContent = icons[Math.floor(Math.random() * icons.length)];
+        star.style.left = `${x - rect.left + jitterX}px`;
+        star.style.top = `${y - rect.top + jitterY}px`;
+        star.style.fontSize = `${0.72 + Math.random() * 0.5}rem`;
+        star.style.animationDuration = `${0.48 + Math.random() * 0.18}s`;
+
+        stage.appendChild(star);
+        setTimeout(()=>star.remove(),700);
+      }
+    }
+
+    function burstZoneStars(zone){
+      const stage = document.getElementById('dragStage');
+      if(!stage || !zone) return;
+
+      const stageRect = stage.getBoundingClientRect();
+      const zoneRect = zone.getBoundingClientRect();
+      const centerX = zoneRect.left - stageRect.left + zoneRect.width / 2;
+      const centerY = zoneRect.top - stageRect.top + zoneRect.height / 2;
+      const icons = ['⭐','✨','🌟','💫'];
+
+      for(let i=0;i<12;i++){
+        const star = document.createElement('div');
+        const angle = (Math.PI * 2 * i) / 12 + Math.random() * .25;
+        const distance = 28 + Math.random() * 38;
+
+        star.className = 'zone-burst-star';
+        star.textContent = icons[Math.floor(Math.random() * icons.length)];
+        star.style.left = `${centerX}px`;
+        star.style.top = `${centerY}px`;
+        star.style.fontSize = `${0.85 + Math.random() * 0.55}rem`;
+        star.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+        star.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+
+        stage.appendChild(star);
+        setTimeout(()=>star.remove(),760);
+      }
     }
 
     function renderSortQuestion(){
@@ -1439,10 +1558,11 @@
 
       if(category===q.category){
         sortLocked = true;
-        zone.classList.add('correct');
+        zone.classList.add('correct','flash-zone');
 
-        // 分類框發光＋分類專屬音效
-        playCategorySound(category);
+        // 成功音效＋分類框閃光＋星星爆開
+        playSuccessSound(category);
+        burstZoneStars(zone);
 
         // 卡片真的飛進分類框
         flyItemIntoZone(zone,()=>{
@@ -1500,6 +1620,9 @@
         dragState.offsetY = e.clientY - itemRect.top;
         dragState.itemStartLeft = itemRect.left - stageRect.left;
         dragState.itemStartTop = itemRect.top - stageRect.top;
+        dragState.lastX = e.clientX;
+        dragState.lastY = e.clientY;
+        dragState.lastTrailTime = 0;
 
         item.setPointerCapture(e.pointerId);
         item.classList.add('dragging');
@@ -1519,16 +1642,39 @@
         let left = e.clientX - stageRect.left - dragState.offsetX;
         let top = e.clientY - stageRect.top - dragState.offsetY;
 
+        const zoneState = highlightZoneAtPoint(e.clientX,e.clientY);
+
+        if(zoneState.zone && zoneState.magnetic){
+          const zoneRect = zoneState.zone.getBoundingClientRect();
+          const targetLeft = zoneRect.left - stageRect.left + (zoneRect.width - itemRect.width) / 2;
+          const targetTop = zoneRect.top - stageRect.top + (zoneRect.height - itemRect.height) / 2;
+          const isTouchSize = window.matchMedia('(max-width:760px)').matches;
+          const pull = isTouchSize ? .34 : .22;
+
+          left += (targetLeft - left) * pull;
+          top += (targetTop - top) * pull;
+        }
+
         const maxLeft = stageRect.width - itemRect.width;
         const maxTop = stageRect.height - itemRect.height;
 
         left = Math.max(0,Math.min(left,maxLeft));
         top = Math.max(0,Math.min(top,maxTop));
 
+        const moveX = e.clientX - dragState.lastX;
+        const tilt = Math.max(-10, Math.min(10, moveX * .55));
+
         item.style.left = `${left}px`;
         item.style.top = `${top}px`;
+        item.style.transform = `rotate(${tilt}deg) scale(1.03)`;
 
-        highlightZoneAtPoint(e.clientX,e.clientY);
+        if(!dragState.lastTrailTime || performance.now() - dragState.lastTrailTime > 24){
+          spawnDragTrailStar(e.clientX,e.clientY);
+          dragState.lastTrailTime = performance.now();
+        }
+
+        dragState.lastX = e.clientX;
+        dragState.lastY = e.clientY;
       });
 
       const finishPointer = e=>{
@@ -1540,6 +1686,9 @@
         let zone = null;
         if(!sortLocked){
           zone = getZoneFromPoint(e.clientX,e.clientY);
+          if(!zone){
+            zone = getNearestMagneticZone(e.clientX,e.clientY).zone;
+          }
         }
 
         if(item.hasPointerCapture(e.pointerId)){
