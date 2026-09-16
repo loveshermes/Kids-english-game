@@ -73,6 +73,25 @@
     }
     .choice:hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(47,65,90,.16), inset 0 0 0 4px #dbefff}
     .choice .emoji{font-size:clamp(4.6rem,10vw,7rem);line-height:1}
+    .animal-img{
+      width:clamp(110px,18vw,180px);
+      height:clamp(110px,18vw,180px);
+      object-fit:contain;
+      display:block;
+    }
+    .hero-images{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      margin:10px 0 18px;
+    }
+    .hero-images img{
+      width:clamp(90px,14vw,130px);
+      height:clamp(90px,14vw,130px);
+      object-fit:contain;
+      display:block;
+    }
     .choice .label{font-size:clamp(1.15rem,2.5vw,1.6rem);margin-top:14px;color:#42526a}
     .choice.correct{animation:pop .45s ease;background:#e9ffe8;box-shadow:0 0 0 7px #8be28c}
     .choice.wrong{animation:shake .38s ease;background:#fff0f0;box-shadow:0 0 0 7px #ffb1b1}
@@ -89,12 +108,6 @@
     @media(max-width:760px){
       .screen{padding:14px}.card,.question-card{padding:20px;border-radius:24px}.choices{grid-template-columns:1fr;gap:12px}.choice{min-height:150px;flex-direction:row;gap:22px}.choice .emoji{font-size:4.4rem}.choice .label{margin-top:0}.topbar{align-items:stretch}.pill{padding:9px 13px}.speaker{width:64px;height:64px}.hero{font-size:7rem}
     }
-    .animal-img{
-  width:clamp(110px,18vw,180px);
-  height:clamp(110px,18vw,180px);
-  object-fit:contain;
-  display:block;
-}
   </style>
 </head>
 <body>
@@ -102,7 +115,11 @@
 
   <section id="home" class="screen active">
     <div class="card">
-      <div class="hero">🦁🐼🐶</div>
+      <div class="hero-images">
+        <img src="images/lion.png" alt="lion">
+        <img src="images/panda.png" alt="panda">
+        <img src="images/dog.png" alt="dog">
+      </div>
       <h1>幼兒美語大冒險</h1>
       <p class="subtitle">動物篇</p>
       <button class="big-btn" onclick="startGame()">▶ 開始遊戲</button>
@@ -136,22 +153,23 @@
 
   <script>
     const animals = [
-  {word:'dog', image:'images/dog.png'},
-  {word:'cat', image:'images/cat.png'},
-  {word:'lion', image:'images/lion.png'},
-  {word:'elephant', image:'images/elephant.png'},
-  {word:'rabbit', image:'images/rabbit.png'},
-  {word:'monkey', image:'images/monkey.png'},
-  {word:'bear', image:'images/bear.png'},
-  {word:'panda', image:'images/panda.png'},
-  {word:'frog', image:'images/frog.png'},
-  {word:'tiger', image:'images/tiger.png'},
-  {word:'cow', image:'images/cow.png'},
-  {word:'pig', image:'images/pig.png'},
-  {word:'chicken', image:'images/chicken.png'},
-  {word:'duck', image:'images/duck.png'},
-  {word:'penguin', image:'images/penguin.png'}
-];
+      {word:'dog', image:'images/dog.png'},
+      {word:'cat', image:'images/cat.png'},
+      {word:'lion', image:'images/lion.png'},
+      {word:'elephant', image:'images/elephant.png'},
+      {word:'rabbit', image:'images/rabbit.png'},
+      {word:'monkey', image:'images/monkey.png'},
+      {word:'bear', image:'images/bear.png'},
+      {word:'panda', image:'images/panda.png'},
+      {word:'frog', image:'images/frog.png'},
+      {word:'tiger', image:'images/tiger.png'},
+      {word:'cow', image:'images/cow.png'},
+      {word:'pig', image:'images/pig.png'},
+      {word:'chicken', image:'images/chicken.png'},
+      {word:'duck', image:'images/duck.png'},
+      {word:'penguin', image:'images/penguin.png'}
+    ];
+
     let questions = [];
     let current = 0;
     let score = 0;
@@ -198,10 +216,7 @@
       q.options.forEach(opt=>{
         const btn = document.createElement('button');
         btn.className='choice';
-        btn.innerHTML=`
-  <img class="animal-img" src="${opt.image}" alt="${opt.word}">
-  <div class="label">${capitalize(opt.word)}</div>
-`;
+        btn.innerHTML=`<img class="animal-img" src="${opt.image}" alt="${opt.word}"><div class="label">${capitalize(opt.word)}</div>`;
         btn.onclick=()=>checkAnswer(opt,btn);
         box.appendChild(btn);
       });
