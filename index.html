@@ -122,10 +122,77 @@
     }
     .choice.reveal-label::after{display:none}
 
-    .choice.correct{animation:pop .45s ease;background:#e9ffe8;box-shadow:0 0 0 7px #8be28c}
-    .choice.wrong{animation:shake .38s ease;background:#fff0f0;box-shadow:0 0 0 7px #ffb1b1}
-    @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.15) rotate(-2deg)}100%{transform:scale(1)}}
-    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}50%{transform:translateX(10px)}75%{transform:translateX(-7px)}}
+    .choice.correct{
+      animation:answerCardPop .58s cubic-bezier(.2,.8,.25,1);
+      background:#e9ffe8;
+      box-shadow:0 0 0 7px #8be28c,0 0 34px rgba(80,210,105,.72);
+      z-index:4;
+    }
+
+    .choice.correct .animal-img{
+      animation:answerImageBounce .62s cubic-bezier(.2,.8,.25,1);
+    }
+
+    .choice.wrong{
+      animation:gentleWrongShake .38s ease;
+      background:#fff3f3;
+      box-shadow:0 0 0 6px #ffaaaa,0 0 22px rgba(245,95,95,.40);
+    }
+
+    .choices.answer-correct .choice:not(.correct){
+      opacity:.34;
+      transform:scale(.96);
+      filter:saturate(.55);
+      pointer-events:none;
+    }
+
+    .choice-star{
+      position:absolute;
+      left:50%;
+      top:48%;
+      z-index:8;
+      pointer-events:none;
+      transform:translate(-50%,-50%);
+      animation:choiceStarBurst .72s ease-out forwards;
+      filter:drop-shadow(0 2px 5px rgba(255,195,30,.35));
+    }
+
+    @keyframes answerCardPop{
+      0%{transform:scale(1)}
+      35%{transform:scale(1.08) translateY(-5px)}
+      68%{transform:scale(.99) translateY(1px)}
+      100%{transform:scale(1) translateY(0)}
+    }
+
+    @keyframes answerImageBounce{
+      0%{transform:scale(1) translateY(0)}
+      35%{transform:scale(1.16) translateY(-10px)}
+      62%{transform:scale(.97) translateY(3px)}
+      82%{transform:scale(1.05) translateY(-3px)}
+      100%{transform:scale(1) translateY(0)}
+    }
+
+    @keyframes gentleWrongShake{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-6px)}
+      50%{transform:translateX(6px)}
+      75%{transform:translateX(-4px)}
+    }
+
+    @keyframes choiceStarBurst{
+      0%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(.45);
+      }
+      100%{
+        opacity:0;
+        transform:
+          translate(calc(-50% + var(--star-x,0px)),
+                    calc(-50% + var(--star-y,0px)))
+          scale(1.25)
+          rotate(170deg);
+      }
+    }
     .feedback{height:52px;margin-top:18px;font-size:clamp(1.3rem,3vw,2rem);font-weight:800}
     .feedback.good{color:#2f9c47}.feedback.bad{color:#d64c4c}
     .stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
@@ -1155,6 +1222,17 @@
       playTone(185,.15,.10,.04);
     }
 
+    function playListenSuccessSound(){
+      playTone(659.25,.10,0,.045);
+      playTone(783.99,.11,.08,.05);
+      playTone(1046.50,.14,.17,.055);
+    }
+
+    function playListenWrongSound(){
+      playTone(246.94,.08,0,.022);
+      playTone(220.00,.10,.07,.018);
+    }
+
     const preloadedImages = new Map();
 
     function openListenMenu(){
@@ -1325,7 +1403,12 @@
       document.getElementById('feedback').className = 'feedback';
 
       const box = document.getElementById('choices');
+
+      // 每一題開始前清除上一題的「答對後其他選項變淡/停用」狀態
+      // 否則answer-correct會留在choices上，導致第2題開始無法點擊
+      box.classList.remove('answer-correct');
       box.innerHTML='';
+
       q.options.forEach(opt=>{
         const btn = document.createElement('button');
         btn.className='choice';
@@ -1743,33 +1826,87 @@
       speechSynthesis.speak(utter);
     }
 
+    function burstChoiceStars(btn){
+      if(!btn) return;
+
+      const icons = ['⭐','✨','🌟','💫'];
+      const count = 12;
+
+      for(let i=0;i<count;i++){
+        const star = document.createElement('span');
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - .5) * .22;
+        const distance = 52 + Math.random() * 40;
+
+        star.className = 'choice-star';
+        star.textContent = icons[Math.floor(Math.random() * icons.length)];
+        star.style.fontSize = `${.82 + Math.random() * .62}rem`;
+        star.style.setProperty('--star-x', `${Math.cos(angle) * distance}px`);
+        star.style.setProperty('--star-y', `${Math.sin(angle) * distance}px`);
+
+        btn.appendChild(star);
+        setTimeout(()=>star.remove(),780);
+      }
+    }
+
     function checkAnswer(opt,btn){
       if(locked) return;
+
+      // 使用者點擊後先啟用瀏覽器音效
+      getAudioContext();
+
       const q = questions[current];
       const feedback = document.getElementById('feedback');
+      const choicesBox = document.getElementById('choices');
 
       if(opt.word===q.target.word){
         locked=true;
-        btn.classList.add('correct');
+
+        // 顯示英文單字＋正確圖片彈跳與綠色發光
+        btn.classList.add('reveal-label','correct');
+        choicesBox.classList.add('answer-correct');
+
+        // 正確圖片周圍爆出小星星
+        burstChoiceStars(btn);
+
         score++;
         document.getElementById('score').textContent=score;
         feedback.textContent='答對了！⭐';
         feedback.className='feedback good';
-        burstStars();
-        speak('Great job!');
+
+        // 簡短成功音效
+        playListenSuccessSound();
+
+        // 再念一次正確單字，例如Apple
+        setTimeout(()=>{
+          speak(opt.word,.82);
+        },110);
+
+        // 約1秒後進下一題
         setTimeout(()=>{
           current++;
-          if(current>=questions.length){finishGame();}
-          else{renderQuestion();}
-        },1100);
+          if(current>=questions.length){
+            finishGame();
+          }else{
+            renderQuestion();
+          }
+        },1000);
+
       }else{
+        // 答錯：文字保留顯示、紅框輕搖，但仍可繼續作答
+        btn.classList.add('reveal-label');
         btn.classList.remove('wrong');
         void btn.offsetWidth;
         btn.classList.add('wrong');
+
         feedback.textContent='再試一次！';
         feedback.className='feedback bad';
-        speak('Try again');
-        setTimeout(()=>btn.classList.remove('wrong'),450);
+
+        // 較輕的錯誤提示音
+        playListenWrongSound();
+
+        setTimeout(()=>{
+          btn.classList.remove('wrong');
+        },430);
       }
     }
 
