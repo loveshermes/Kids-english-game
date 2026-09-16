@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Kids English Adventure - Animals</title>
+  <title>幼兒美語大冒險-動物篇</title>
   <style>
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     body{
@@ -100,18 +100,18 @@
       <h1>幼兒美語大冒險</h1>
       <p class="subtitle">動物篇</p>
       <button class="big-btn" onclick="startGame()">▶ 開始遊戲</button>
-      <div class="small-note">聽一聽，選擇正確的圖片</div>
+      <div class="small-note">聽一聽，點選正確的圖片。</div>
     </div>
   </section>
 
   <section id="game" class="screen">
     <div class="topbar">
-      <div class="pill">⭐ Score: <span id="score">0</span></div>
-      <div class="pill">Question <span id="qnum">1</span>/10</div>
+      <div class="pill">⭐ 分數：<span id="score">0</span></div>
+      <div class="pill">第<span id="qnum">1</span>題/10</div>
     </div>
     <div class="question-card">
       <h2 id="questionText">Find the dog!</h2>
-      <button class="speaker" onclick="speakQuestion()" aria-label="Play question sound">🔊</button>
+      <button class="speaker" onclick="speakQuestion()" aria-label="播放題目語音">🔊</button>
       <div id="choices" class="choices"></div>
       <div id="feedback" class="feedback"></div>
     </div>
@@ -120,11 +120,11 @@
   <section id="result" class="screen">
     <div class="card">
       <div class="hero">🎉</div>
-      <h1>Awesome!</h1>
-      <p class="subtitle">You finished the Animals game!</p>
+      <h1>太棒了！</h1>
+      <p class="subtitle">你完成動物關卡了！</p>
       <div class="result-score"><span id="finalScore">0</span>/10</div>
       <div id="resultStars" class="result-stars">⭐⭐⭐⭐⭐</div>
-      <button class="big-btn" onclick="startGame()">↻ Play Again</button>
+      <button class="big-btn" onclick="startGame()">↻ 再玩一次</button>
     </div>
   </section>
 
@@ -232,7 +232,7 @@
         btn.classList.add('correct');
         score++;
         document.getElementById('score').textContent=score;
-        feedback.textContent='Great job! ⭐';
+        feedback.textContent='答對了！⭐';
         feedback.className='feedback good';
         burstStars();
         speak('Great job!');
@@ -245,7 +245,7 @@
         btn.classList.remove('wrong');
         void btn.offsetWidth;
         btn.classList.add('wrong');
-        feedback.textContent='Try again!';
+        feedback.textContent='再試一次！';
         feedback.className='feedback bad';
         speak('Try again');
         setTimeout(()=>btn.classList.remove('wrong'),450);
