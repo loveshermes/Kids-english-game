@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>幼兒美語大冒險-動物篇</title>
+  <link rel="preload" as="image" href="images/lion.webp" type="image/webp">
+  <link rel="preload" as="image" href="images/panda.webp" type="image/webp">
+  <link rel="preload" as="image" href="images/dog.webp" type="image/webp">
   <style>
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     body{
@@ -116,9 +119,9 @@
   <section id="home" class="screen active">
     <div class="card">
       <div class="hero-images">
-        <img src="images/lion.png" alt="lion">
-        <img src="images/panda.png" alt="panda">
-        <img src="images/dog.png" alt="dog">
+        <img src="images/lion.webp" alt="lion" decoding="async" fetchpriority="high">
+        <img src="images/panda.webp" alt="panda" decoding="async" fetchpriority="high">
+        <img src="images/dog.webp" alt="dog" decoding="async" fetchpriority="high">
       </div>
       <h1>幼兒美語大冒險</h1>
       <p class="subtitle">動物篇</p>
@@ -153,21 +156,21 @@
 
   <script>
     const animals = [
-      {word:'dog', image:'images/dog.png'},
-      {word:'cat', image:'images/cat.png'},
-      {word:'lion', image:'images/lion.png'},
-      {word:'elephant', image:'images/elephant.png'},
-      {word:'rabbit', image:'images/rabbit.png'},
-      {word:'monkey', image:'images/monkey.png'},
-      {word:'bear', image:'images/bear.png'},
-      {word:'panda', image:'images/panda.png'},
-      {word:'frog', image:'images/frog.png'},
-      {word:'tiger', image:'images/tiger.png'},
-      {word:'cow', image:'images/cow.png'},
-      {word:'pig', image:'images/pig.png'},
-      {word:'chicken', image:'images/chicken.png'},
-      {word:'duck', image:'images/duck.png'},
-      {word:'penguin', image:'images/penguin.png'}
+      {word:'dog', image:'images/dog.webp'},
+      {word:'cat', image:'images/cat.webp'},
+      {word:'lion', image:'images/lion.webp'},
+      {word:'elephant', image:'images/elephant.webp'},
+      {word:'rabbit', image:'images/rabbit.webp'},
+      {word:'monkey', image:'images/monkey.webp'},
+      {word:'bear', image:'images/bear.webp'},
+      {word:'panda', image:'images/panda.webp'},
+      {word:'frog', image:'images/frog.webp'},
+      {word:'tiger', image:'images/tiger.webp'},
+      {word:'cow', image:'images/cow.webp'},
+      {word:'pig', image:'images/pig.webp'},
+      {word:'chicken', image:'images/chicken.webp'},
+      {word:'duck', image:'images/duck.webp'},
+      {word:'penguin', image:'images/penguin.webp'}
     ];
 
     let questions = [];
@@ -183,6 +186,11 @@
         const img = new Image();
         img.decoding = 'async';
         img.src = animal.image;
+        img.onload = ()=>{
+          if(img.decode){
+            img.decode().catch(()=>{});
+          }
+        };
         preloadedImages.set(animal.word,img);
       });
     }
