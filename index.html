@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>幼兒美語大冒險</title>
+  <title>幼兒英文單字</title>
 
 
   <style>
@@ -142,8 +142,11 @@
     }
 
     .category-icon{
-      font-size:clamp(3rem,8vw,4.6rem);
-      line-height:1;
+      width:88px;
+      height:88px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 2px;
     }
 
     .category-en{
@@ -186,7 +189,7 @@
       #home .card{max-width:620px}
       .category-grid{gap:8px;margin:14px 0 18px}
       .category-btn{padding:12px 6px;border-radius:18px}
-      .category-icon{font-size:2.6rem}
+      .category-icon{width:68px;height:68px}
       .category-en{font-size:1rem}
       .category-zh{font-size:.82rem}
 
@@ -347,24 +350,24 @@
 
   <section id="home" class="screen active">
     <div class="card">
-      <h1>幼兒美語大冒險</h1>
+      <h1>幼兒英文單字</h1>
       <p class="subtitle">Choose a topic!</p>
 
       <div class="category-grid">
         <button class="category-btn" onclick="selectCategory('animals',this)">
-          <div class="category-icon">🐶</div>
+          <img class="category-icon" src="images/elephant.webp" alt="Animals" loading="eager" decoding="async">
           <div class="category-en">Animals</div>
           <div class="category-zh">動物</div>
         </button>
 
         <button class="category-btn" onclick="selectCategory('fruits',this)">
-          <div class="category-icon">🍎</div>
+          <img class="category-icon" src="images/fruits/apple.webp" alt="Fruits" loading="eager" decoding="async">
           <div class="category-en">Fruits</div>
           <div class="category-zh">水果</div>
         </button>
 
         <button class="category-btn" onclick="selectCategory('vehicles',this)">
-          <div class="category-icon">🚗</div>
+          <img class="category-icon" src="images/vehicles/car.webp" alt="Vehicles" loading="eager" decoding="async">
           <div class="category-en">Vehicles</div>
           <div class="category-zh">交通工具</div>
         </button>
@@ -474,9 +477,9 @@
     };
 
     const categoryInfo = {
-      animals:{label:'🐶 Animals', result:'你完成動物關卡了！'},
-      fruits:{label:'🍎 Fruits', result:'你完成水果關卡了！'},
-      vehicles:{label:'🚗 Vehicles', result:'你完成交通工具關卡了！'}
+      animals:{label:'Animals', result:'你完成動物關卡了！'},
+      fruits:{label:'Fruits', result:'你完成水果關卡了！'},
+      vehicles:{label:'Vehicles', result:'你完成交通工具關卡了！'}
     };
 
     const QUESTION_COUNT = 10;
