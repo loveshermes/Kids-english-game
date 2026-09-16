@@ -175,6 +175,20 @@
     let score = 0;
     let locked = false;
 
+    // 預先載入所有動物圖片，避免手機進入下一題時才開始下載
+    const preloadedImages = new Map();
+
+    function preloadAnimalImages(){
+      animals.forEach(animal=>{
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = animal.image;
+        preloadedImages.set(animal.word,img);
+      });
+    }
+
+    preloadAnimalImages();
+
     function shuffle(arr){
       return [...arr].sort(()=>Math.random()-0.5);
     }
@@ -216,7 +230,7 @@
       q.options.forEach(opt=>{
         const btn = document.createElement('button');
         btn.className='choice';
-        btn.innerHTML=`<img class="animal-img" src="${opt.image}" alt="${opt.word}"><div class="label">${capitalize(opt.word)}</div>`;
+        btn.innerHTML=`<img class="animal-img" src="${opt.image}" alt="${opt.word}" decoding="async"><div class="label">${capitalize(opt.word)}</div>`;
         btn.onclick=()=>checkAnswer(opt,btn);
         box.appendChild(btn);
       });
