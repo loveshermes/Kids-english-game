@@ -355,7 +355,7 @@
 
       <div class="category-grid">
         <button class="category-btn" onclick="selectCategory('animals',this)">
-          <img class="category-icon" src="images/dog.webp" alt="Animals" loading="eager" decoding="async">
+          <img id="homeAnimalImage" class="category-icon" alt="Animals" loading="eager" decoding="async">
           <div class="category-en">Animals</div>
           <div class="category-zh">動物</div>
         </button>
@@ -481,6 +481,12 @@
       fruits:{label:'Fruits', result:'你完成水果關卡了！'},
       vehicles:{label:'Vehicles', result:'你完成交通工具關卡了！'}
     };
+
+    // 首頁Animals直接使用內嵌動物圖片，避免GitHub路徑造成破圖
+    const homeAnimalImage = document.getElementById('homeAnimalImage');
+    if(homeAnimalImage && animals.length){
+      homeAnimalImage.src = animals[0].image;
+    }
 
     const QUESTION_COUNT = 10;
 
