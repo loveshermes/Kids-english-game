@@ -407,7 +407,7 @@
 
     .drop-zone-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:repeat(4,1fr);
       gap:14px;
       position:absolute;
       left:0;
@@ -442,6 +442,10 @@
       animation:glowVehicles 2.4s ease-in-out infinite .5s;
     }
 
+    .drop-zone[data-category="body"]{
+      animation:glowBody 2.4s ease-in-out infinite .75s;
+    }
+
     @keyframes glowAnimals{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(104,180,255,0)}
       50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #d9edff,0 0 34px rgba(104,180,255,.72)}
@@ -455,6 +459,11 @@
     @keyframes glowVehicles{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(190,150,255,0)}
       50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #eee4ff,0 0 34px rgba(190,150,255,.72)}
+    }
+
+    @keyframes glowBody{
+      0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(255,165,190,0)}
+      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #ffe3eb,0 0 34px rgba(255,165,190,.72)}
     }
 
     .drop-zone.active-zone{
@@ -1007,9 +1016,9 @@
       .sort-item-wrap{min-height:150px;margin:2px 0 6px}
 
       .drag-instruction{font-size:.9rem;margin:2px 0 7px}
-      .drag-stage{min-height:340px;border-radius:20px;margin:6px 0 10px}
+      .drag-stage{min-height:390px;border-radius:20px;margin:6px 0 10px}
       .drag-item{width:100px !important;min-height:100px !important;padding:5px 4px 34px;border-radius:16px;overflow:hidden}
-      .drop-zone-grid{gap:7px;bottom:8px;padding:0 2px}
+      .drop-zone-grid{grid-template-columns:repeat(2,1fr);gap:7px;bottom:8px;padding:0 2px}
       .drop-zone{min-height:108px;border-radius:18px}
 
       .sort-item-img{width:58px !important;height:58px !important}
@@ -1743,17 +1752,16 @@
         </button>
 
         <button class="topic-card-v1 coming" disabled>
-          <div class="coming-icon">🎨</div>
-          <div class="topic-en">Colors</div>
-          <div class="topic-zh">顏色</div>
+          <div class="coming-icon">🦖</div>
+          <div class="topic-en">Dinosaurs</div>
+          <div class="topic-zh">恐龍</div>
           <div class="coming-badge">Coming soon</div>
         </button>
 
-        <button class="topic-card-v1 coming" disabled>
-          <div class="coming-icon">🫀</div>
+        <button class="topic-card-v1" onclick="chooseTopic('body')">
+          <img src="images/body/hand.webp" alt="Body" decoding="async">
           <div class="topic-en">Body</div>
-          <div class="topic-zh">人體</div>
-          <div class="coming-badge">Coming soon</div>
+          <div class="topic-zh">身體部位</div>
         </button>
 
         <button class="topic-card-v1 coming" disabled>
@@ -1792,7 +1800,7 @@
 
         <button class="mode-card-v1 sort" onclick="startSortGame()">
           <div class="mode-symbol">🧺</div>
-          <div><strong>分一分 Sorting</strong><small>把動物、水果、交通工具送回正確的家。</small></div>
+          <div><strong>分一分 Sorting</strong><small>把圖片送回正確的分類。</small></div>
         </button>
 
         <button class="mode-card-v1 whack" onclick="startSelectedWhack()">
@@ -1869,6 +1877,11 @@
           <div id="dropZoneVehicles" class="drop-zone" data-category="vehicles">
             <img class="sort-category-img" src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
             <div class="sort-category-label">Vehicles</div>
+          </div>
+
+          <div id="dropZoneBody" class="drop-zone" data-category="body">
+            <img class="sort-category-img" src="images/body/hand.webp" alt="Body" decoding="async">
+            <div class="sort-category-label">Body</div>
           </div>
         </div>
       </div>
@@ -1981,16 +1994,36 @@
       {word:'tricycle', image:'images/vehicles/tricycle.webp'}
     ];
 
+    const bodyParts = [
+      {word:'abdomen', image:'images/body/abdomen.webp'},
+      {word:'back', image:'images/body/back.webp'},
+      {word:'chest', image:'images/body/chest.webp'},
+      {word:'ears', image:'images/body/ears.webp'},
+      {word:'eyes', image:'images/body/eyes.webp'},
+      {word:'feet', image:'images/body/feet.webp'},
+      {word:'finger', image:'images/body/finger.webp'},
+      {word:'foot', image:'images/body/foot.webp'},
+      {word:'hair', image:'images/body/hair.webp'},
+      {word:'hand', image:'images/body/hand.webp'},
+      {word:'mouth', image:'images/body/mouth.webp'},
+      {word:'neck', image:'images/body/neck.webp'},
+      {word:'nose', image:'images/body/nose.webp'},
+      {word:'tongue', image:'images/body/tongue.webp'},
+      {word:'tooth', image:'images/body/tooth.webp'}
+    ];
+
     const categories = {
       animals,
       fruits,
-      vehicles
+      vehicles,
+      body:bodyParts
     };
 
     const categoryInfo = {
       animals:{label:'Animals', zh:'動物', result:'你完成動物關卡了！', image:null},
       fruits:{label:'Fruits', zh:'水果', result:'你完成水果關卡了！', image:'images/fruits/apple.webp'},
-      vehicles:{label:'Vehicles', zh:'交通工具', result:'你完成交通工具關卡了！', image:'images/vehicles/car.webp'}
+      vehicles:{label:'Vehicles', zh:'交通工具', result:'你完成交通工具關卡了！', image:'images/vehicles/car.webp'},
+      body:{label:'Body', zh:'身體部位', result:'你完成身體部位關卡了！', image:'images/body/hand.webp'}
     };
 
     categoryInfo.animals.image = animals[0]?.image || '';
@@ -2090,7 +2123,8 @@
       const notes = {
         animals:[523.25,659.25,783.99],
         fruits:[587.33,739.99,880.00],
-        vehicles:[392.00,523.25,659.25]
+        vehicles:[392.00,523.25,659.25],
+        body:[493.88,659.25,783.99]
       };
 
       const seq = notes[category] || notes.animals;
@@ -2278,7 +2312,8 @@
       const allItems = [
         ...animals.map(item=>({...item,category:'animals'})),
         ...fruits.map(item=>({...item,category:'fruits'})),
-        ...vehicles.map(item=>({...item,category:'vehicles'}))
+        ...vehicles.map(item=>({...item,category:'vehicles'})),
+        ...bodyParts.map(item=>({...item,category:'body'}))
       ];
 
       return shuffle(allItems).slice(0,Math.min(QUESTION_COUNT,allItems.length));
