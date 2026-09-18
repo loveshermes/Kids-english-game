@@ -1252,6 +1252,85 @@
       }
     }
 
+
+
+    /* === 3歲幼兒優化版 === */
+    .toddler-home-title{font-size:clamp(2.8rem,8vw,5rem);letter-spacing:.01em}
+    .mode-en-small{font-size:.86rem;color:#718198;font-weight:800;margin-top:-3px}
+    .tap-topic-note{font-size:clamp(.95rem,2.3vw,1.15rem);color:#6b7890;font-weight:800;margin-top:8px}
+
+    .progress-stars{
+      min-width:210px;
+      text-align:center;
+      font-size:clamp(1.35rem,3vw,1.85rem);
+      letter-spacing:4px;
+      color:#f2a900;
+      background:#fff;
+      border-radius:999px;
+      padding:9px 15px;
+      box-shadow:0 6px 18px rgba(44,68,96,.1);
+      white-space:nowrap;
+    }
+
+    .kid-instruction{
+      font-size:clamp(1.15rem,3vw,1.65rem);
+      font-weight:900;
+      color:#53647c;
+      margin:2px 0 8px;
+    }
+
+    .result-review{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      margin:18px auto 8px;
+      width:min(760px,100%);
+    }
+
+    .review-card{
+      border:none;
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 7px 18px rgba(47,65,90,.11),inset 0 0 0 3px #edf4fb;
+      padding:10px 6px;
+      min-height:130px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+
+    .review-card img{width:76px;height:76px;object-fit:contain;display:block}
+    .review-card span{font-size:.98rem;font-weight:900;color:#42526a}
+    .review-card:active{transform:scale(.96)}
+
+    /* 3歲版打地鼠：縮成4個洞，降低視覺搜尋負擔 */
+    .whack-board{grid-template-columns:repeat(2,1fr);max-width:430px;gap:16px}
+    .whack-hole:nth-child(n+5){display:none}
+
+    @media(max-width:760px){
+      .game-mode-grid{grid-template-columns:1fr;gap:10px;width:min(420px,100%);margin-left:auto;margin-right:auto}
+      .game-mode-btn{min-height:112px;flex-direction:row;justify-content:flex-start;padding:10px 20px;gap:18px;text-align:left}
+      .mode-icon{width:86px;height:86px;flex:0 0 auto}
+      .game-mode-btn .mode-zh{font-size:1.16rem;font-weight:900}
+      .mode-en-small{font-size:.8rem}
+      .category-grid{grid-template-columns:1fr;gap:10px;width:min(400px,100%);margin-left:auto;margin-right:auto}
+      .category-btn{min-height:104px;flex-direction:row;justify-content:flex-start;padding:9px 18px;gap:16px;text-align:left}
+      .category-icon{width:78px;height:78px;margin:0}
+      .category-en{font-size:1.18rem}
+      .category-zh{font-size:.9rem}
+      .topbar{justify-content:center;flex-wrap:wrap}
+      .topbar .topic-pill{flex:0 1 auto;min-width:120px}
+      .progress-stars{flex:0 1 auto;min-width:190px;font-size:1.3rem;padding:8px 11px;letter-spacing:3px}
+      .result-review{grid-template-columns:repeat(3,1fr);gap:8px}
+      .review-card{min-height:108px;border-radius:16px;padding:7px 4px}
+      .review-card img{width:60px;height:60px}
+      .review-card span{font-size:.84rem}
+      .whack-board{grid-template-columns:repeat(2,1fr);max-width:360px;gap:9px}
+      .whack-hole{height:118px}
+    }
+
   </style>
 </head>
 <body>
@@ -1259,27 +1338,36 @@
 
   <section id="home" class="screen active">
     <div class="card">
-      <h1>幼兒英文遊戲</h1>
-      <p class="subtitle">Choose a game!</p>
+      <h1 class="toddler-home-title">Let's Play!</h1>
+      <p class="subtitle">一起玩英文！</p>
 
       <div class="game-mode-grid">
         <button class="game-mode-btn" onclick="openListenMenu()">
           <img id="homeListenModeImage" class="mode-icon" src="images/animals/alpaca.webp" alt="Listen and Find" loading="eager" decoding="async">
-          <div class="mode-zh">聽音找圖片</div>
+          <div>
+            <div class="mode-zh">聽一聽</div>
+            <div class="mode-en-small">Listen &amp; Find</div>
+          </div>
         </button>
 
-        <button class="game-mode-btn" onclick="openSortMenu()">
+        <button class="game-mode-btn" onclick="startSortGame()">
           <img class="mode-icon" src="images/fruits/apple.webp" alt="Sorting Game" loading="eager" decoding="async">
-          <div class="mode-zh">分類遊戲</div>
+          <div>
+            <div class="mode-zh">分一分</div>
+            <div class="mode-en-small">Sorting</div>
+          </div>
         </button>
 
-        <button class="game-mode-btn" onclick="startWhackGame()">
+        <button class="game-mode-btn" onclick="openWhackMenu()">
           <img id="homeWhackModeImage" class="mode-icon" src="images/animals/whack-a-mole.webp" alt="Whack a Word" loading="eager" decoding="async">
-          <div class="mode-zh">打地鼠</div>
+          <div>
+            <div class="mode-zh">打地鼠</div>
+            <div class="mode-en-small">Whack-a-Word</div>
+          </div>
         </button>
       </div>
 
-      <div class="small-note">先選擇遊戲模式。</div>
+      <div class="small-note">點一張大圖就可以開始。</div>
     </div>
   </section>
 
@@ -1308,11 +1396,7 @@
         </button>
       </div>
 
-      <button id="listenStartButton" class="big-btn" onclick="startGame()" disabled>
-        ▶ 開始遊戲
-      </button>
-
-      <div id="listenHint" class="small-note">先選擇一個主題，再開始遊戲。</div>
+      <div id="listenHint" class="tap-topic-note">點一個主題就開始！</div>
       <button class="secondary-btn menu-back" onclick="backToHome()">← 回首頁</button>
     </div>
   </section>
@@ -1368,11 +1452,7 @@
         </button>
       </div>
 
-      <button id="whackStartButton" class="big-btn" onclick="startWhackGame()" disabled>
-        ▶ 開始打地鼠
-      </button>
-
-      <div id="whackHint" class="small-note">先選擇一個主題。</div>
+      <div id="whackHint" class="tap-topic-note">點一個主題就開始！</div>
       <button class="secondary-btn menu-back" onclick="backToHome()">← 回首頁</button>
     </div>
   </section>
@@ -1380,11 +1460,11 @@
   <section id="game" class="screen">
     <div class="topbar">
       <div id="categoryLabel" class="pill topic-pill">Animals</div>
-      <div class="pill">⭐ 分數：<span id="score">0</span></div>
-      <div class="pill">第<span id="qnum">1</span>題/<span id="totalQuestions">10</span></div>
+      <div id="listenProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
     <div class="question-card">
-      <h2 id="questionText">Find the dog!</h2>
+      <div class="kid-instruction">Listen!</div>
+      <h2 id="questionText">🔊</h2>
       <button class="speaker" onclick="speakQuestion()" aria-label="播放題目語音">🔊</button>
       <div id="choices" class="choices"></div>
       <div id="feedback" class="feedback"></div>
@@ -1393,14 +1473,13 @@
 
   <section id="sortGame" class="screen">
     <div class="topbar">
-      <div class="pill topic-pill">Sorting Game</div>
-      <div class="pill">⭐ 分數：<span id="sortScore">0</span></div>
-      <div class="pill">第<span id="sortQnum">1</span>題/<span id="sortTotalQuestions">10</span></div>
+      <div class="pill topic-pill">Sorting</div>
+      <div id="sortProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
 
     <div class="sort-card">
       <h2>Which group?</h2>
-      <div class="drag-instruction">拖曳圖片到正確的分類框框</div>
+      <div class="drag-instruction">點一下，或把圖片拖進正確的家！</div>
 
       <div id="dragStage" class="drag-stage">
         <button id="dragItem" class="drag-item" type="button" aria-label="draggable word card">
@@ -1432,14 +1511,13 @@
 
   <section id="whackGame" class="screen">
     <div class="topbar">
-      <div id="whackCategoryLabel" class="pill topic-pill">All Words</div>
-      <div class="pill">⭐ 分數：<span id="whackScore">0</span></div>
-      <div class="pill">第<span id="whackQnum">1</span>題/<span id="whackTotalQuestions">10</span></div>
+      <div id="whackCategoryLabel" class="pill topic-pill">Animals</div>
+      <div id="whackProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
 
     <div class="whack-card">
       <div class="whack-prompt">
-        <h2 id="whackQuestionText">Find the dog!</h2>
+        <h2 id="whackQuestionText">Listen!</h2>
         <button class="whack-speaker" onclick="speakWhackQuestion()" aria-label="播放題目語音">🔊</button>
       </div>
 
@@ -1464,10 +1542,9 @@
       <div class="hero">🎉</div>
       <h1>太棒了！</h1>
       <p id="resultSubtitle" class="subtitle">你完成關卡了！</p>
-      <div class="result-score">
-        <span id="finalScore">0</span>/<span id="finalTotal">10</span>
-      </div>
       <div id="resultStars" class="result-stars">⭐⭐⭐⭐⭐</div>
+      <div class="small-note">點圖片再聽一次英文</div>
+      <div id="resultReview" class="result-review"></div>
       <button class="big-btn" onclick="restartCurrentGame()">↻ 再玩一次</button>
       <br>
       <button id="resultBackButton" class="secondary-btn" onclick="backFromResult()">← 回首頁</button>
@@ -1567,7 +1644,7 @@
 
     initSortDrag();
 
-    const QUESTION_COUNT = 10;
+    const QUESTION_COUNT = 5;
 
     let questions = [];
     let current = 0;
@@ -1682,15 +1759,10 @@
 
       document.querySelectorAll('#listenMenu .category-btn').forEach(btn=>{
         btn.classList.remove('selected');
+        btn.disabled = false;
       });
 
-      const btn = document.getElementById('listenStartButton');
-      btn.disabled = true;
-      btn.textContent = '▶ 開始遊戲';
-
-      document.getElementById('listenHint').textContent =
-        '先選擇一個主題，再開始遊戲。';
-
+      document.getElementById('listenHint').textContent = '點一個主題就開始！';
       showScreen('listenMenu');
     }
 
@@ -1705,45 +1777,45 @@
 
       document.querySelectorAll('#whackMenu .category-btn').forEach(btn=>{
         btn.classList.remove('selected');
+        btn.disabled = false;
       });
 
-      const btn = document.getElementById('whackStartButton');
-      btn.disabled = true;
-      document.getElementById('whackHint').textContent = '先選擇一個主題。';
-
+      document.getElementById('whackHint').textContent = '點一個主題就開始！';
       showScreen('whackMenu');
     }
 
     function selectWhackCategory(category,button){
+      if(button.disabled) return;
       whackCategory = category;
 
       document.querySelectorAll('#whackMenu .category-btn').forEach(btn=>{
         btn.classList.remove('selected');
+        btn.disabled = true;
       });
 
       button.classList.add('selected');
-      document.getElementById('whackStartButton').disabled = false;
-      document.getElementById('whackHint').textContent =
-        `已選擇：${categoryInfo[category].label}`;
-
+      document.getElementById('whackHint').textContent = `${categoryInfo[category].label}！`;
+      playCategorySound(category);
       preloadCategory(category);
+
+      setTimeout(()=>startWhackGame(),320);
     }
 
     function selectCategory(category,button){
+      if(button.disabled) return;
       selectedCategory = category;
 
       document.querySelectorAll('#listenMenu .category-btn').forEach(btn=>{
         btn.classList.remove('selected');
+        btn.disabled = true;
       });
 
       button.classList.add('selected');
-
-      document.getElementById('listenStartButton').disabled = false;
-      document.getElementById('listenHint').textContent =
-        `已選擇：${categoryInfo[category].label}`;
-
-      // 選好主題後就在背景預載
+      document.getElementById('listenHint').textContent = `${categoryInfo[category].label}！`;
+      playCategorySound(category);
       preloadCategory(category);
+
+      setTimeout(()=>startGame(),320);
     }
 
     function preloadItems(items){
@@ -1807,13 +1879,7 @@
     }
 
     function makeWhackQuestions(){
-      // 打地鼠直接混合全部素材，不再區分Animals/Fruits/Vehicles
-      const items = [
-        ...animals,
-        ...fruits,
-        ...vehicles
-      ];
-
+      const items = categories[whackCategory] || animals;
       const count = Math.min(QUESTION_COUNT,items.length);
       const targets = shuffle(items).slice(0,count);
 
@@ -1829,6 +1895,37 @@
       });
     }
 
+    function progressStars(done,total=QUESTION_COUNT){
+      const safeDone = Math.max(0,Math.min(done,total));
+      return '★'.repeat(safeDone) + '☆'.repeat(Math.max(0,total-safeDone));
+    }
+
+    function setRoundProgress(id,done,total=QUESTION_COUNT){
+      const el = document.getElementById(id);
+      if(el) el.textContent = progressStars(done,total);
+    }
+
+    function getCurrentRoundItems(){
+      if(currentMode==='sort') return sortQuestions;
+      if(currentMode==='whack') return whackQuestions.map(q=>q.target);
+      return questions.map(q=>q.target);
+    }
+
+    function renderResultReview(){
+      const box = document.getElementById('resultReview');
+      if(!box) return;
+      box.innerHTML = '';
+
+      getCurrentRoundItems().slice(0,QUESTION_COUNT).forEach(item=>{
+        const btn = document.createElement('button');
+        btn.className = 'review-card';
+        btn.type = 'button';
+        btn.innerHTML = `<img src="${item.image}" alt="${item.word}" decoding="async"><span>${capitalize(item.word)}</span>`;
+        btn.onclick = ()=>speak(item.word,.82);
+        box.appendChild(btn);
+      });
+    }
+
     function showScreen(id){
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -1841,10 +1938,6 @@
       currentMode = 'listen';
       speechSynthesis.cancel();
 
-      const startButton = document.getElementById('listenStartButton');
-      startButton.disabled = true;
-      startButton.textContent = '載入中...';
-
       await preloadCategory(selectedCategory);
 
       questions = makeQuestions();
@@ -1852,13 +1945,9 @@
       score = 0;
       locked = false;
 
-      document.getElementById('score').textContent = score;
-      document.getElementById('totalQuestions').textContent = questions.length;
+      setRoundProgress('listenProgress',0,questions.length);
       document.getElementById('categoryLabel').textContent =
         categoryInfo[selectedCategory].label;
-
-      startButton.disabled = false;
-      startButton.textContent = '▶ 開始遊戲';
 
       showScreen('game');
       renderQuestion();
@@ -1873,8 +1962,7 @@
       sortScore = 0;
       sortLocked = false;
 
-      document.getElementById('sortScore').textContent = sortScore;
-      document.getElementById('sortTotalQuestions').textContent = sortQuestions.length;
+      setRoundProgress('sortProgress',0,sortQuestions.length);
 
       // 只預載這一局會出現的10張，避免手機一次載入全部題庫
       await preloadItems(sortQuestions);
@@ -1892,9 +1980,9 @@
       whackScore = 0;
       whackLocked = false;
 
-      document.getElementById('whackScore').textContent = whackScore;
-      document.getElementById('whackTotalQuestions').textContent = whackQuestions.length;
-      document.getElementById('whackCategoryLabel').textContent = 'All Words';
+      setRoundProgress('whackProgress',0,whackQuestions.length);
+      document.getElementById('whackCategoryLabel').textContent =
+        categoryInfo[whackCategory || 'animals'].label;
 
       // 只預載這一局實際會出現的圖片，避免手機一次載入全部素材
       const whackRoundItems = [];
@@ -1915,8 +2003,8 @@
     function renderQuestion(){
       locked = false;
       const q = questions[current];
-      document.getElementById('qnum').textContent = current+1;
-      document.getElementById('questionText').textContent = `Find the ${q.target.word}!`;
+      setRoundProgress('listenProgress',current,questions.length);
+      document.getElementById('questionText').textContent = '🔊';
       document.getElementById('feedback').textContent = '';
       document.getElementById('feedback').className = 'feedback';
 
@@ -1948,9 +2036,8 @@
       const q = whackQuestions[whackCurrent];
       if(!q) return;
 
-      document.getElementById('whackQnum').textContent = whackCurrent + 1;
-      document.getElementById('whackQuestionText').textContent =
-        `Find the ${q.target.word}!`;
+      setRoundProgress('whackProgress',whackCurrent,whackQuestions.length);
+      document.getElementById('whackQuestionText').textContent = 'Listen!';
 
       const feedback = document.getElementById('whackFeedback');
       feedback.textContent = '';
@@ -2101,9 +2188,9 @@
         });
 
         whackScore++;
-        document.getElementById('whackScore').textContent = whackScore;
+        setRoundProgress('whackProgress',whackScore,whackQuestions.length);
 
-        feedback.textContent = '答對了！⭐';
+        feedback.textContent = 'Great job! ⭐';
         feedback.style.color = '#2f9c47';
 
         // 敲擊震動＋光圈＋+1＋英文單字＋星星爆開
@@ -2286,7 +2373,7 @@
 
       const q = sortQuestions[sortCurrent];
 
-      document.getElementById('sortQnum').textContent = sortCurrent+1;
+      setRoundProgress('sortProgress',sortCurrent,sortQuestions.length);
       document.getElementById('sortItemImage').src = q.image;
       document.getElementById('sortItemImage').alt = q.word;
       document.getElementById('sortItemWord').textContent = capitalize(q.word);
@@ -2370,9 +2457,9 @@
         // 卡片真的飛進分類框
         flyItemIntoZone(zone,()=>{
           sortScore++;
-          document.getElementById('sortScore').textContent = sortScore;
+          setRoundProgress('sortProgress',sortScore,sortQuestions.length);
 
-          feedback.textContent = '答對了！⭐';
+          feedback.textContent = 'Great job! ⭐';
           feedback.className = 'feedback good';
 
           burstStars();
@@ -2589,8 +2676,8 @@
         burstChoiceStars(btn);
 
         score++;
-        document.getElementById('score').textContent=score;
-        feedback.textContent='答對了！⭐';
+        setRoundProgress('listenProgress',score,questions.length);
+        feedback.textContent='Great job! ⭐';
         feedback.className='feedback good';
 
         // 簡短成功音效
@@ -2662,9 +2749,6 @@
         isWhack ? whackQuestions.length :
         questions.length;
 
-      document.getElementById('finalScore').textContent = earnedScore;
-      document.getElementById('finalTotal').textContent = total;
-
       if(isSort){
         document.getElementById('resultSubtitle').textContent =
           '你完成分類遊戲了！';
@@ -2674,7 +2758,7 @@
         document.getElementById('resultSubtitle').textContent =
           '你完成打地鼠關卡了！';
         document.getElementById('resultBackButton').textContent =
-          '← 回首頁';
+          '← 選其他主題';
       }else{
         document.getElementById('resultSubtitle').textContent =
           categoryInfo[selectedCategory].result;
@@ -2682,16 +2766,10 @@
           '← 選其他主題';
       }
 
-      const ratio = total ? earnedScore/total : 0;
-      const starCount =
-        ratio>=.9?5:
-        ratio>=.7?4:
-        ratio>=.5?3:
-        ratio>=.3?2:1;
-
-      document.getElementById('resultStars').textContent='⭐'.repeat(starCount);
+      document.getElementById('resultStars').textContent='⭐⭐⭐⭐⭐';
+      renderResultReview();
       burstStars();
-      speak(ratio>=.8?'Awesome! Great job!':'Good job!');
+      speak('Awesome! Great job!');
     }
 
     function restartCurrentGame(){
@@ -2708,7 +2786,9 @@
       speechSynthesis.cancel();
 
       if(currentMode==='listen'){
-        showScreen('listenMenu');
+        openListenMenu();
+      }else if(currentMode==='whack'){
+        openWhackMenu();
       }else{
         showScreen('home');
       }
