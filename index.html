@@ -1331,134 +1331,509 @@
       .whack-hole{height:118px}
     }
 
+
+
+    /* === V1.0 可擴充幼兒英文平台 === */
+    :root{
+      --panel-width:min(980px,94vw);
+      --soft-blue:#e9f7ff;
+      --soft-yellow:#fff4bf;
+      --soft-green:#e9f9e8;
+      --soft-purple:#f1ebff;
+      --ink:#24324a;
+    }
+
+    .platform-shell{
+      width:var(--panel-width);
+      background:rgba(255,255,255,.94);
+      border-radius:36px;
+      padding:30px;
+      box-shadow:0 18px 50px rgba(44,68,96,.14);
+      border:4px solid rgba(255,255,255,.75);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .platform-shell::before,
+    .platform-shell::after{
+      content:'';
+      position:absolute;
+      border-radius:50%;
+      pointer-events:none;
+      opacity:.55;
+      filter:blur(1px);
+    }
+
+    .platform-shell::before{
+      width:170px;height:170px;
+      left:-70px;top:-70px;
+      background:#bfeaff;
+    }
+
+    .platform-shell::after{
+      width:180px;height:180px;
+      right:-76px;bottom:-80px;
+      background:#ffe9a9;
+    }
+
+    .home-shell{max-width:900px}
+
+    .brand-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 15px;
+      border-radius:999px;
+      background:#eef8ff;
+      color:#52708c;
+      font-size:.92rem;
+      font-weight:900;
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .platform-title{
+      position:relative;
+      z-index:1;
+      font-size:clamp(2.45rem,7vw,4.7rem);
+      margin:2px 0 8px;
+      line-height:1.02;
+    }
+
+    .platform-subtitle{
+      position:relative;
+      z-index:1;
+      margin:0 auto 18px;
+      color:#607188;
+      font-size:clamp(1.02rem,2.5vw,1.28rem);
+      font-weight:800;
+    }
+
+    .home-characters{
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      gap:clamp(8px,3vw,24px);
+      margin:6px auto 14px;
+      min-height:128px;
+      position:relative;
+      z-index:1;
+    }
+
+    .home-character{
+      width:clamp(92px,17vw,142px);
+      height:clamp(92px,17vw,142px);
+      border:none;
+      border-radius:30px;
+      background:#fff;
+      box-shadow:0 9px 22px rgba(47,65,90,.12),inset 0 0 0 4px #edf4fb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+
+    .home-character:nth-child(1){transform:rotate(-4deg)}
+    .home-character:nth-child(2){transform:translateY(-9px)}
+    .home-character:nth-child(3){transform:rotate(4deg)}
+    .home-character img{width:100%;height:100%;object-fit:contain;display:block}
+
+    .primary-play-btn{
+      position:relative;
+      z-index:1;
+      border:none;
+      min-width:min(340px,92%);
+      border-radius:28px;
+      padding:18px 28px;
+      background:#ffcf4a;
+      color:#23324a;
+      font-size:clamp(1.3rem,3vw,1.7rem);
+      font-weight:900;
+      box-shadow:0 8px 0 #e2ad20;
+      transition:.15s transform,.15s box-shadow;
+    }
+
+    .primary-play-btn:active{transform:translateY(6px);box-shadow:0 2px 0 #e2ad20}
+
+    .home-topic-row{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin:22px auto 8px;
+      width:min(640px,100%);
+    }
+
+    .home-topic-shortcut{
+      border:none;
+      border-radius:20px;
+      background:#fff;
+      padding:11px 8px;
+      box-shadow:0 6px 16px rgba(47,65,90,.10),inset 0 0 0 3px #edf4fb;
+      color:var(--ink);
+      font-weight:900;
+    }
+
+    .home-topic-shortcut span{display:block;font-size:.78rem;color:#7a889b;margin-top:2px}
+
+    .home-meta{
+      position:relative;
+      z-index:1;
+      margin-top:14px;
+      font-size:.88rem;
+      color:#7b899b;
+      font-weight:800;
+    }
+
+    .section-head{position:relative;z-index:1;margin-bottom:18px}
+    .section-head h1{font-size:clamp(2rem,5vw,3.3rem);margin:0 0 7px}
+    .section-head p{margin:0;color:#687991;font-weight:800}
+
+    .platform-back{
+      position:absolute;
+      z-index:4;
+      left:18px;
+      top:18px;
+      width:48px;
+      height:48px;
+      border:none;
+      border-radius:16px;
+      background:#f0f6fb;
+      color:#42526a;
+      font-size:1.3rem;
+      font-weight:900;
+      box-shadow:0 5px 12px rgba(47,65,90,.09);
+    }
+
+    .topic-grid-v1{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .topic-card-v1{
+      min-height:190px;
+      border:none;
+      border-radius:28px;
+      padding:16px 12px;
+      background:#fff;
+      color:var(--ink);
+      box-shadow:0 9px 22px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+
+    .topic-card-v1:not(:disabled):hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(47,65,90,.15),inset 0 0 0 4px #dbefff}
+    .topic-card-v1 img{width:105px;height:105px;object-fit:contain;display:block}
+    .topic-card-v1 .topic-en{font-size:1.28rem;font-weight:900}
+    .topic-card-v1 .topic-zh{font-size:.9rem;color:#738198;font-weight:800}
+    .topic-card-v1.coming{opacity:.58;background:#f7f9fc;cursor:default}
+    .topic-card-v1 .coming-icon{font-size:3.8rem;line-height:1;margin-bottom:6px}
+    .coming-badge{font-size:.72rem;background:#e9eef5;color:#6f7e91;border-radius:999px;padding:4px 9px;font-weight:900}
+
+    .selected-topic-hero{
+      position:relative;
+      z-index:1;
+      width:min(720px,100%);
+      margin:0 auto 18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:16px;
+    }
+
+    .selected-topic-hero img{
+      width:100px;
+      height:100px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:26px;
+      padding:8px;
+      box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 3px #edf4fb;
+    }
+
+    .selected-topic-copy{text-align:left}
+    .selected-topic-copy .eyebrow{font-size:.83rem;color:#7a889b;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .selected-topic-copy h2{font-size:clamp(1.7rem,4vw,2.7rem);margin:2px 0 0}
+    .selected-topic-copy p{margin:4px 0 0;color:#687991;font-weight:800}
+
+    .mode-grid-v1{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      width:min(720px,100%);
+      margin:0 auto;
+    }
+
+    .mode-card-v1{
+      min-height:128px;
+      border:none;
+      border-radius:25px;
+      padding:15px 18px;
+      color:var(--ink);
+      text-align:left;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      box-shadow:0 8px 20px rgba(47,65,90,.11);
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+
+    .mode-card-v1:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(47,65,90,.15)}
+    .mode-card-v1.learn{background:var(--soft-yellow)}
+    .mode-card-v1.listen{background:var(--soft-blue)}
+    .mode-card-v1.sort{background:var(--soft-green)}
+    .mode-card-v1.whack{background:var(--soft-purple)}
+    .mode-card-v1 .mode-symbol{font-size:3rem;width:66px;text-align:center;flex:0 0 auto}
+    .mode-card-v1 strong{display:block;font-size:1.18rem;margin-bottom:3px}
+    .mode-card-v1 small{display:block;color:#66758b;font-size:.86rem;font-weight:800;line-height:1.3}
+
+    .mode-note-v1{position:relative;z-index:1;margin:15px 0 0;color:#7b899b;font-size:.84rem;font-weight:800}
+
+    .game-exit{
+      flex:0 0 auto;
+      border:none;
+      border-radius:999px;
+      min-width:46px;
+      height:44px;
+      padding:0 13px;
+      background:#fff;
+      color:#506176;
+      font-weight:900;
+      box-shadow:0 6px 18px rgba(44,68,96,.1);
+    }
+
+    .learn-card-wrap{
+      width:min(920px,96vw);
+      background:rgba(255,255,255,.94);
+      border-radius:32px;
+      padding:24px;
+      box-shadow:0 18px 50px rgba(44,68,96,.13);
+      text-align:center;
+    }
+
+    .learn-title{font-size:clamp(1.7rem,4vw,2.6rem);margin:0 0 5px}
+    .learn-note{margin:0 0 18px;color:#6c7b90;font-weight:800}
+
+    .learn-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin:0 auto 18px;
+    }
+
+    .learn-word-card{
+      min-height:190px;
+      border:none;
+      border-radius:25px;
+      background:#fff;
+      color:#34445b;
+      box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+      transition:transform .15s ease,box-shadow .15s ease;
+    }
+
+    .learn-word-card:active{transform:scale(.97)}
+    .learn-word-card.playing{box-shadow:0 0 0 6px #8dd7ff,0 0 28px rgba(85,185,239,.35)}
+    .learn-word-card img{width:115px;height:115px;object-fit:contain;display:block}
+    .learn-word-card span{font-size:1.12rem;font-weight:900;margin-top:8px}
+
+    .learn-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+    @media(max-width:760px){
+      .platform-shell{width:100%;padding:22px 14px 18px;border-radius:26px}
+      .platform-back{left:10px;top:10px;width:42px;height:42px;border-radius:14px}
+      .home-characters{min-height:98px;gap:7px}
+      .home-character{width:88px;height:88px;border-radius:22px;padding:7px}
+      .home-topic-row{gap:7px;margin-top:18px}
+      .home-topic-shortcut{font-size:.88rem;padding:10px 5px}
+      .topic-grid-v1{grid-template-columns:repeat(2,1fr);gap:10px}
+      .topic-card-v1{min-height:145px;border-radius:22px;padding:11px 7px}
+      .topic-card-v1 img{width:78px;height:78px}
+      .topic-card-v1 .topic-en{font-size:1.03rem}
+      .topic-card-v1 .coming-icon{font-size:2.9rem}
+      .selected-topic-hero{gap:12px;margin-top:7px}
+      .selected-topic-hero img{width:82px;height:82px;border-radius:22px}
+      .selected-topic-copy p{font-size:.88rem}
+      .mode-grid-v1{grid-template-columns:1fr;gap:9px}
+      .mode-card-v1{min-height:91px;border-radius:21px;padding:10px 14px;gap:12px}
+      .mode-card-v1 .mode-symbol{font-size:2.25rem;width:52px}
+      .mode-card-v1 strong{font-size:1.05rem}
+      .mode-card-v1 small{font-size:.78rem}
+      .learn-card-wrap{width:100%;padding:14px 10px;border-radius:22px}
+      .learn-grid{grid-template-columns:repeat(2,1fr);gap:9px}
+      .learn-word-card{min-height:145px;border-radius:20px;padding:8px}
+      .learn-word-card img{width:88px;height:88px}
+      .learn-word-card span{font-size:1rem;margin-top:5px}
+      .game-exit{height:40px;min-width:42px;padding:0 11px}
+    }
+
+    @media(max-width:390px){
+      .platform-title{font-size:2.25rem}
+      .home-character{width:78px;height:78px}
+      .topic-card-v1{min-height:132px}
+      .topic-card-v1 img{width:70px;height:70px}
+      .learn-word-card{min-height:132px}
+      .learn-word-card img{width:78px;height:78px}
+    }
+
   </style>
 </head>
 <body>
   <div id="stars" class="stars"></div>
 
   <section id="home" class="screen active">
-    <div class="card">
-      <h1 class="toddler-home-title">Let's Play!</h1>
-      <p class="subtitle">一起玩英文！</p>
+    <div class="platform-shell home-shell">
+      <div class="brand-chip">★ Little English Club</div>
+      <h1 class="platform-title">Let's Play English!</h1>
+      <p class="platform-subtitle">選一個主題，開始今天的小冒險。</p>
 
-      <div class="game-mode-grid">
-        <button class="game-mode-btn" onclick="openListenMenu()">
-          <img id="homeListenModeImage" class="mode-icon" src="images/animals/alpaca.webp" alt="Listen and Find" loading="eager" decoding="async">
-          <div>
-            <div class="mode-zh">聽一聽</div>
-            <div class="mode-en-small">Listen &amp; Find</div>
-          </div>
-        </button>
-
-        <button class="game-mode-btn" onclick="startSortGame()">
-          <img class="mode-icon" src="images/fruits/apple.webp" alt="Sorting Game" loading="eager" decoding="async">
-          <div>
-            <div class="mode-zh">分一分</div>
-            <div class="mode-en-small">Sorting</div>
-          </div>
-        </button>
-
-        <button class="game-mode-btn" onclick="openWhackMenu()">
-          <img id="homeWhackModeImage" class="mode-icon" src="images/animals/whack-a-mole.webp" alt="Whack a Word" loading="eager" decoding="async">
-          <div>
-            <div class="mode-zh">打地鼠</div>
-            <div class="mode-en-small">Whack-a-Word</div>
-          </div>
-        </button>
+      <div class="home-characters" aria-hidden="true">
+        <div class="home-character"><img id="homeAnimalImage" alt=""></div>
+        <div class="home-character"><img src="images/fruits/apple.webp" alt=""></div>
+        <div class="home-character"><img src="images/vehicles/car.webp" alt=""></div>
       </div>
 
-      <div class="small-note">點一張大圖就可以開始。</div>
+      <button class="primary-play-btn" onclick="openTopicMenu()">▶ Start Playing</button>
+
+      <div class="home-topic-row" aria-label="快速選擇主題">
+        <button class="home-topic-shortcut" onclick="chooseTopic('animals')">🐶 Animals<span>動物</span></button>
+        <button class="home-topic-shortcut" onclick="chooseTopic('fruits')">🍎 Fruits<span>水果</span></button>
+        <button class="home-topic-shortcut" onclick="chooseTopic('vehicles')">🚗 Vehicles<span>交通工具</span></button>
+      </div>
+
+      <div class="home-meta">3個主題・4種玩法・每回合5題</div>
     </div>
   </section>
 
-  <section id="listenMenu" class="screen">
-    <div class="card">
-      <h1 class="menu-title">Listen &amp; Find</h1>
-      <p class="subtitle">Choose a topic!</p>
-
-      <div class="category-grid">
-        <button class="category-btn" onclick="selectCategory('animals',this)">
-          <img id="listenAnimalImage" class="category-icon" alt="Animals" decoding="async">
-          <div class="category-en">Animals</div>
-          <div class="category-zh">動物</div>
-        </button>
-
-        <button class="category-btn" onclick="selectCategory('fruits',this)">
-          <img class="category-icon" src="images/fruits/apple.webp" alt="Fruits" decoding="async">
-          <div class="category-en">Fruits</div>
-          <div class="category-zh">水果</div>
-        </button>
-
-        <button class="category-btn" onclick="selectCategory('vehicles',this)">
-          <img class="category-icon" src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
-          <div class="category-en">Vehicles</div>
-          <div class="category-zh">交通工具</div>
-        </button>
+  <section id="topicMenu" class="screen">
+    <div class="platform-shell">
+      <button class="platform-back" onclick="backToHome()" aria-label="回首頁">←</button>
+      <div class="section-head">
+        <h1>Choose a Topic</h1>
+        <p>今天想玩什麼？</p>
       </div>
 
-      <div id="listenHint" class="tap-topic-note">點一個主題就開始！</div>
-      <button class="secondary-btn menu-back" onclick="backToHome()">← 回首頁</button>
-    </div>
-  </section>
+      <div class="topic-grid-v1">
+        <button class="topic-card-v1" onclick="chooseTopic('animals')">
+          <img id="topicAnimalImage" alt="Animals" decoding="async">
+          <div class="topic-en">Animals</div>
+          <div class="topic-zh">動物</div>
+        </button>
 
-  <section id="sortMenu" class="screen">
-    <div class="card">
-      <h1 class="menu-title">Sorting Game</h1>
-      <p class="subtitle">把單字分到正確的類別</p>
-
-      <div class="preview-grid">
-        <div class="preview-box">
-          <img id="sortPreviewAnimalImage" alt="Animals" decoding="async">
-          <strong>Animals</strong>
-        </div>
-        <div class="preview-box">
+        <button class="topic-card-v1" onclick="chooseTopic('fruits')">
           <img src="images/fruits/apple.webp" alt="Fruits" decoding="async">
-          <strong>Fruits</strong>
-        </div>
-        <div class="preview-box">
-          <img src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
-          <strong>Vehicles</strong>
-        </div>
-      </div>
+          <div class="topic-en">Fruits</div>
+          <div class="topic-zh">水果</div>
+        </button>
 
-      <button class="big-btn" onclick="startSortGame()">▶ 開始分類</button>
-      <div class="small-note">看到圖片後，點選正確的分類。</div>
-      <button class="secondary-btn menu-back" onclick="backToHome()">← 回首頁</button>
+        <button class="topic-card-v1" onclick="chooseTopic('vehicles')">
+          <img src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
+          <div class="topic-en">Vehicles</div>
+          <div class="topic-zh">交通工具</div>
+        </button>
+
+        <button class="topic-card-v1 coming" disabled>
+          <div class="coming-icon">🦖</div>
+          <div class="topic-en">Dinosaurs</div>
+          <div class="topic-zh">恐龍</div>
+          <div class="coming-badge">Coming soon</div>
+        </button>
+
+        <button class="topic-card-v1 coming" disabled>
+          <div class="coming-icon">🫀</div>
+          <div class="topic-en">Body</div>
+          <div class="topic-zh">人體</div>
+          <div class="coming-badge">Coming soon</div>
+        </button>
+
+        <button class="topic-card-v1 coming" disabled>
+          <div class="coming-icon">😊</div>
+          <div class="topic-en">Emotions</div>
+          <div class="topic-zh">情緒</div>
+          <div class="coming-badge">Coming soon</div>
+        </button>
+      </div>
     </div>
   </section>
 
-  <section id="whackMenu" class="screen">
-    <div class="card">
-      <h1 class="menu-title">Whack-a-Word</h1>
-      <p class="subtitle">Choose a topic!</p>
+  <section id="gameMenu" class="screen">
+    <div class="platform-shell">
+      <button class="platform-back" onclick="openTopicMenu()" aria-label="回主題選單">←</button>
 
-      <div class="category-grid">
-        <button class="category-btn" onclick="selectWhackCategory('animals',this)">
-          <img id="whackAnimalImage" class="category-icon" alt="Animals" decoding="async">
-          <div class="category-en">Animals</div>
-          <div class="category-zh">動物</div>
+      <div class="selected-topic-hero">
+        <img id="selectedTopicImage" alt="Selected topic" decoding="async">
+        <div class="selected-topic-copy">
+          <div class="eyebrow">Selected Topic</div>
+          <h2 id="selectedTopicTitle">Animals</h2>
+          <p id="selectedTopicSubtitle">動物</p>
+        </div>
+      </div>
+
+      <div class="mode-grid-v1">
+        <button class="mode-card-v1 learn" onclick="startLearnMode()">
+          <div class="mode-symbol">📚</div>
+          <div><strong>學單字 Learn</strong><small>看圖片、點一下、聽英文。</small></div>
         </button>
 
-        <button class="category-btn" onclick="selectWhackCategory('fruits',this)">
-          <img class="category-icon" src="images/fruits/apple.webp" alt="Fruits" decoding="async">
-          <div class="category-en">Fruits</div>
-          <div class="category-zh">水果</div>
+        <button class="mode-card-v1 listen" onclick="startSelectedListen()">
+          <div class="mode-symbol">🔊</div>
+          <div><strong>聽一聽 Listen &amp; Find</strong><small>聽英文，再找出正確圖片。</small></div>
         </button>
 
-        <button class="category-btn" onclick="selectWhackCategory('vehicles',this)">
-          <img class="category-icon" src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
-          <div class="category-en">Vehicles</div>
-          <div class="category-zh">交通工具</div>
+        <button class="mode-card-v1 sort" onclick="startSortGame()">
+          <div class="mode-symbol">🧺</div>
+          <div><strong>分一分 Sorting</strong><small>把動物、水果、交通工具送回正確的家。</small></div>
+        </button>
+
+        <button class="mode-card-v1 whack" onclick="startSelectedWhack()">
+          <div class="mode-symbol">⭐</div>
+          <div><strong>打地鼠 Whack-a-Word</strong><small>聽到單字後，快速點對圖片。</small></div>
         </button>
       </div>
 
-      <div id="whackHint" class="tap-topic-note">點一個主題就開始！</div>
-      <button class="secondary-btn menu-back" onclick="backToHome()">← 回首頁</button>
+      <div class="mode-note-v1">同一份主題資料可以共用不同玩法，之後新增主題不用重做整個遊戲。</div>
+    </div>
+  </section>
+
+  <section id="learnGame" class="screen">
+    <div class="topbar">
+      <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
+      <div id="learnCategoryLabel" class="pill topic-pill">Animals</div>
+      <div class="pill">Tap &amp; Listen</div>
+    </div>
+
+    <div class="learn-card-wrap">
+      <h2 class="learn-title">Tap &amp; Learn!</h2>
+      <p class="learn-note">點圖片聽英文，再跟著唸一次。</p>
+      <div id="learnGrid" class="learn-grid"></div>
+      <div class="learn-actions">
+        <button class="big-btn" onclick="refreshLearnCards()">↻ 換一組</button>
+        <button class="secondary-btn" onclick="backToGameMenu()">選其他遊戲</button>
+      </div>
     </div>
   </section>
 
   <section id="game" class="screen">
     <div class="topbar">
+      <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div id="categoryLabel" class="pill topic-pill">Animals</div>
       <div id="listenProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
@@ -1473,6 +1848,7 @@
 
   <section id="sortGame" class="screen">
     <div class="topbar">
+      <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div class="pill topic-pill">Sorting</div>
       <div id="sortProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
@@ -1511,6 +1887,7 @@
 
   <section id="whackGame" class="screen">
     <div class="topbar">
+      <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div id="whackCategoryLabel" class="pill topic-pill">Animals</div>
       <div id="whackProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
@@ -1522,11 +1899,6 @@
       </div>
 
       <div id="whackBoard" class="whack-board">
-        <div class="whack-hole"></div>
-        <div class="whack-hole"></div>
-        <div class="whack-hole"></div>
-        <div class="whack-hole"></div>
-        <div class="whack-hole"></div>
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
@@ -1547,7 +1919,7 @@
       <div id="resultReview" class="result-review"></div>
       <button class="big-btn" onclick="restartCurrentGame()">↻ 再玩一次</button>
       <br>
-      <button id="resultBackButton" class="secondary-btn" onclick="backFromResult()">← 回首頁</button>
+      <button id="resultBackButton" class="secondary-btn" onclick="backFromResult()">← 選其他遊戲</button>
     </div>
   </section>
 
@@ -1624,17 +1996,19 @@
     };
 
     const categoryInfo = {
-      animals:{label:'Animals', result:'你完成動物關卡了！'},
-      fruits:{label:'Fruits', result:'你完成水果關卡了！'},
-      vehicles:{label:'Vehicles', result:'你完成交通工具關卡了！'}
+      animals:{label:'Animals', zh:'動物', result:'你完成動物關卡了！', image:null},
+      fruits:{label:'Fruits', zh:'水果', result:'你完成水果關卡了！', image:'images/fruits/apple.webp'},
+      vehicles:{label:'Vehicles', zh:'交通工具', result:'你完成交通工具關卡了！', image:'images/vehicles/car.webp'}
     };
+
+    categoryInfo.animals.image = animals[0]?.image || '';
 
     // 動物代表圖直接使用HTML內嵌圖片，避免GitHub路徑造成破圖
     [
-      'listenAnimalImage',
+      'homeAnimalImage',
+      'topicAnimalImage',
       'sortPreviewAnimalImage',
-      'sortAnimalButtonImage',
-      'whackAnimalImage'
+      'sortAnimalButtonImage'
     ].forEach(id=>{
       const el = document.getElementById(id);
       if(el && animals.length){
@@ -1652,6 +2026,7 @@
     let locked = false;
     let selectedCategory = null;
     let currentMode = 'listen';
+    let learnCards = [];
 
     let sortQuestions = [];
     let sortCurrent = 0;
@@ -1753,69 +2128,108 @@
 
     const preloadedImages = new Map();
 
+    function openTopicMenu(){
+      speechSynthesis.cancel();
+      showScreen('topicMenu');
+    }
+
+    function chooseTopic(category){
+      if(!categories[category]) return;
+      selectedCategory = category;
+      whackCategory = category;
+      playCategorySound(category);
+      preloadCategory(category);
+      renderGameMenu();
+      showScreen('gameMenu');
+    }
+
+    function renderGameMenu(){
+      if(!selectedCategory) return;
+      const info = categoryInfo[selectedCategory];
+      const image = document.getElementById('selectedTopicImage');
+      document.getElementById('selectedTopicTitle').textContent = info.label;
+      document.getElementById('selectedTopicSubtitle').textContent = info.zh;
+      if(image) image.src = info.image || categories[selectedCategory][0]?.image || '';
+    }
+
+    function backToGameMenu(){
+      speechSynthesis.cancel();
+      if(selectedCategory){
+        renderGameMenu();
+        showScreen('gameMenu');
+      }else{
+        openTopicMenu();
+      }
+    }
+
+    // 保留舊函式名稱，避免未來沿用舊按鈕時失效。
     function openListenMenu(){
-      currentMode = 'listen';
-      selectedCategory = null;
-
-      document.querySelectorAll('#listenMenu .category-btn').forEach(btn=>{
-        btn.classList.remove('selected');
-        btn.disabled = false;
-      });
-
-      document.getElementById('listenHint').textContent = '點一個主題就開始！';
-      showScreen('listenMenu');
+      if(selectedCategory) backToGameMenu();
+      else openTopicMenu();
     }
 
     function openSortMenu(){
-      currentMode = 'sort';
-      showScreen('sortMenu');
+      if(selectedCategory) backToGameMenu();
+      else openTopicMenu();
     }
 
     function openWhackMenu(){
-      currentMode = 'whack';
-      whackCategory = null;
-
-      document.querySelectorAll('#whackMenu .category-btn').forEach(btn=>{
-        btn.classList.remove('selected');
-        btn.disabled = false;
-      });
-
-      document.getElementById('whackHint').textContent = '點一個主題就開始！';
-      showScreen('whackMenu');
+      if(selectedCategory) backToGameMenu();
+      else openTopicMenu();
     }
 
-    function selectWhackCategory(category,button){
-      if(button.disabled) return;
-      whackCategory = category;
-
-      document.querySelectorAll('#whackMenu .category-btn').forEach(btn=>{
-        btn.classList.remove('selected');
-        btn.disabled = true;
-      });
-
-      button.classList.add('selected');
-      document.getElementById('whackHint').textContent = `${categoryInfo[category].label}！`;
-      playCategorySound(category);
-      preloadCategory(category);
-
-      setTimeout(()=>startWhackGame(),320);
+    function startSelectedListen(){
+      if(!selectedCategory) return openTopicMenu();
+      startGame();
     }
 
-    function selectCategory(category,button){
-      if(button.disabled) return;
-      selectedCategory = category;
+    function startSelectedWhack(){
+      if(!selectedCategory) return openTopicMenu();
+      whackCategory = selectedCategory;
+      startWhackGame();
+    }
 
-      document.querySelectorAll('#listenMenu .category-btn').forEach(btn=>{
-        btn.classList.remove('selected');
-        btn.disabled = true;
+    function selectWhackCategory(category){
+      chooseTopic(category);
+      startSelectedWhack();
+    }
+
+    function selectCategory(category){
+      chooseTopic(category);
+      startSelectedListen();
+    }
+
+    function startLearnMode(){
+      if(!selectedCategory) return openTopicMenu();
+      currentMode = 'learn';
+      speechSynthesis.cancel();
+      document.getElementById('learnCategoryLabel').textContent = categoryInfo[selectedCategory].label;
+      refreshLearnCards();
+      showScreen('learnGame');
+    }
+
+    function refreshLearnCards(){
+      if(!selectedCategory) return;
+      const items = categories[selectedCategory] || [];
+      learnCards = shuffle(items).slice(0,Math.min(6,items.length));
+      const grid = document.getElementById('learnGrid');
+      if(!grid) return;
+      grid.innerHTML = '';
+
+      learnCards.forEach(item=>{
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'learn-word-card';
+        btn.innerHTML = `<img src="${item.image}" alt="${item.word}" decoding="async"><span>${capitalize(item.word)}</span>`;
+        btn.onclick = ()=>{
+          document.querySelectorAll('.learn-word-card').forEach(card=>card.classList.remove('playing'));
+          btn.classList.add('playing');
+          speak(item.word,.78);
+          setTimeout(()=>btn.classList.remove('playing'),650);
+        };
+        grid.appendChild(btn);
       });
-
-      button.classList.add('selected');
-      document.getElementById('listenHint').textContent = `${categoryInfo[category].label}！`;
-      playCategorySound(category);
-      preloadCategory(category);
-
-      setTimeout(()=>startGame(),320);
+      preloadItems(learnCards);
     }
 
     function preloadItems(items){
@@ -1884,13 +2298,25 @@
       const targets = shuffle(items).slice(0,count);
 
       return targets.map(target=>{
-        const wrong = shuffle(
-          items.filter(item=>item.word!==target.word)
-        ).slice(0,2);
+        // 先固定正確答案，再從不同單字中補2個干擾選項。
+        // 用word去重，避免未來擴充題庫時因重複資料造成選項變少。
+        const wrongPool = items.filter(item=>item.word!==target.word);
+        const uniqueWrong = [];
+        const seen = new Set();
+
+        shuffle(wrongPool).forEach(item=>{
+          if(!seen.has(item.word)){
+            seen.add(item.word);
+            uniqueWrong.push(item);
+          }
+        });
+
+        const wrong = uniqueWrong.slice(0,2);
+        const options = [target,...wrong];
 
         return {
           target,
-          options:shuffle([target,...wrong])
+          options:shuffle(options)
         };
       });
     }
@@ -2043,16 +2469,50 @@
       feedback.textContent = '';
       feedback.className = 'whack-feedback';
 
-      const holes = [...document.querySelectorAll('#whackBoard .whack-hole')];
-      holes.forEach(hole=>{
+      // 先清空所有洞，再只取得目前真正可見的洞。
+      // 這樣未來即使CSS改變洞數，也不會把選項放進隱藏位置。
+      const allHoles = [...document.querySelectorAll('#whackBoard .whack-hole')];
+      allHoles.forEach(hole=>{
         hole.innerHTML = '';
         hole.classList.remove('dim-hole');
       });
 
-      const positions = shuffle([...Array(holes.length).keys()]).slice(0,3);
+      const holes = allHoles.filter(hole=>getComputedStyle(hole).display!=='none');
 
-      q.options.forEach((opt,index)=>{
+      // 再做一次防呆：正確答案固定保留，只隨機抽2個不同的干擾選項。
+      const optionMap = new Map();
+      q.options.forEach(item=>{
+        if(item && item.word && item.word!==q.target.word && !optionMap.has(item.word)){
+          optionMap.set(item.word,item);
+        }
+      });
+
+      // 如果題目資料意外不足，從同一主題題庫補足干擾選項。
+      const pool = shuffle(
+        (categories[whackCategory] || animals)
+          .filter(item=>item.word!==q.target.word && !optionMap.has(item.word))
+      );
+      while(optionMap.size<2 && pool.length){
+        const item = pool.shift();
+        if(!optionMap.has(item.word)) optionMap.set(item.word,item);
+      }
+
+      const distractors = shuffle([...optionMap.values()]).slice(0,2);
+      const safeOptions = shuffle([q.target,...distractors]);
+
+      // 如果未來題庫或版面被改壞，寧可停止這題，也不要出現沒有正確答案的畫面。
+      if(holes.length<3 || safeOptions.length<3){
+        console.error('Whack-a-Word question setup error', {q,visibleHoles:holes.length,options:safeOptions.length});
+        feedback.textContent = '請再試一次';
+        return;
+      }
+
+      const positions = shuffle([...Array(holes.length).keys()]).slice(0,safeOptions.length);
+
+      safeOptions.forEach((opt,index)=>{
         const hole = holes[positions[index]];
+        if(!hole) return;
+
         const btn = document.createElement('button');
         btn.className = 'whack-mole';
         btn.type = 'button';
@@ -2752,19 +3212,14 @@
       if(isSort){
         document.getElementById('resultSubtitle').textContent =
           '你完成分類遊戲了！';
-        document.getElementById('resultBackButton').textContent =
-          '← 回首頁';
       }else if(isWhack){
         document.getElementById('resultSubtitle').textContent =
           '你完成打地鼠關卡了！';
-        document.getElementById('resultBackButton').textContent =
-          '← 選其他主題';
       }else{
         document.getElementById('resultSubtitle').textContent =
           categoryInfo[selectedCategory].result;
-        document.getElementById('resultBackButton').textContent =
-          '← 選其他主題';
       }
+      document.getElementById('resultBackButton').textContent = '← 選其他遊戲';
 
       document.getElementById('resultStars').textContent='⭐⭐⭐⭐⭐';
       renderResultReview();
@@ -2784,14 +3239,7 @@
 
     function backFromResult(){
       speechSynthesis.cancel();
-
-      if(currentMode==='listen'){
-        openListenMenu();
-      }else if(currentMode==='whack'){
-        openWhackMenu();
-      }else{
-        showScreen('home');
-      }
+      backToGameMenu();
     }
 
     function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
