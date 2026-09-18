@@ -5027,26 +5027,47 @@
       }
     }
 
-    function centerDragItem(){
+    function centerDragItem(options={}){
       const stage = document.getElementById('dragStage');
       const item = document.getElementById('dragItem');
       if(!stage || !item) return;
 
-      item.classList.add('snap-back');
+      const immediate = options.immediate === true;
 
-      const stageRect = stage.getBoundingClientRect();
-      const itemRect = item.getBoundingClientRect();
+      // 使用layout尺寸，不使用getBoundingClientRect()的視覺尺寸。
+      // 前一張卡片飛入分類框時會套用scale(.38)，getBoundingClientRect()
+      // 會把縮放後寬度算進去，造成下一張卡片置中時向右偏移。
+      const stageWidth = stage.clientWidth;
+      const itemWidth = item.offsetWidth;
+      const left = Math.max(0,(stageWidth - itemWidth) / 2);
 
-      const left = (stageRect.width - itemRect.width) / 2;
       const isCompactSort = window.matchMedia('(max-width:760px)').matches;
       const isLandscapeCompact = window.matchMedia('(max-width:900px) and (orientation:landscape) and (max-height:520px)').matches;
       const top = isLandscapeCompact ? 22 : (isCompactSort ? 32 : 44);
 
-      item.style.left = `${left}px`;
-      item.style.top = `${top}px`;
+      item.classList.remove('fly-in','dragging');
       item.style.transform = 'none';
+      item.style.opacity = '1';
 
-      setTimeout(()=>item.classList.remove('snap-back'),240);
+      if(immediate){
+        // 換新題目時直接放回正中央，不從上一張卡片的位置滑回來。
+        item.classList.remove('snap-back');
+        item.style.transition = 'none';
+        item.style.left = `${left}px`;
+        item.style.top = `${top}px`;
+
+        // 強制套用座標後，再恢復原本transition設定。
+        void item.offsetWidth;
+        requestAnimationFrame(()=>{
+          item.style.transition = '';
+        });
+      }else{
+        // 拖錯位置或放開時保留柔和回彈效果。
+        item.classList.add('snap-back');
+        item.style.left = `${left}px`;
+        item.style.top = `${top}px`;
+        setTimeout(()=>item.classList.remove('snap-back'),240);
+      }
     }
 
     function clearDropZoneState(){
@@ -5198,11 +5219,12 @@
       clearDropZoneState();
 
       const item = document.getElementById('dragItem');
-      item.classList.remove('dragging','fly-in');
-      item.style.transition = '';
+      item.classList.remove('dragging','fly-in','snap-back');
       item.style.opacity = '1';
       item.style.transform = 'none';
-      requestAnimationFrame(centerDragItem);
+
+      // 新題目直接依原始layout尺寸放到舞台正中央，避免上一題scale動畫影響座標。
+      centerDragItem({immediate:true});
 
       setTimeout(()=>speakWord(q.word),250);
     }
