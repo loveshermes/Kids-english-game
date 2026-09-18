@@ -3945,6 +3945,280 @@
       #whackGame .whack-cloud,#whackGame .whack-flower{animation:none!important}
     }
 
+  
+
+    /* =========================================================
+       V4.9 Sorting destination-stage refresh
+       ========================================================= */
+    #sortGame .sort-polish-card{
+      background:
+        radial-gradient(circle at 9% 4%,rgba(179,235,198,.28),transparent 24%),
+        radial-gradient(circle at 94% 3%,rgba(188,222,255,.29),transparent 24%),
+        linear-gradient(155deg,rgba(255,255,255,.985),rgba(247,253,251,.955));
+    }
+
+    #sortGame .sort-polish-stage{
+      min-height:430px;
+      margin-top:8px;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.98);
+      background:
+        radial-gradient(circle at 15% 19%,rgba(255,255,255,.92) 0 24px,transparent 25px),
+        radial-gradient(circle at 20% 18%,rgba(219,240,255,.62) 0 44px,transparent 45px),
+        radial-gradient(circle at 84% 16%,rgba(255,255,255,.82) 0 20px,transparent 21px),
+        radial-gradient(circle at 88% 15%,rgba(229,243,255,.58) 0 42px,transparent 43px),
+        linear-gradient(180deg,#f5fbff 0%,#f7fcff 46%,#eff9ef 46%,#e5f5e1 100%);
+      box-shadow:
+        inset 0 0 0 2px rgba(225,238,247,.78),
+        inset 0 -40px 70px rgba(103,183,116,.075),
+        0 12px 26px rgba(56,79,105,.07);
+    }
+
+    /* soft hills / horizon */
+    #sortGame .sort-polish-stage::after{
+      content:'';
+      position:absolute;
+      left:-9%;right:-9%;
+      top:43%;
+      height:105px;
+      border-radius:50% 50% 0 0/82% 82% 0 0;
+      background:
+        radial-gradient(ellipse at 18% 100%,rgba(143,207,140,.18) 0 46%,transparent 47%),
+        radial-gradient(ellipse at 78% 100%,rgba(121,195,133,.15) 0 47%,transparent 48%),
+        linear-gradient(180deg,rgba(230,247,227,.22),rgba(222,242,219,.52));
+      pointer-events:none;
+      z-index:0;
+    }
+
+    #sortGame .sort-polish-stage::before{
+      content:'DRAG ME HOME!';
+      top:10px;
+      padding:5px 11px;
+      font-size:.56rem;
+      letter-spacing:.14em;
+      color:#7994a5;
+      background:rgba(255,255,255,.82);
+      box-shadow:0 5px 13px rgba(55,78,104,.055),inset 0 1px 0 #fff;
+      z-index:7;
+    }
+
+    /* decorative scene container */
+    #sortGame .sort-stage-scene{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+      border-radius:inherit;
+    }
+    #sortGame .sort-cloud{
+      position:absolute;
+      width:68px;height:22px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      filter:drop-shadow(0 4px 7px rgba(82,122,145,.06));
+      animation:sortCloudDrift 8s ease-in-out infinite alternate;
+    }
+    #sortGame .sort-cloud::before,
+    #sortGame .sort-cloud::after{
+      content:'';position:absolute;border-radius:50%;background:inherit;
+    }
+    #sortGame .sort-cloud::before{width:28px;height:28px;left:12px;bottom:5px}
+    #sortGame .sort-cloud::after{width:34px;height:34px;right:11px;bottom:3px}
+    #sortGame .sort-cloud-a{left:8%;top:54px;transform:scale(.78);opacity:.72}
+    #sortGame .sort-cloud-b{right:7%;top:82px;transform:scale(.62);opacity:.58;animation-delay:1.4s}
+    @keyframes sortCloudDrift{from{translate:-5px 0}to{translate:8px 1px}}
+
+    /* central launch pad makes the draggable card feel intentional */
+    #sortGame .sort-launch-pad{
+      position:absolute;
+      left:50%;
+      top:50px;
+      width:190px;
+      height:156px;
+      transform:translateX(-50%);
+      border-radius:48% 52% 45% 55%;
+      background:
+        radial-gradient(circle,rgba(255,255,255,.92) 0 32%,rgba(219,241,255,.52) 33% 55%,rgba(219,241,255,0) 70%);
+      opacity:.95;
+    }
+    #sortGame .sort-launch-pad::before{
+      content:'';
+      position:absolute;
+      left:50%;bottom:14px;
+      width:118px;height:25px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:radial-gradient(ellipse,rgba(77,112,134,.16),rgba(77,112,134,0) 70%);
+    }
+    #sortGame .sort-launch-pad::after{
+      content:'START';
+      position:absolute;
+      left:50%;bottom:1px;
+      transform:translateX(-50%);
+      font-size:.48rem;
+      letter-spacing:.16em;
+      font-weight:900;
+      color:rgba(91,130,151,.54);
+    }
+
+    /* three subtle route lines from the launch card to the visible destinations */
+    #sortGame .sort-route{
+      position:absolute;
+      top:168px;
+      width:2px;
+      height:118px;
+      transform-origin:top center;
+      opacity:.32;
+      background:repeating-linear-gradient(to bottom,rgba(111,163,187,.7) 0 6px,transparent 6px 13px);
+      filter:drop-shadow(0 0 5px rgba(124,183,207,.15));
+    }
+    #sortGame .sort-route::after{
+      content:'▼';
+      position:absolute;
+      left:50%;bottom:-10px;
+      transform:translateX(-50%);
+      font-size:.48rem;
+      color:rgba(105,155,181,.72);
+    }
+    #sortGame .sort-route-left{left:50%;transform:translateX(-50%) rotate(57deg)}
+    #sortGame .sort-route-mid{left:50%;transform:translateX(-50%)}
+    #sortGame .sort-route-right{left:50%;transform:translateX(-50%) rotate(-57deg)}
+
+    /* small ground details, enough to fill negative space without clutter */
+    #sortGame .sort-ground-dot{
+      position:absolute;
+      bottom:145px;
+      width:5px;height:5px;border-radius:50%;
+      background:rgba(107,185,117,.27);
+      box-shadow:10px 5px 0 rgba(107,185,117,.17),-8px 8px 0 rgba(107,185,117,.14);
+    }
+    #sortGame .sort-ground-dot-a{left:12%}
+    #sortGame .sort-ground-dot-b{right:13%;transform:scale(.8)}
+
+    /* draggable card becomes a stronger focal point */
+    #sortGame .sort-polish-card #dragItem{
+      width:132px!important;
+      min-width:132px!important;
+      max-width:132px!important;
+      min-height:126px!important;
+      max-height:126px!important;
+      padding:8px 8px 39px!important;
+      border-radius:25px!important;
+      background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(243,250,255,.97))!important;
+      box-shadow:
+        0 18px 32px rgba(55,79,107,.15),
+        0 0 0 6px rgba(255,255,255,.52),
+        inset 0 1px 0 #fff,
+        inset 0 0 0 2px rgba(216,232,243,.78)!important;
+      z-index:8;
+    }
+    #sortGame .sort-polish-card #sortItemImage{
+      width:82px!important;height:82px!important;max-width:82px!important;max-height:82px!important;
+      filter:drop-shadow(0 8px 6px rgba(52,74,96,.11));
+    }
+    #sortGame .sort-polish-card #sortItemWord{
+      left:8px!important;right:8px!important;bottom:7px!important;
+      min-height:31px!important;
+      font-size:.9rem!important;
+      border-radius:13px!important;
+      background:rgba(255,255,255,.96)!important;
+      box-shadow:0 4px 10px rgba(47,65,90,.065)!important;
+    }
+
+    /* destination homes */
+    #sortGame .sort-polish-card .drop-zone-grid{
+      gap:13px;
+      bottom:13px;
+      padding:0 12px;
+      z-index:6;
+    }
+    #sortGame .sort-polish-card .drop-zone{
+      min-height:150px;
+      border-radius:28px 28px 22px 22px;
+      padding:18px 8px 12px;
+      justify-content:flex-end;
+      overflow:visible;
+      isolation:isolate;
+      box-shadow:
+        0 11px 22px rgba(55,78,106,.075),
+        inset 0 1px 0 rgba(255,255,255,.96),
+        inset 0 0 0 2px rgba(229,238,246,.60);
+    }
+    #sortGame .sort-polish-card .drop-zone::before{
+      content:'';
+      position:absolute;
+      left:13%;right:13%;top:-12px;
+      height:29px;
+      border-radius:22px 22px 7px 7px;
+      background:linear-gradient(180deg,var(--zone-accent,#8fc7ff),color-mix(in srgb,var(--zone-accent,#8fc7ff) 72%,white));
+      opacity:.72;
+      clip-path:polygon(50% 0,100% 70%,94% 100%,6% 100%,0 70%);
+      z-index:-1;
+      filter:drop-shadow(0 4px 4px rgba(62,85,105,.08));
+    }
+    #sortGame .sort-polish-card .drop-zone::after{
+      content:'HOME';
+      position:absolute;
+      right:12px;top:10px;
+      padding:3px 7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.74);
+      color:#8ca0b2;
+      font-size:.46rem;
+      letter-spacing:.12em;
+      font-weight:900;
+      box-shadow:0 3px 8px rgba(55,78,106,.045);
+    }
+    #sortGame .sort-polish-card .sort-category-img{
+      width:84px;height:84px;
+      margin-bottom:2px;
+      filter:drop-shadow(0 7px 6px rgba(55,78,106,.095));
+      transition:transform .2s cubic-bezier(.2,.8,.2,1),filter .2s ease;
+    }
+    #sortGame .sort-polish-card .sort-category-label{
+      font-size:1rem;
+      padding:3px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.70);
+      box-shadow:0 3px 9px rgba(55,78,106,.04);
+    }
+    @media(hover:hover){
+      #sortGame .sort-polish-card .drop-zone:hover .sort-category-img{transform:translateY(-4px) scale(1.04)}
+    }
+    #sortGame .sort-polish-card .drop-zone.magnetic-zone .sort-category-img{transform:translateY(-5px) scale(1.06);filter:drop-shadow(0 9px 8px rgba(94,112,90,.15))}
+
+    /* responsive */
+    @media(max-width:760px){
+      #sortGame .sort-polish-stage{min-height:410px;border-radius:22px}
+      #sortGame .sort-cloud{display:none}
+      #sortGame .sort-launch-pad{top:43px;width:148px;height:126px}
+      #sortGame .sort-route{top:145px;height:96px;opacity:.22}
+      #sortGame .sort-polish-card #dragItem{
+        width:108px!important;min-width:108px!important;max-width:108px!important;
+        min-height:108px!important;max-height:108px!important;
+        padding:6px 6px 34px!important;border-radius:20px!important;
+      }
+      #sortGame .sort-polish-card #sortItemImage{width:66px!important;height:66px!important;max-width:66px!important;max-height:66px!important}
+      #sortGame .sort-polish-card #sortItemWord{font-size:.78rem!important;min-height:27px!important;bottom:5px!important}
+      #sortGame .sort-polish-card .drop-zone-grid{gap:7px;bottom:8px;padding:0 4px}
+      #sortGame .sort-polish-card .drop-zone{min-height:112px;border-radius:19px;padding:14px 4px 8px}
+      #sortGame .sort-polish-card .drop-zone::before{top:-8px;height:22px}
+      #sortGame .sort-polish-card .drop-zone::after{display:none}
+      #sortGame .sort-polish-card .sort-category-img{width:58px;height:58px}
+      #sortGame .sort-polish-card .sort-category-label{font-size:.83rem;padding:2px 7px}
+      #sortGame .sort-ground-dot{bottom:112px}
+    }
+    @media(max-width:390px){
+      #sortGame .sort-route-left,#sortGame .sort-route-right{opacity:.14}
+      #sortGame .sort-polish-card .drop-zone{min-height:104px}
+      #sortGame .sort-polish-card .sort-category-img{width:52px;height:52px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      #sortGame .sort-cloud{animation:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -4242,6 +4516,16 @@
       <div class="mode-section-divider sort-divider" aria-hidden="true"><span></span><strong>Find its home</strong><small>找到正確分類</small><span></span></div>
 
       <div id="dragStage" class="drag-stage sort-polish-stage">
+        <div class="sort-stage-scene" aria-hidden="true">
+          <span class="sort-cloud sort-cloud-a"></span>
+          <span class="sort-cloud sort-cloud-b"></span>
+          <span class="sort-launch-pad"></span>
+          <span class="sort-route sort-route-left"></span>
+          <span class="sort-route sort-route-mid"></span>
+          <span class="sort-route sort-route-right"></span>
+          <span class="sort-ground-dot sort-ground-dot-a"></span>
+          <span class="sort-ground-dot sort-ground-dot-b"></span>
+        </div>
         <button id="dragItem" class="drag-item" type="button" aria-label="draggable word card">
           <img id="sortItemImage" class="sort-item-img" alt="" decoding="async">
           <div id="sortItemWord" class="sort-word"></div>
