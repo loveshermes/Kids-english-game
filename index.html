@@ -2055,9 +2055,10 @@
       emotions:{label:'Emotions', zh:'情緒', result:'你完成情緒關卡了！', image:'images/emotion/happy.webp'}
     };
 
-    categoryInfo.animals.image = animals[0]?.image || '';
+    // 動物分類代表圖固定使用alpaca，不受題庫第1筆資料影響
+    const animalCoverImage = 'images/animals/alpaca.webp';
+    categoryInfo.animals.image = animalCoverImage;
 
-    // 動物代表圖直接使用HTML內嵌圖片，避免GitHub路徑造成破圖
     [
       'homeAnimalImage',
       'topicAnimalImage',
@@ -2065,8 +2066,8 @@
       'sortAnimalButtonImage'
     ].forEach(id=>{
       const el = document.getElementById(id);
-      if(el && animals.length){
-        el.src = animals[0].image;
+      if(el){
+        el.src = animalCoverImage;
       }
     });
 
