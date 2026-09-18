@@ -3746,6 +3746,205 @@
       .result-stars .v47-result-star{opacity:1!important}
     }
 
+  
+
+    /* =========================================================
+       V4.8 Whack-a-Word Stage — playful meadow redesign
+       ========================================================= */
+    #whackGame .whack-polish-card{
+      background:
+        radial-gradient(circle at 8% 5%,rgba(184,226,255,.34),transparent 25%),
+        radial-gradient(circle at 94% 5%,rgba(255,221,142,.25),transparent 24%),
+        linear-gradient(155deg,rgba(255,255,255,.985),rgba(249,253,255,.95));
+    }
+
+    #whackGame .whack-polish-board{
+      position:relative;
+      isolation:isolate;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      max-width:720px;
+      min-height:300px;
+      padding:72px 22px 22px;
+      border-radius:34px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 18% 18%,rgba(255,255,255,.92) 0 22px,transparent 23px),
+        radial-gradient(circle at 24% 17%,rgba(255,255,255,.80) 0 14px,transparent 15px),
+        radial-gradient(circle at 80% 22%,rgba(255,255,255,.88) 0 19px,transparent 20px),
+        linear-gradient(180deg,#dff5ff 0%,#effbff 52%,#d9f2c7 52%,#cbe9b6 100%);
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.84),
+        inset 0 -22px 45px rgba(90,156,80,.08),
+        0 14px 30px rgba(55,78,106,.075);
+    }
+
+    #whackGame .whack-polish-board::before{
+      content:'';
+      position:absolute;
+      z-index:0;
+      inset:auto -8% 34% -8%;
+      height:96px;
+      border-radius:50% 50% 0 0 / 100% 100% 0 0;
+      background:
+        radial-gradient(ellipse at 18% 100%,rgba(180,223,155,.96) 0 42%,transparent 43%),
+        radial-gradient(ellipse at 50% 100%,rgba(194,231,169,.98) 0 46%,transparent 47%),
+        radial-gradient(ellipse at 82% 100%,rgba(170,216,146,.95) 0 40%,transparent 41%);
+      box-shadow:none;
+      pointer-events:none;
+    }
+
+    #whackGame .whack-polish-board::after{
+      content:'';
+      position:absolute;
+      z-index:0;
+      left:0;right:0;bottom:0;height:31%;
+      background:
+        radial-gradient(circle at 7% 70%,rgba(255,241,132,.75) 0 3px,transparent 4px),
+        radial-gradient(circle at 13% 83%,rgba(255,255,255,.78) 0 3px,transparent 4px),
+        radial-gradient(circle at 92% 76%,rgba(255,224,134,.78) 0 3px,transparent 4px),
+        radial-gradient(circle at 86% 88%,rgba(255,255,255,.74) 0 3px,transparent 4px),
+        linear-gradient(180deg,transparent,rgba(118,184,99,.055));
+      pointer-events:none;
+    }
+
+    #whackGame .whack-scenery{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
+    #whackGame .whack-stage-badge{
+      position:absolute;left:50%;top:15px;transform:translateX(-50%);
+      display:inline-flex;align-items:center;gap:7px;
+      min-height:30px;padding:5px 13px;border-radius:999px;
+      background:rgba(255,255,255,.78);color:#65849a;
+      font-size:.64rem;font-weight:900;letter-spacing:.075em;
+      box-shadow:0 5px 14px rgba(67,94,120,.07),inset 0 1px 0 rgba(255,255,255,.95);
+      backdrop-filter:blur(5px);
+    }
+    #whackGame .whack-stage-badge::before,#whackGame .whack-stage-badge::after{content:'✦';font-size:.55rem;color:#f2bf4f}
+    #whackGame .whack-cloud{position:absolute;width:58px;height:19px;border-radius:999px;background:rgba(255,255,255,.76);filter:blur(.1px);opacity:.8}
+    #whackGame .whack-cloud::before,#whackGame .whack-cloud::after{content:'';position:absolute;border-radius:50%;background:inherit}
+    #whackGame .whack-cloud::before{width:26px;height:26px;left:9px;bottom:4px}
+    #whackGame .whack-cloud::after{width:34px;height:34px;right:8px;bottom:2px}
+    #whackGame .wc1{left:8%;top:54px;transform:scale(.72);animation:v48CloudDrift 10s ease-in-out infinite alternate}
+    #whackGame .wc2{right:6%;top:48px;transform:scale(.58);opacity:.58;animation:v48CloudDrift 12s ease-in-out infinite alternate-reverse}
+    #whackGame .whack-flower{position:absolute;bottom:16px;font-size:1rem;opacity:.68;filter:drop-shadow(0 2px 2px rgba(60,100,55,.08));animation:v48FlowerSway 3.6s ease-in-out infinite}
+    #whackGame .wf1{left:4%;color:#ffcf63}.wf2{left:9%;bottom:10px;color:#fff}.wf3{right:8%;color:#ffb4c9}.wf4{right:3%;bottom:9px;color:#fff}
+
+    #whackGame .whack-polish-board .whack-hole{
+      position:relative;
+      z-index:3;
+      display:block;
+      min-width:0;
+      height:190px;
+      border:0;
+      border-radius:28px;
+      overflow:visible;
+      background:transparent;
+      box-shadow:none;
+      transition:transform .18s ease,filter .18s ease,opacity .18s ease;
+    }
+
+    #whackGame .whack-polish-board .whack-hole::before{
+      content:'';
+      position:absolute;
+      z-index:0;
+      left:5%;right:5%;bottom:8px;height:72px;
+      border-radius:50% 50% 44% 44% / 58% 58% 40% 40%;
+      background:
+        radial-gradient(circle at 25% 30%,rgba(255,255,255,.34) 0 3px,transparent 4px),
+        radial-gradient(circle at 78% 35%,rgba(255,242,129,.52) 0 3px,transparent 4px),
+        linear-gradient(180deg,#b9df93,#8dc86e 64%,#79b85e 100%);
+      box-shadow:
+        inset 0 2px 0 rgba(255,255,255,.36),
+        inset 0 -8px 14px rgba(70,132,57,.12),
+        0 8px 16px rgba(71,125,59,.08);
+      animation:none;
+      pointer-events:none;
+    }
+
+    #whackGame .whack-polish-board .whack-hole::after{
+      content:'';
+      position:absolute;
+      z-index:1;
+      left:14%;right:14%;bottom:31px;height:34px;
+      border-radius:50%;
+      background:radial-gradient(ellipse at 50% 38%,#475467 0%,#536276 39%,#6c7c8c 64%,rgba(82,97,113,.22) 71%,transparent 73%);
+      box-shadow:
+        inset 0 8px 12px rgba(27,38,50,.28),
+        0 7px 0 rgba(255,255,255,.22),
+        0 12px 18px rgba(57,79,102,.10);
+      pointer-events:none;
+    }
+
+    #whackGame .whack-polish-board .whack-mole{
+      z-index:4;
+      width:124px;
+      height:128px;
+      bottom:44px;
+      border:0;
+      border-radius:50%;
+      padding:8px;
+      background:radial-gradient(circle,rgba(255,255,255,.96) 0 59%,rgba(255,255,255,.70) 60%,rgba(255,255,255,0) 72%);
+      box-shadow:none;
+      filter:drop-shadow(0 10px 10px rgba(54,77,101,.13));
+      transition:filter .16s ease;
+    }
+    #whackGame .whack-polish-board .whack-mole img{
+      width:106px;
+      height:106px;
+      object-fit:contain;
+      filter:drop-shadow(0 5px 5px rgba(55,78,106,.11));
+    }
+    @media(hover:hover) and (pointer:fine){
+      #whackGame .whack-polish-board .whack-mole:hover{filter:drop-shadow(0 12px 12px rgba(54,77,101,.18)) brightness(1.025)}
+    }
+    #whackGame .whack-hole.dim-hole{opacity:.28;filter:saturate(.55) blur(.2px)}
+    #whackGame .whack-polish-board.v47-hit-success{box-shadow:inset 0 0 0 3px rgba(255,255,255,.86),0 0 0 7px rgba(118,216,133,.16),0 18px 36px rgba(67,160,83,.10)}
+
+    @keyframes v48CloudDrift{from{translate:-7px 0}to{translate:9px 2px}}
+    @keyframes v48FlowerSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg) translateY(-1px)}}
+
+    @media(max-width:760px){
+      #whackGame .whack-polish-board{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:4px 10px;
+        max-width:380px;
+        min-height:390px;
+        padding:54px 8px 10px;
+        border-radius:24px;
+      }
+      #whackGame .whack-stage-badge{top:10px;font-size:.51rem;min-height:25px;padding:4px 9px}
+      #whackGame .wc1{top:42px;left:4%;transform:scale(.46)}
+      #whackGame .wc2{top:40px;right:3%;transform:scale(.40)}
+      #whackGame .whack-polish-board .whack-hole{height:150px;border-radius:20px}
+      #whackGame .whack-polish-board .whack-hole:nth-of-type(3){grid-column:1/-1;width:50%;justify-self:center}
+      #whackGame .whack-polish-board .whack-hole::before{height:56px;bottom:6px}
+      #whackGame .whack-polish-board .whack-hole::after{bottom:23px;height:27px}
+      #whackGame .whack-polish-board .whack-mole{width:96px;height:102px;bottom:33px;padding:5px}
+      #whackGame .whack-polish-board .whack-mole img{width:82px;height:82px}
+      #whackGame .whack-flower{font-size:.82rem}
+    }
+
+    @media(max-width:900px) and (orientation:landscape) and (max-height:520px){
+      #whackGame .whack-polish-board{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        max-width:620px;
+        min-height:190px;
+        padding:42px 8px 6px;
+        gap:5px;
+      }
+      #whackGame .whack-stage-badge{top:7px;min-height:22px;font-size:.47rem}
+      #whackGame .whack-polish-board .whack-hole{height:138px}
+      #whackGame .whack-polish-board .whack-hole:nth-of-type(3){grid-column:auto;width:auto;justify-self:stretch}
+      #whackGame .whack-polish-board .whack-mole{width:88px;height:92px;bottom:30px}
+      #whackGame .whack-polish-board .whack-mole img{width:74px;height:74px}
+      #whackGame .whack-polish-board .whack-hole::before{height:48px}
+      #whackGame .whack-polish-board .whack-hole::after{height:24px;bottom:20px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      #whackGame .whack-cloud,#whackGame .whack-flower{animation:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -4110,6 +4309,15 @@
       <div class="mode-section-divider whack-divider" aria-hidden="true"><span></span><strong>Tap the right one</strong><small>找到正確圖片</small><span></span></div>
 
       <div id="whackBoard" class="whack-board whack-polish-board">
+        <div class="whack-scenery" aria-hidden="true">
+          <span class="whack-stage-badge">LISTEN · SPOT · TAP!</span>
+          <span class="whack-cloud wc1"></span>
+          <span class="whack-cloud wc2"></span>
+          <span class="whack-flower wf1">✿</span>
+          <span class="whack-flower wf2">✿</span>
+          <span class="whack-flower wf3">✿</span>
+          <span class="whack-flower wf4">✿</span>
+        </div>
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
@@ -4998,15 +5206,15 @@
       feedback.textContent = '';
       feedback.className = 'whack-feedback';
 
-      // 先清空所有洞，再只取得目前真正可見的洞。
-      // 這樣未來即使CSS改變洞數，也不會把選項放進隱藏位置。
+      // V4.8：Whack-a-Word固定使用3個有效目標，避免第4個空洞讓畫面失衡。
       const allHoles = [...document.querySelectorAll('#whackBoard .whack-hole')];
-      allHoles.forEach(hole=>{
+      allHoles.forEach((hole,index)=>{
         hole.innerHTML = '';
         hole.classList.remove('dim-hole');
+        hole.style.display = index < 3 ? 'block' : 'none';
       });
 
-      const holes = allHoles.filter(hole=>getComputedStyle(hole).display!=='none');
+      const holes = allHoles.slice(0,3);
 
       // 再做一次防呆：正確答案固定保留，只隨機抽2個不同的干擾選項。
       const optionMap = new Map();
@@ -5036,10 +5244,9 @@
         return;
       }
 
-      const positions = shuffle([...Array(holes.length).keys()]).slice(0,safeOptions.length);
-
+      // 選項本身已隨機排序，直接填滿3個洞，讓版面每題都保持完整。
       safeOptions.forEach((opt,index)=>{
-        const hole = holes[positions[index]];
+        const hole = holes[index];
         if(!hole) return;
 
         const btn = document.createElement('button');
