@@ -2533,25 +2533,393 @@
       .speaker{transition:none!important}
     }
 
+  
+
+    /* =========================================================
+       V4 Visual Final — Little English Club
+       Brand-led, calm motion, scene-first design
+       ========================================================= */
+    :root{
+      --brand-ink:#29405c;
+      --brand-muted:#71839a;
+      --brand-blue:#74c9f5;
+      --brand-blue-deep:#4ca9de;
+      --brand-yellow:#ffd86b;
+      --brand-green:#8fd7a1;
+      --brand-pink:#f7aec6;
+      --brand-purple:#b9a7f4;
+      --brand-surface:rgba(255,255,255,.88);
+      --brand-shadow:0 24px 60px rgba(61,82,112,.13);
+      --brand-shadow-soft:0 12px 30px rgba(61,82,112,.09);
+      --brand-radius-xl:36px;
+      --brand-radius-lg:28px;
+      --brand-radius-md:22px;
+    }
+
+    body{
+      color:var(--brand-ink);
+      background:
+        radial-gradient(circle at 14% 13%,rgba(255,255,255,.92) 0 7%,transparent 21%),
+        radial-gradient(circle at 86% 18%,rgba(255,238,188,.54) 0 10%,transparent 30%),
+        radial-gradient(circle at 76% 84%,rgba(212,232,255,.58) 0 13%,transparent 33%),
+        linear-gradient(152deg,#eaf8ff 0%,#f9f5ff 44%,#fff8df 100%);
+      background-attachment:fixed;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-3;
+      opacity:.42;
+      background-image:radial-gradient(rgba(85,118,150,.13) .75px,transparent .75px);
+      background-size:24px 24px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 72%);
+    }
+
+    .app-ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-2}
+    .ambient-orb{position:absolute;border-radius:50%;filter:blur(1px);opacity:.54}
+    .orb-one{width:290px;height:290px;left:-110px;top:18%;background:radial-gradient(circle,rgba(150,219,255,.38),rgba(150,219,255,0) 70%)}
+    .orb-two{width:340px;height:340px;right:-140px;bottom:4%;background:radial-gradient(circle,rgba(255,216,107,.31),rgba(255,216,107,0) 70%)}
+    .ambient-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.18)}
+    .dot-one{left:8%;top:23%}.dot-two{right:9%;top:62%}
+    .ambient-star{position:absolute;color:rgba(95,138,174,.22);font-size:1.15rem}
+    .ambient-star-one{left:11%;bottom:12%;transform:rotate(-15deg)}
+    .ambient-star-two{right:12%;top:12%;transform:rotate(17deg)}
+
+    .screen.active > *{animation:finalScreenIn .38s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes finalScreenIn{
+      from{opacity:0;transform:translateY(14px) scale(.988)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+
+    .platform-shell{
+      border-radius:var(--brand-radius-xl);
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.82));
+      border:1px solid rgba(255,255,255,.94);
+      box-shadow:var(--brand-shadow),inset 0 1px 0 rgba(255,255,255,.94);
+      backdrop-filter:blur(18px) saturate(1.08);
+      -webkit-backdrop-filter:blur(18px) saturate(1.08);
+    }
+    .platform-shell::before{
+      opacity:.28;
+      background:radial-gradient(circle,rgba(126,202,242,.42),rgba(126,202,242,0) 69%);
+    }
+    .platform-shell::after{
+      opacity:.24;
+      background:radial-gradient(circle,rgba(255,213,102,.48),rgba(255,213,102,0) 70%);
+    }
+
+    .brand-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.95);
+      box-shadow:0 7px 20px rgba(68,94,124,.07),inset 0 1px 0 #fff;
+      color:#58718d;
+      font-size:.82rem;
+      letter-spacing:.04em;
+      font-weight:900;
+    }
+    .brand-star{color:#efb934;font-size:.95rem;filter:drop-shadow(0 2px 3px rgba(225,173,47,.2))}
+
+    .platform-title{
+      margin-top:13px;
+      color:#29405c;
+      letter-spacing:-.035em;
+      text-shadow:0 2px 0 rgba(255,255,255,.7);
+    }
+    .platform-subtitle{color:#71839a;letter-spacing:.01em}
+
+    /* Scene-first home */
+    .visual-final-home{overflow:visible;padding-bottom:30px}
+    .home-scene{
+      position:relative;
+      width:min(620px,100%);
+      height:250px;
+      margin:4px auto 12px;
+      isolation:isolate;
+    }
+    .scene-ground{
+      position:absolute;
+      left:7%;right:7%;bottom:27px;height:62px;
+      border-radius:50%;
+      background:radial-gradient(ellipse at center,rgba(157,213,158,.30) 0 58%,rgba(157,213,158,0) 72%);
+      filter:blur(.1px);
+      z-index:-1;
+    }
+    .scene-ground::before{
+      content:'';position:absolute;left:16%;right:16%;bottom:18px;height:23px;border-radius:50%;
+      background:rgba(87,114,130,.08);filter:blur(8px)
+    }
+    .scene-cloud{position:absolute;width:78px;height:24px;border-radius:999px;background:rgba(255,255,255,.74);filter:drop-shadow(0 7px 15px rgba(93,126,153,.06));z-index:-1}
+    .scene-cloud::before,.scene-cloud::after{content:'';position:absolute;background:inherit;border-radius:50%}
+    .scene-cloud::before{width:34px;height:34px;left:14px;bottom:3px}
+    .scene-cloud::after{width:27px;height:27px;right:14px;bottom:4px}
+    .cloud-a{left:5%;top:24px;transform:scale(.9)}
+    .cloud-b{right:4%;top:53px;transform:scale(.68)}
+    .scene-spark{position:absolute;color:#efbd43;text-shadow:0 3px 7px rgba(224,173,39,.18);opacity:.8}
+    .spark-a{left:14%;top:92px;font-size:1.1rem}.spark-b{right:15%;top:104px;font-size:.8rem}.spark-c{right:29%;top:20px;font-size:.65rem}
+
+    .scene-character{position:absolute;display:flex;align-items:center;justify-content:center;transform-origin:50% 100%}
+    .scene-character img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 9px rgba(65,86,111,.13))}
+    .scene-alpaca{width:158px;height:158px;left:50%;bottom:35px;transform:translateX(-50%);z-index:3;animation:mascotIdle 4.8s ease-in-out infinite}
+    .scene-apple{width:102px;height:102px;left:17%;bottom:39px;z-index:2;transform:rotate(-4deg);animation:friendIdleA 5.7s ease-in-out infinite}
+    .scene-car{width:112px;height:112px;right:15%;bottom:35px;z-index:2;transform:rotate(3deg);animation:friendIdleB 6.2s ease-in-out infinite}
+    .character-halo{position:absolute;width:122px;height:122px;border-radius:50%;background:radial-gradient(circle,rgba(255,230,143,.52),rgba(255,230,143,0) 68%);z-index:-1;filter:blur(1px)}
+    @keyframes mascotIdle{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
+    @keyframes friendIdleA{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-4px)}}
+    @keyframes friendIdleB{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(0deg) translateY(-5px)}}
+
+    .mascot-speech{
+      position:absolute;left:calc(50% + 58px);top:38px;z-index:5;
+      padding:8px 12px;border-radius:16px 16px 16px 5px;
+      background:rgba(255,255,255,.91);border:1px solid rgba(255,255,255,.98);
+      box-shadow:0 9px 18px rgba(63,87,113,.08);
+      color:#5d748e;font-size:.78rem;font-weight:900;letter-spacing:.01em;
+    }
+    .scene-leaf{position:absolute;width:16px;height:8px;border-radius:100% 0 100% 0;background:#8dc99d;opacity:.6;bottom:39px;z-index:1}
+    .leaf-a{left:9%;transform:rotate(-24deg)}.leaf-b{right:7%;transform:rotate(28deg)}
+    .scene-flower{position:absolute;width:7px;height:7px;border-radius:50%;background:#f3a9c2;bottom:50px;box-shadow:7px 1px 0 #ffd468,-6px 3px 0 #a7dcb0;opacity:.78}
+    .flower-a{left:32%}.flower-b{right:29%;transform:scale(.8)}
+
+    .final-play-btn{
+      position:relative;overflow:hidden;
+      display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      min-width:300px;
+      border:1px solid rgba(255,255,255,.86);
+      background:linear-gradient(180deg,#ffd96c 0%,#ffc94a 100%);
+      color:#33455c;
+      box-shadow:0 8px 0 #dfa924,0 16px 26px rgba(213,160,29,.21),inset 0 2px 0 rgba(255,255,255,.6);
+      transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s ease,filter .18s ease;
+    }
+    .final-play-btn::before{content:'';position:absolute;inset:1px 10px auto 10px;height:42%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));pointer-events:none}
+    .final-play-btn:hover{transform:translateY(-3px);filter:saturate(1.04);box-shadow:0 10px 0 #dfa924,0 20px 32px rgba(213,160,29,.23),inset 0 2px 0 rgba(255,255,255,.65)}
+    .final-play-btn:active{transform:translateY(6px) scale(.985);box-shadow:0 2px 0 #d6a01b,0 8px 17px rgba(213,160,29,.16),inset 0 2px 0 rgba(255,255,255,.5)}
+    .play-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.62);box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(160,115,16,.10);z-index:1}
+    .play-icon svg{width:19px;height:19px;fill:#40536a;transform:translateX(1px)}
+    .final-play-btn > span:last-child{position:relative;z-index:1}
+    .home-mini-note{margin-top:15px;color:#8b99aa;font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+
+    /* Topic worlds */
+    .section-head h1{letter-spacing:-.025em;color:#2d435e}
+    .section-head p{color:#7a8ba0}
+    .topic-grid-v1{gap:16px}
+    .topic-card-v1{
+      --accent:#7ecbf4;
+      --accent2:#eaf8ff;
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.96);
+      background:linear-gradient(145deg,rgba(255,255,255,.94),var(--accent2));
+      box-shadow:0 12px 28px rgba(54,77,104,.085),inset 0 1px 0 #fff;
+      isolation:isolate;
+    }
+    .topic-card-v1::before{
+      content:'';position:absolute;width:125px;height:125px;border-radius:50%;right:-45px;top:-52px;
+      background:radial-gradient(circle,var(--accent) 0%,rgba(255,255,255,0) 70%);opacity:.18;z-index:-1;
+    }
+    .topic-card-v1::after{background:var(--accent);opacity:.64;height:4px;left:22px;right:22px;border-radius:999px}
+    .topic-card-v1 img{transition:transform .26s cubic-bezier(.2,.8,.2,1),filter .26s ease;filter:drop-shadow(0 10px 8px rgba(54,75,101,.11))}
+    .topic-card-v1:hover{transform:translateY(-7px);box-shadow:0 20px 38px rgba(54,77,104,.13),inset 0 1px 0 #fff}
+    .topic-card-v1:hover img{transform:translateY(-3px) scale(1.055)}
+    .topic-card-v1:active{transform:translateY(-1px) scale(.98)}
+    .topic-card-v1 .topic-en{color:#304760;letter-spacing:-.01em}
+    .topic-card-v1 .topic-zh{color:#73859a}
+    .theme-animals{--accent:#73bff1;--accent2:#edf8ff}
+    .theme-fruits{--accent:#8dce9a;--accent2:#effaf0}
+    .theme-vehicles{--accent:#a99ae9;--accent2:#f3f0ff}
+    .theme-body{--accent:#f0a1bb;--accent2:#fff1f6}
+    .theme-emotions{--accent:#f3bf59;--accent2:#fff7e4}
+    .theme-dino{--accent:#9bc99b;--accent2:#f1f8ef}
+    .topic-card-v1.coming{filter:saturate(.74);opacity:.78}
+    .coming-badge{background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.95);box-shadow:0 4px 10px rgba(60,82,108,.06);color:#6f8094}
+
+    /* Selected topic / mascot guidance */
+    .final-selected-hero{
+      position:relative;
+      overflow:visible;
+      background:linear-gradient(135deg,rgba(242,250,255,.91),rgba(255,250,233,.87));
+      border:1px solid rgba(255,255,255,.95);
+      box-shadow:0 12px 27px rgba(56,80,108,.075),inset 0 1px 0 #fff;
+    }
+    .selected-topic-art{width:106px;height:106px;border-radius:26px;display:grid;place-items:center;background:rgba(255,255,255,.70);box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 8px 18px rgba(58,82,111,.07)}
+    .selected-topic-art #selectedTopicImage{width:86px;height:86px;border-radius:0;box-shadow:none;background:transparent;padding:0;filter:drop-shadow(0 8px 7px rgba(53,75,100,.10))}
+    .selected-topic-copy .eyebrow{color:#8392a5;letter-spacing:.13em;font-size:.67rem}
+    .selected-topic-copy h2{color:#2e455f;letter-spacing:-.02em}
+    .selected-topic-copy p{color:#72859a}
+    .menu-mascot{margin-left:auto;position:relative;width:92px;height:80px;align-self:flex-end;flex:0 0 auto}
+    .menu-mascot img{position:absolute!important;width:72px!important;height:72px!important;right:0;bottom:-2px;border-radius:0!important;background:none!important;box-shadow:none!important;padding:0!important;filter:drop-shadow(0 7px 6px rgba(54,74,99,.10))!important}
+    .menu-mascot span{position:absolute;right:47px;top:-5px;white-space:nowrap;background:#fff;border:1px solid rgba(255,255,255,.95);border-radius:14px 14px 4px 14px;padding:5px 8px;font-size:.65rem;font-weight:900;color:#667c94;box-shadow:0 6px 13px rgba(57,80,105,.07)}
+
+    /* Unified vector mode icons */
+    .mode-grid-v1{gap:13px}
+    .mode-card-v1{
+      border:1px solid rgba(255,255,255,.96);
+      box-shadow:0 11px 24px rgba(55,78,104,.075),inset 0 1px 0 #fff;
+      background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(249,252,255,.91));
+      overflow:hidden;
+    }
+    .mode-card-v1::after{content:'';position:absolute;width:120px;height:120px;right:-55px;top:-58px;border-radius:50%;background:currentColor;opacity:.035;pointer-events:none}
+    .mode-card-v1:hover{transform:translateY(-5px);box-shadow:0 17px 32px rgba(55,78,104,.115),inset 0 1px 0 #fff}
+    .mode-card-v1:active{transform:translateY(0) scale(.986)}
+    .mode-card-v1 .mode-symbol{display:grid;place-items:center}
+    .mode-card-v1 .mode-symbol svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .mode-card-v1.learn{color:#6685d7}.mode-card-v1.listen{color:#4ea9d8}.mode-card-v1.sort{color:#62af79}.mode-card-v1.whack{color:#e4a72a}
+    .mode-card-v1 strong{color:#30465f}.mode-card-v1 small{color:#75869a}
+    .mode-note-v1{color:#8a98a9;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase}
+
+    /* Controls */
+    .platform-back,.game-exit{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(255,255,255,.96);
+      box-shadow:0 8px 18px rgba(57,81,108,.08),inset 0 1px 0 #fff;
+      color:#536b85;
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+    .platform-back:hover,.game-exit:hover{transform:translateY(-2px);box-shadow:0 11px 21px rgba(57,81,108,.11),inset 0 1px 0 #fff}
+    .platform-back:active,.game-exit:active{transform:translateY(1px) scale(.96)}
+
+    .topbar .pill,.progress-stars{border:1px solid rgba(255,255,255,.96);background:rgba(255,255,255,.82);box-shadow:0 8px 18px rgba(57,79,105,.07),inset 0 1px 0 #fff}
+
+    .question-card,.sort-card,.whack-card,.learn-card-wrap{
+      background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.84));
+      border:1px solid rgba(255,255,255,.96);
+      box-shadow:0 18px 40px rgba(59,81,109,.10),inset 0 1px 0 #fff;
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+
+    /* Answer focus: calm, not noisy */
+    .choice{overflow:hidden}
+    .choices.answer-correct .choice:not(.correct){opacity:.27;transform:scale(.965);filter:saturate(.45) blur(.15px)}
+    .choice.correct{background:linear-gradient(145deg,#f3fff1,#e7fae8);box-shadow:0 0 0 6px rgba(126,210,137,.72),0 18px 36px rgba(84,177,103,.18),inset 0 1px 0 #fff}
+    .choice.correct::before{content:'';position:absolute;inset:-35%;background:radial-gradient(circle,rgba(255,255,255,.65),transparent 55%);animation:finalAnswerGlow .7s ease-out both;pointer-events:none}
+    @keyframes finalAnswerGlow{from{opacity:0;transform:scale(.65)}35%{opacity:1}to{opacity:0;transform:scale(1.25)}}
+
+    .speaker,.whack-speaker{
+      background:linear-gradient(180deg,#92dcff,#5dc3f1);
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 7px 0 #46aadd,0 14px 24px rgba(62,168,216,.19),inset 0 2px 0 rgba(255,255,255,.58);
+    }
+
+    /* Result as branded reward */
+    .final-result-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,253,244,.89));border:1px solid rgba(255,255,255,.96);box-shadow:0 24px 58px rgba(58,80,107,.12),inset 0 1px 0 #fff}
+    .final-result-card::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;left:50%;top:-120px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,220,110,.24),rgba(255,220,110,0) 70%);pointer-events:none}
+    .result-mascot-wrap{position:relative;width:170px;height:150px;margin:0 auto 2px}
+    .result-mascot-wrap img{position:absolute;width:126px;height:126px;object-fit:contain;left:50%;bottom:0;transform:translateX(-50%);filter:drop-shadow(0 12px 9px rgba(56,77,102,.13));animation:resultMascotPop .7s cubic-bezier(.2,.85,.2,1) both}
+    .result-mascot-halo{position:absolute;width:135px;height:135px;border-radius:50%;left:50%;bottom:3px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,225,120,.44),rgba(255,225,120,0) 69%)}
+    .result-cheer{position:absolute;right:-4px;top:7px;padding:6px 9px;border-radius:14px 14px 14px 4px;background:#fff;border:1px solid rgba(255,255,255,.96);box-shadow:0 7px 16px rgba(57,80,105,.08);font-size:.72rem;color:#60758e;font-weight:900}
+    .result-spark{position:absolute;color:#edb935;z-index:3}.rs1{left:7px;top:25px}.rs2{right:21px;top:48px;font-size:.75rem}.rs3{left:26px;bottom:20px;font-size:.7rem}
+    @keyframes resultMascotPop{0%{opacity:0;transform:translateX(-50%) translateY(16px) scale(.82)}60%{opacity:1;transform:translateX(-50%) translateY(-4px) scale(1.04)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
+    .final-result-card h1{letter-spacing:-.025em;color:#30465f}
+
+    /* Mobile refinements */
+    @media(max-width:760px){
+      .platform-shell{border-radius:30px}
+      .visual-final-home{padding-top:24px;padding-bottom:24px}
+      .home-scene{height:204px;margin-top:0;margin-bottom:8px}
+      .scene-alpaca{width:128px;height:128px;bottom:33px}
+      .scene-apple{width:82px;height:82px;left:10%;bottom:37px}
+      .scene-car{width:89px;height:89px;right:9%;bottom:34px}
+      .mascot-speech{left:calc(50% + 43px);top:34px;font-size:.66rem;padding:6px 8px}
+      .cloud-a{left:2%;top:21px;transform:scale(.68)}.cloud-b{right:1%;top:46px;transform:scale(.52)}
+      .scene-ground{left:2%;right:2%;bottom:24px;height:50px}
+      .final-play-btn{min-width:min(330px,92%);font-size:1.18rem;padding:15px 22px}
+      .play-icon{width:31px;height:31px}
+      .home-mini-note{font-size:.66rem;margin-top:13px}
+
+      .topic-grid-v1{gap:10px}
+      .topic-card-v1{border-radius:24px;min-height:156px}
+      .topic-card-v1 img{width:88px;height:88px}
+
+      .final-selected-hero{padding-right:10px}
+      .selected-topic-art{width:92px;height:92px;border-radius:23px}
+      .selected-topic-art #selectedTopicImage{width:74px;height:74px}
+      .menu-mascot{width:70px;height:65px}
+      .menu-mascot img{width:60px!important;height:60px!important}
+      .menu-mascot span{display:none}
+
+      .mode-card-v1{min-height:96px}
+      .mode-card-v1 .mode-symbol svg{width:27px;height:27px}
+      .result-mascot-wrap{width:145px;height:126px}
+      .result-mascot-wrap img{width:108px;height:108px}
+      .result-mascot-halo{width:118px;height:118px}
+    }
+
+    @media(max-width:390px){
+      .home-scene{height:190px}
+      .scene-alpaca{width:117px;height:117px}
+      .scene-apple{width:72px;height:72px;left:8%}
+      .scene-car{width:78px;height:78px;right:7%}
+      .mascot-speech{display:none}
+      .topic-card-v1{min-height:142px}
+      .topic-card-v1 img{width:78px;height:78px}
+    }
+
+    @media(hover:none){
+      .topic-card-v1:hover,.mode-card-v1:hover,.final-play-btn:hover,.platform-back:hover,.game-exit:hover{transform:none}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .screen.active > *,
+      .scene-alpaca,.scene-apple,.scene-car,.result-mascot-wrap img{animation:none!important}
+    }
+
   </style>
 </head>
 <body>
+  <!-- Little English Club V4 Visual Final -->
   <div id="stars" class="stars"></div>
+  <div class="app-ambient" aria-hidden="true">
+    <span class="ambient-orb orb-one"></span>
+    <span class="ambient-orb orb-two"></span>
+    <span class="ambient-dot dot-one"></span>
+    <span class="ambient-dot dot-two"></span>
+    <span class="ambient-star ambient-star-one">✦</span>
+    <span class="ambient-star ambient-star-two">✦</span>
+  </div>
 
   <section id="home" class="screen active">
-    <div class="platform-shell home-shell">
-      <div class="brand-chip">★ Little English Club</div>
+    <div class="platform-shell home-shell visual-final-home">
+      <div class="brand-chip"><span class="brand-star">★</span> Little English Club</div>
       <h1 class="platform-title">Let's Play English!</h1>
       <p class="platform-subtitle">選一個主題，開始今天的小冒險。</p>
 
-      <div class="home-characters" aria-hidden="true">
-        <div class="home-character"><img id="homeAnimalImage" alt=""></div>
-        <div class="home-character"><img src="images/fruits/apple.webp" alt=""></div>
-        <div class="home-character"><img src="images/vehicles/car.webp" alt=""></div>
+      <div class="home-scene" aria-hidden="true">
+        <span class="scene-cloud cloud-a"></span>
+        <span class="scene-cloud cloud-b"></span>
+        <span class="scene-spark spark-a">✦</span>
+        <span class="scene-spark spark-b">✦</span>
+        <span class="scene-spark spark-c">✦</span>
+        <div class="mascot-speech">Ready to play?</div>
+        <div class="scene-ground"></div>
+        <div class="scene-character scene-alpaca">
+          <span class="character-halo"></span>
+          <img id="homeAnimalImage" alt="">
+        </div>
+        <div class="scene-character scene-apple"><img src="images/fruits/apple.webp" alt=""></div>
+        <div class="scene-character scene-car"><img src="images/vehicles/car.webp" alt=""></div>
+        <span class="scene-leaf leaf-a"></span>
+        <span class="scene-leaf leaf-b"></span>
+        <span class="scene-flower flower-a"></span>
+        <span class="scene-flower flower-b"></span>
       </div>
 
-      <button class="primary-play-btn" onclick="openTopicMenu()">▶ Start Playing</button>
-</div>
+      <button class="primary-play-btn final-play-btn" onclick="openTopicMenu()">
+        <span class="play-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5.8v12.4c0 .8.9 1.3 1.6.8l9.1-6.2c.6-.4.6-1.2 0-1.6L9.6 5c-.7-.5-1.6 0-1.6.8Z"/></svg>
+        </span>
+        <span>Start Playing</span>
+      </button>
+      <div class="home-mini-note">Tap • Listen • Learn</div>
+    </div>
   </section>
 
   <section id="topicMenu" class="screen">
@@ -2563,38 +2931,38 @@
       </div>
 
       <div class="topic-grid-v1">
-        <button class="topic-card-v1" onclick="chooseTopic('animals')">
+        <button class="topic-card-v1 theme-animals" onclick="chooseTopic('animals')">
           <img id="topicAnimalImage" alt="Animals" decoding="async">
           <div class="topic-en">Animals</div>
           <div class="topic-zh">動物</div>
         </button>
 
-        <button class="topic-card-v1" onclick="chooseTopic('fruits')">
+        <button class="topic-card-v1 theme-fruits" onclick="chooseTopic('fruits')">
           <img src="images/fruits/apple.webp" alt="Fruits" decoding="async">
           <div class="topic-en">Fruits</div>
           <div class="topic-zh">水果</div>
         </button>
 
-        <button class="topic-card-v1" onclick="chooseTopic('vehicles')">
+        <button class="topic-card-v1 theme-vehicles" onclick="chooseTopic('vehicles')">
           <img src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
           <div class="topic-en">Vehicles</div>
           <div class="topic-zh">交通工具</div>
         </button>
 
-        <button class="topic-card-v1 coming" disabled>
+        <button class="topic-card-v1 coming theme-dino" disabled>
           <div class="coming-icon">🦖</div>
           <div class="topic-en">Dinosaurs</div>
           <div class="topic-zh">恐龍</div>
           <div class="coming-badge">Coming soon</div>
         </button>
 
-        <button class="topic-card-v1" onclick="chooseTopic('body')">
+        <button class="topic-card-v1 theme-body" onclick="chooseTopic('body')">
           <img src="images/body/hand.webp" alt="Body" decoding="async">
           <div class="topic-en">Body</div>
           <div class="topic-zh">身體部位</div>
         </button>
 
-        <button class="topic-card-v1" onclick="chooseTopic('emotions')">
+        <button class="topic-card-v1 theme-emotions" onclick="chooseTopic('emotions')">
           <img src="images/emotion/happy.webp" alt="Emotions" decoding="async">
           <div class="topic-en">Emotions</div>
           <div class="topic-zh">情緒</div>
@@ -2607,33 +2975,39 @@
     <div class="platform-shell">
       <button class="platform-back" onclick="openTopicMenu()" aria-label="回主題選單">←</button>
 
-      <div class="selected-topic-hero">
-        <img id="selectedTopicImage" alt="Selected topic" decoding="async">
+      <div class="selected-topic-hero final-selected-hero">
+        <div class="selected-topic-art">
+          <img id="selectedTopicImage" alt="Selected topic" decoding="async">
+        </div>
         <div class="selected-topic-copy">
           <div class="eyebrow">Selected Topic</div>
           <h2 id="selectedTopicTitle">Animals</h2>
           <p id="selectedTopicSubtitle">動物</p>
         </div>
+        <div class="menu-mascot" aria-hidden="true">
+          <span>Let's play!</span>
+          <img src="images/animals/alpaca.webp" alt="">
+        </div>
       </div>
 
       <div class="mode-grid-v1">
         <button class="mode-card-v1 learn" onclick="startLearnMode()">
-          <div class="mode-symbol">📚</div>
+          <div class="mode-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 5.4c2.8-.5 5 .1 7 1.7v12c-2-1.6-4.2-2.2-7-1.7V5.4Zm15 0c-2.8-.5-5 .1-7 1.7v12c2-1.6 4.2-2.2 7-1.7V5.4Z"/><path d="M12 7.1v12"/></svg></div>
           <div><strong>學單字 Learn</strong><small>看圖片、點一下、聽英文。</small></div>
         </button>
 
         <button class="mode-card-v1 listen" onclick="startSelectedListen()">
-          <div class="mode-symbol">🔊</div>
+          <div class="mode-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 9.2h3.6l4.6-3.8v13.2l-4.6-3.8H4.5V9.2Z"/><path d="M15.8 8.2c1.1 1 1.7 2.3 1.7 3.8s-.6 2.8-1.7 3.8M18.4 5.8c1.8 1.6 2.9 3.8 2.9 6.2s-1.1 4.6-2.9 6.2"/></svg></div>
           <div><strong>聽一聽 Listen &amp; Find</strong><small>聽英文，再找出正確圖片。</small></div>
         </button>
 
         <button class="mode-card-v1 sort" onclick="startSortGame()">
-          <div class="mode-symbol">🧺</div>
+          <div class="mode-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h16l-1.4 9.2a1.7 1.7 0 0 1-1.7 1.4H7.1a1.7 1.7 0 0 1-1.7-1.4L4 9Z"/><path d="m8 9 4-5 4 5M8.3 12.3l.7 4.2m3-4.2v4.2m3.7-4.2-.7 4.2"/></svg></div>
           <div><strong>分一分 Sorting</strong><small>把圖片送回正確的分類。</small></div>
         </button>
 
         <button class="mode-card-v1 whack" onclick="startSelectedWhack()">
-          <div class="mode-symbol">⭐</div>
+          <div class="mode-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.9L12 3Z"/></svg></div>
           <div><strong>打地鼠 Whack-a-Word</strong><small>聽到單字後，快速點對圖片。</small></div>
         </button>
       </div>
@@ -2749,8 +3123,13 @@
   </section>
 
   <section id="result" class="screen">
-    <div class="card">
-      <div class="hero">🎉</div>
+    <div class="card final-result-card">
+      <div class="result-mascot-wrap" aria-hidden="true">
+        <span class="result-spark rs1">✦</span><span class="result-spark rs2">★</span><span class="result-spark rs3">✦</span>
+        <div class="result-mascot-halo"></div>
+        <img src="images/animals/alpaca.webp" alt="">
+        <span class="result-cheer">Great job!</span>
+      </div>
       <h1>太棒了！</h1>
       <p id="resultSubtitle" class="subtitle">你完成關卡了！</p>
       <div id="resultStars" class="result-stars">⭐⭐⭐⭐⭐</div>
