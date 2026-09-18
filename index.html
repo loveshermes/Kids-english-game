@@ -5068,6 +5068,466 @@
       #sortGame .sort-polish-card .sort-category-img{width:52px;height:52px}
     }
 
+
+    /* =========================================================
+       V5.3 Sorting house-wall enhancement
+       - strengthen house wall presence
+       - add floral decoration on house walls
+       ========================================================= */
+    #sortGame .sort-polish-card .drop-zone{
+      border:1px solid rgba(255,255,255,.98);
+      box-shadow:
+        0 12px 24px rgba(58,85,113,.09),
+        inset 0 0 0 2px rgba(228,236,244,.82),
+        inset 0 18px 0 rgba(255,255,255,.18),
+        inset 0 -14px 20px rgba(173,196,214,.08)!important;
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="animals"]{
+      --zone-accent:#5eaaff;
+      --label-color:#2f5da0;
+      background:
+        radial-gradient(circle at 11% 84%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 8% 80%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 14% 80%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 11% 77%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 11% 80%,#ffd767 0 3px,transparent 3.5px),
+        radial-gradient(circle at 88% 87%,rgba(124,199,115,.95) 0 10px,transparent 10.5px),
+        radial-gradient(circle at 92% 83%,rgba(140,211,130,.85) 0 8px,transparent 8.5px),
+        linear-gradient(180deg,#f8fbff 0%,#eef5ff 100%);
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="fruits"]{
+      --zone-accent:#42c862;
+      --label-color:#2f7d4d;
+      background:
+        radial-gradient(circle at 14% 87%,rgba(112,195,94,.92) 0 10px,transparent 10.5px),
+        radial-gradient(circle at 10% 83%,rgba(143,216,123,.88) 0 8px,transparent 8.5px),
+        radial-gradient(circle at 88% 85%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 85% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 91% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 88% 78%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 88% 81%,#ffd767 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#fbfffc 0%,#eef9f1 100%);
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="vehicles"]{
+      --zone-accent:#a97bf2;
+      --label-color:#6950a3;
+      background:
+        radial-gradient(circle at 12% 86%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 9% 82%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 15% 82%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 12% 79%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 12% 82%,#ffd767 0 3px,transparent 3.5px),
+        radial-gradient(circle at 87% 87%,rgba(125,199,114,.88) 0 10px,transparent 10.5px),
+        radial-gradient(circle at 91% 82%,rgba(145,214,134,.82) 0 8px,transparent 8.5px),
+        linear-gradient(180deg,#fcfaff 0%,#f2ecff 100%);
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="body"]{
+      --zone-accent:#f39ab8;
+      --label-color:#a65275;
+      background:
+        radial-gradient(circle at 13% 86%,rgba(123,199,115,.88) 0 10px,transparent 10.5px),
+        radial-gradient(circle at 9% 82%,rgba(145,215,135,.82) 0 8px,transparent 8.5px),
+        radial-gradient(circle at 88% 85%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 85% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 91% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 88% 78%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 88% 81%,#ffd767 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#fff9fc 0%,#fff0f6 100%);
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+      --zone-accent:#f7bd2d;
+      --label-color:#9a620f;
+      background:
+        radial-gradient(circle at 12% 85%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 9% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 15% 81%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 12% 78%,#ffffff 0 7px,transparent 7.5px),
+        radial-gradient(circle at 12% 81%,#ffd767 0 3px,transparent 3.5px),
+        radial-gradient(circle at 88% 87%,rgba(126,199,115,.9) 0 10px,transparent 10.5px),
+        radial-gradient(circle at 92% 82%,rgba(145,215,135,.84) 0 8px,transparent 8.5px),
+        linear-gradient(180deg,#fffef8 0%,#fff3d7 100%);
+    }
+
+    #sortGame .sort-polish-card .sort-category-img{
+      margin-bottom:8px;
+      filter:drop-shadow(0 8px 8px rgba(66,93,122,.11));
+    }
+
+    #sortGame .sort-polish-card .sort-category-label{
+      background:rgba(255,255,255,.94);
+      box-shadow:0 5px 11px rgba(58,85,113,.06);
+    }
+
+    @media(max-width:760px){
+      #sortGame .sort-polish-card .drop-zone[data-category="animals"],
+      #sortGame .sort-polish-card .drop-zone[data-category="fruits"],
+      #sortGame .sort-polish-card .drop-zone[data-category="vehicles"],
+      #sortGame .sort-polish-card .drop-zone[data-category="body"],
+      #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+        background-size:auto;
+      }
+    }
+
+
+    /* =========================================================
+       V5.4 Sorting storybook house enhancement
+       - more flowers
+       - deeper wall colors
+       - stronger 3D house feel
+       - closer to storybook mockup style
+       ========================================================= */
+    #sortGame .sort-polish-card .drop-zone{
+      min-height:160px;
+      padding:22px 10px 14px;
+      border-radius:30px 30px 24px 24px;
+      border:1px solid rgba(255,255,255,.98);
+      box-shadow:
+        0 16px 24px rgba(62,88,116,.12),
+        0 4px 0 rgba(220,231,239,.7),
+        inset 0 0 0 2px rgba(231,238,244,.86),
+        inset 0 18px 0 rgba(255,255,255,.16),
+        inset 0 -18px 22px rgba(160,182,198,.12)!important;
+    }
+    #sortGame .sort-polish-card .drop-zone::before{
+      top:-13px;
+      left:9%;
+      right:9%;
+      height:34px;
+      border-radius:24px 24px 8px 8px;
+      background:linear-gradient(180deg,color-mix(in srgb,var(--zone-accent) 88%,white),color-mix(in srgb,var(--zone-accent) 72%,white 28%));
+      filter:drop-shadow(0 6px 6px rgba(69,92,116,.12));
+      box-shadow:inset 0 2px 0 rgba(255,255,255,.25);
+    }
+    #sortGame .sort-polish-card .drop-zone::after{
+      top:10px;
+      right:11px;
+      padding:4px 10px;
+      background:rgba(255,255,255,.94);
+      color:#8ea3b6;
+      box-shadow:0 4px 10px rgba(58,85,113,.07);
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="animals"]{
+      --zone-accent:#4f9cf4;
+      --label-color:#2d5b99;
+      background:
+        radial-gradient(circle at 8% 86%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 4% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 12% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 78%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 82%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 16% 89%,rgba(129,204,115,.94) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 20% 85%,rgba(150,220,136,.9) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 25% 89%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 22% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 28% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 25% 82%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 25% 85%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 86% 88%,rgba(123,199,111,.96) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 90% 84%,rgba(145,214,132,.88) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 78% 89%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 75% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 81% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 78% 82%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 78% 85%,#ffd664 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#f5faff 0%,#e5eefb 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="fruits"]{
+      --zone-accent:#3ebc59;
+      --label-color:#2f7a48;
+      background:
+        radial-gradient(circle at 10% 89%,rgba(121,199,103,.95) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 6% 85%,rgba(147,219,132,.9) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 22% 89%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 19% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 25% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 22% 82%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 22% 85%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 82% 88%,rgba(124,199,111,.94) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 86% 84%,rgba(145,214,132,.88) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 92% 86%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 88% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 96% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 92% 78%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 92% 82%,#ffd664 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#f8fff8 0%,#e2f0e4 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="vehicles"]{
+      --zone-accent:#9a6deb;
+      --label-color:#694ea4;
+      background:
+        radial-gradient(circle at 8% 87%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 4% 83%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 12% 83%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 79%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 83%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 18% 89%,rgba(129,204,115,.94) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 22% 84%,rgba(150,220,136,.9) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 82% 88%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 79% 84%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 85% 84%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 82% 81%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 82% 84%,#ffd664 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#faf8ff 0%,#e9e0f4 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="body"]{
+      --zone-accent:#ef8db1;
+      --label-color:#a34f72;
+      background:
+        radial-gradient(circle at 9% 89%,rgba(121,199,103,.95) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 5% 85%,rgba(147,219,132,.9) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 21% 89%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 18% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 24% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 21% 82%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 21% 85%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 90% 86%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 86% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 94% 82%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 90% 78%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 90% 82%,#ffd664 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#fff8fb 0%,#f6e5ec 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+      --zone-accent:#f2b522;
+      --label-color:#94600f;
+      background:
+        radial-gradient(circle at 8% 87%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 4% 83%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 12% 83%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 79%,#ffffff 0 7px,transparent 7.6px),
+        radial-gradient(circle at 8% 83%,#ffd664 0 3px,transparent 3.5px),
+        radial-gradient(circle at 18% 89%,rgba(129,204,115,.94) 0 10px,transparent 10.4px),
+        radial-gradient(circle at 22% 84%,rgba(150,220,136,.9) 0 8px,transparent 8.4px),
+        radial-gradient(circle at 82% 89%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 79% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 85% 85%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 82% 82%,#ffffff 0 6.5px,transparent 7px),
+        radial-gradient(circle at 82% 85%,#ffd664 0 3px,transparent 3.5px),
+        linear-gradient(180deg,#fffdf6 0%,#f4ead0 100%);
+    }
+
+    #sortGame .sort-polish-card .sort-category-img{
+      margin-bottom:8px;
+      filter:drop-shadow(0 10px 10px rgba(66,93,122,.12));
+      transform:translateY(-1px);
+    }
+    #sortGame .sort-polish-card .sort-category-label{
+      padding:6px 16px;
+      background:rgba(255,255,255,.95);
+      box-shadow:0 6px 12px rgba(58,85,113,.07);
+    }
+
+    @media(max-width:760px){
+      #sortGame .sort-polish-card .drop-zone{
+        min-height:118px;
+        padding:16px 5px 9px;
+        border-radius:21px 21px 19px 19px;
+      }
+      #sortGame .sort-polish-card .drop-zone::before{
+        top:-8px;
+        height:24px;
+      }
+      #sortGame .sort-polish-card .sort-category-img{
+        margin-bottom:4px;
+      }
+      #sortGame .sort-polish-card .drop-zone[data-category="animals"],
+      #sortGame .sort-polish-card .drop-zone[data-category="fruits"],
+      #sortGame .sort-polish-card .drop-zone[data-category="vehicles"],
+      #sortGame .sort-polish-card .drop-zone[data-category="body"],
+      #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+        background-size:auto;
+      }
+    }
+
+
+    /* =========================================================
+       V5.5 Explicit Sorting house wall layer
+       The wall is a real visual layer instead of the drop-zone background.
+       ========================================================= */
+    #sortGame .sort-polish-card .drop-zone{
+      --wall-top:#f5f9ff;
+      --wall-bottom:#e5eef9;
+      --wall-edge:#d0deeb;
+      --flower-accent:#ffd55f;
+      position:relative;
+      isolation:isolate;
+      overflow:visible;
+      background:transparent!important;
+      border:0!important;
+      box-shadow:none!important;
+    }
+
+    #sortGame .sort-polish-card .drop-zone[data-category="animals"]{
+      --zone-accent:#559ff2;
+      --label-color:#2c5a97;
+      --wall-top:#f0f8ff;
+      --wall-bottom:#dcecf9;
+      --wall-edge:#bcd8ed;
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="fruits"]{
+      --zone-accent:#42bc5c;
+      --label-color:#2f7847;
+      --wall-top:#f2fcf2;
+      --wall-bottom:#dcefdc;
+      --wall-edge:#bedcbe;
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="vehicles"]{
+      --zone-accent:#9b70e8;
+      --label-color:#674da0;
+      --wall-top:#f7f2ff;
+      --wall-bottom:#e5dbf4;
+      --wall-edge:#d0c0e8;
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="body"]{
+      --zone-accent:#ef91b0;
+      --label-color:#9f5070;
+      --wall-top:#fff4f8;
+      --wall-bottom:#f5dfe8;
+      --wall-edge:#e8c4d2;
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+      --zone-accent:#f2b72a;
+      --label-color:#94600e;
+      --wall-top:#fffaf0;
+      --wall-bottom:#f4e4bd;
+      --wall-edge:#e7ce94;
+    }
+
+    /* actual wall body */
+    #sortGame .sort-polish-card .sort-house-wall{
+      position:absolute;
+      z-index:0;
+      left:3px;
+      right:3px;
+      top:10px;
+      bottom:0;
+      border-radius:25px 25px 23px 23px;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,rgba(255,255,255,.34),transparent 18%,transparent 82%,rgba(112,138,160,.06)),
+        linear-gradient(180deg,var(--wall-top) 0%,var(--wall-bottom) 100%);
+      border:2px solid rgba(255,255,255,.94);
+      box-shadow:
+        0 16px 24px rgba(61,87,113,.12),
+        0 5px 0 var(--wall-edge),
+        inset 0 0 0 2px rgba(178,201,217,.28),
+        inset 0 18px 18px rgba(255,255,255,.34),
+        inset 0 -18px 22px rgba(114,146,168,.10);
+    }
+
+    /* storybook flower beds on both sides of every wall */
+    #sortGame .sort-polish-card .sort-house-wall::before,
+    #sortGame .sort-polish-card .sort-house-wall::after{
+      content:'';
+      position:absolute;
+      bottom:-3px;
+      width:78px;
+      height:48px;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 14% 74%,#fff 0 6px,transparent 6.6px),
+        radial-gradient(circle at 7% 64%,#fff 0 6px,transparent 6.6px),
+        radial-gradient(circle at 21% 64%,#fff 0 6px,transparent 6.6px),
+        radial-gradient(circle at 14% 54%,#fff 0 6px,transparent 6.6px),
+        radial-gradient(circle at 14% 64%,var(--flower-accent) 0 2.8px,transparent 3.2px),
+        radial-gradient(ellipse at 35% 88%,#76bd69 0 10px,transparent 10.6px),
+        radial-gradient(ellipse at 50% 86%,#8dce7c 0 11px,transparent 11.6px),
+        radial-gradient(circle at 66% 70%,#fff 0 5.5px,transparent 6.1px),
+        radial-gradient(circle at 60% 61%,#fff 0 5.5px,transparent 6.1px),
+        radial-gradient(circle at 72% 61%,#fff 0 5.5px,transparent 6.1px),
+        radial-gradient(circle at 66% 52%,#fff 0 5.5px,transparent 6.1px),
+        radial-gradient(circle at 66% 61%,#ffc95d 0 2.5px,transparent 3px),
+        radial-gradient(ellipse at 82% 91%,#6eb565 0 12px,transparent 12.6px);
+      filter:drop-shadow(0 3px 3px rgba(76,112,82,.07));
+      opacity:.96;
+    }
+    #sortGame .sort-polish-card .sort-house-wall::before{left:-9px}
+    #sortGame .sort-polish-card .sort-house-wall::after{right:-9px;transform:scaleX(-1)}
+
+    /* roof must sit above the explicit wall, not behind the parent */
+    #sortGame .sort-polish-card .drop-zone::before{
+      z-index:2!important;
+      top:-13px!important;
+      left:7%!important;
+      right:7%!important;
+      height:36px!important;
+      opacity:1!important;
+      background:linear-gradient(180deg,
+        color-mix(in srgb,var(--zone-accent) 88%,white),
+        color-mix(in srgb,var(--zone-accent) 70%,white)
+      )!important;
+      box-shadow:inset 0 3px 0 rgba(255,255,255,.24);
+      filter:drop-shadow(0 7px 6px rgba(55,82,108,.14))!important;
+    }
+
+    /* HOME pill and content sit in front of wall + roof */
+    #sortGame .sort-polish-card .drop-zone::after{z-index:5!important}
+    #sortGame .sort-polish-card .sort-category-img,
+    #sortGame .sort-polish-card .sort-category-label{
+      position:relative;
+      z-index:4;
+    }
+    #sortGame .sort-polish-card .sort-category-img{
+      transform:translateY(-1px);
+      filter:drop-shadow(0 9px 9px rgba(66,93,122,.13));
+    }
+    #sortGame .sort-polish-card .sort-category-label{
+      color:var(--label-color,#3a4f66)!important;
+      background:rgba(255,255,255,.95)!important;
+      box-shadow:0 6px 12px rgba(58,85,113,.07)!important;
+    }
+
+    #sortGame .sort-polish-card .drop-zone.magnetic-zone .sort-house-wall{
+      box-shadow:
+        0 0 0 6px rgba(255,213,105,.28),
+        0 18px 28px rgba(65,90,116,.15),
+        0 5px 0 var(--wall-edge),
+        inset 0 0 0 2px rgba(178,201,217,.28),
+        inset 0 18px 18px rgba(255,255,255,.34),
+        inset 0 -18px 22px rgba(114,146,168,.10);
+    }
+    #sortGame .sort-polish-card .drop-zone.correct .sort-house-wall{
+      box-shadow:
+        0 0 0 7px rgba(117,213,125,.34),
+        0 18px 28px rgba(83,162,94,.14),
+        0 5px 0 var(--wall-edge),
+        inset 0 0 0 2px rgba(178,201,217,.28),
+        inset 0 18px 18px rgba(255,255,255,.34),
+        inset 0 -18px 22px rgba(114,146,168,.10);
+    }
+
+    @media(max-width:760px){
+      #sortGame .sort-polish-card .sort-house-wall{
+        left:2px;right:2px;top:7px;
+        border-radius:19px 19px 18px 18px;
+        box-shadow:
+          0 10px 16px rgba(61,87,113,.10),
+          0 3px 0 var(--wall-edge),
+          inset 0 0 0 1px rgba(178,201,217,.28),
+          inset 0 12px 14px rgba(255,255,255,.30),
+          inset 0 -12px 16px rgba(114,146,168,.08);
+      }
+      #sortGame .sort-polish-card .sort-house-wall::before,
+      #sortGame .sort-polish-card .sort-house-wall::after{
+        width:52px;height:34px;bottom:-2px;transform:scale(.8);
+        transform-origin:bottom left;
+      }
+      #sortGame .sort-polish-card .sort-house-wall::after{
+        transform:scaleX(-1) scale(.8);
+        transform-origin:bottom right;
+      }
+      #sortGame .sort-polish-card .drop-zone::before{
+        top:-8px!important;
+        height:24px!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -5395,26 +5855,31 @@
         </button>
         <div class="drop-zone-grid">
           <div id="dropZoneAnimals" class="drop-zone" data-category="animals">
+            <span class="sort-house-wall" aria-hidden="true"></span>
             <img id="sortAnimalButtonImage" class="sort-category-img" alt="Animals" decoding="async">
             <div class="sort-category-label">Animals</div>
           </div>
 
           <div id="dropZoneFruits" class="drop-zone" data-category="fruits">
+            <span class="sort-house-wall" aria-hidden="true"></span>
             <img class="sort-category-img" data-image-src="images/fruits/apple.webp" alt="Fruits" decoding="async">
             <div class="sort-category-label">Fruits</div>
           </div>
 
           <div id="dropZoneVehicles" class="drop-zone" data-category="vehicles">
+            <span class="sort-house-wall" aria-hidden="true"></span>
             <img class="sort-category-img" data-image-src="images/vehicles/car.webp" alt="Vehicles" decoding="async">
             <div class="sort-category-label">Vehicles</div>
           </div>
 
           <div id="dropZoneBody" class="drop-zone" data-category="body">
+            <span class="sort-house-wall" aria-hidden="true"></span>
             <img class="sort-category-img" data-image-src="images/body/hand.webp" alt="Body" decoding="async">
             <div class="sort-category-label">Body</div>
           </div>
 
           <div id="dropZoneEmotions" class="drop-zone" data-category="emotions">
+            <span class="sort-house-wall" aria-hidden="true"></span>
             <img class="sort-category-img" data-image-src="images/emotion/happy.webp" alt="Emotions" decoding="async">
             <div class="sort-category-label">Emotions</div>
           </div>
