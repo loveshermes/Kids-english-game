@@ -3184,6 +3184,168 @@
       .listen-main-speaker{animation:none!important}
     }
 
+
+    /* =========================================================
+       V4.2 All Mode Polish — unified premium game experience
+       ========================================================= */
+    .mode-polish-screen.active{
+      justify-content:flex-start;
+      padding-top:max(26px,env(safe-area-inset-top));
+      padding-bottom:max(22px,env(safe-area-inset-bottom));
+    }
+    .mode-polish-topbar{margin-bottom:14px}
+    .mode-polish-screen .topbar .pill,
+    .mode-polish-screen .progress-stars{
+      border:1px solid rgba(255,255,255,.94);
+      box-shadow:0 8px 22px rgba(57,80,106,.075),inset 0 1px 0 rgba(255,255,255,.96);
+      backdrop-filter:blur(8px);
+    }
+
+    /* shared mission panel */
+    .mode-task-panel{
+      width:min(800px,95%);
+      min-height:132px;
+      margin:0 auto 15px;
+      padding:13px 19px;
+      display:grid;
+      grid-template-columns:112px minmax(220px,1fr) 112px;
+      align-items:center;
+      gap:18px;
+      position:relative;
+      overflow:hidden;
+      border-radius:29px;
+      border:1px solid rgba(255,255,255,.97);
+      box-shadow:0 13px 29px rgba(56,80,108,.075),inset 0 1px 0 #fff;
+    }
+    .mode-task-panel::after{
+      content:'';position:absolute;width:130px;height:130px;border-radius:50%;right:-58px;top:-66px;
+      background:rgba(255,255,255,.35);pointer-events:none;
+    }
+    .mode-task-mascot{position:relative;width:104px;height:104px;display:grid;place-items:center}
+    .mode-task-halo{position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.82) 47%,rgba(255,255,255,0) 72%);box-shadow:0 8px 20px rgba(54,81,111,.08)}
+    .mode-task-mascot img{position:relative;z-index:2;width:94px;height:94px;object-fit:contain;filter:drop-shadow(0 8px 7px rgba(54,77,104,.12));animation:modeMascotFloat 3.5s ease-in-out infinite}
+    .mode-task-spark{position:absolute;z-index:3;color:#eab63a;font-size:.72rem}.mts-a{left:2px;top:18px}.mts-b{right:1px;bottom:20px;font-size:.6rem}
+    @keyframes modeMascotFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+    .mode-task-copy{text-align:left;min-width:0}
+    .mode-task-eyebrow{display:inline-flex;align-items:center;min-height:23px;padding:4px 9px;margin-bottom:4px;border-radius:999px;background:rgba(255,255,255,.72);font-size:.66rem;font-weight:900;letter-spacing:.12em;box-shadow:inset 0 0 0 1px rgba(255,255,255,.9)}
+    .mode-task-copy h2{margin:0;color:#344b64;font-size:clamp(1.45rem,2.7vw,1.92rem);line-height:1.08;letter-spacing:-.02em}
+    .mode-task-copy p{margin:6px 0 0;color:#7a8ba0;font-size:.86rem;font-weight:800;line-height:1.35}
+    .mode-task-icon{width:80px;height:80px;margin-left:auto;border-radius:24px;display:grid;place-items:center;background:rgba(255,255,255,.65);box-shadow:0 8px 20px rgba(58,82,108,.07),inset 0 0 0 1px rgba(255,255,255,.9);position:relative;z-index:2}
+    .mode-task-icon svg{width:42px;height:42px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+    .mode-section-divider{width:min(860px,96%);margin:0 auto 10px;display:grid;grid-template-columns:1fr auto auto 1fr;align-items:baseline;gap:8px;color:#8393a5}
+    .mode-section-divider span{height:1px;background:linear-gradient(90deg,transparent,rgba(105,136,164,.20),transparent)}
+    .mode-section-divider strong{font-size:.81rem;color:#647990;white-space:nowrap}
+    .mode-section-divider small{font-size:.68rem;color:#9ba8b6;font-weight:800;white-space:nowrap}
+
+    /* Learn */
+    .learn-polish-card{
+      position:relative;overflow:hidden;padding:22px 24px 24px;
+      background:radial-gradient(circle at 8% 4%,rgba(255,224,139,.22),transparent 24%),radial-gradient(circle at 93% 4%,rgba(203,230,255,.27),transparent 24%),linear-gradient(155deg,rgba(255,255,255,.975),rgba(250,252,255,.93));
+      box-shadow:0 22px 54px rgba(55,79,107,.105),inset 0 1px 0 #fff;
+    }
+    .learn-task-panel{background:linear-gradient(135deg,rgba(255,248,211,.94),rgba(241,249,255,.94) 55%,rgba(238,245,255,.92))}
+    .learn-eyebrow{color:#aa8727}.learn-book-icon{color:#718bd5}
+    .learn-grid{gap:14px;margin-top:0}
+    .learn-polish-card .learn-word-card{
+      position:relative;overflow:hidden;min-height:182px;border:1px solid rgba(255,255,255,.97);
+      box-shadow:0 10px 23px rgba(55,78,106,.085),inset 0 1px 0 #fff,inset 0 0 0 2px rgba(231,238,246,.66);
+      transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;
+    }
+    .learn-polish-card .learn-word-card:nth-child(6n+1){background:linear-gradient(150deg,#fff,#eef8ff)}
+    .learn-polish-card .learn-word-card:nth-child(6n+2){background:linear-gradient(150deg,#fff,#fff7df)}
+    .learn-polish-card .learn-word-card:nth-child(6n+3){background:linear-gradient(150deg,#fff,#f3efff)}
+    .learn-polish-card .learn-word-card:nth-child(6n+4){background:linear-gradient(150deg,#fff,#edf9ef)}
+    .learn-polish-card .learn-word-card:nth-child(6n+5){background:linear-gradient(150deg,#fff,#fff0f4)}
+    .learn-polish-card .learn-word-card:nth-child(6n+6){background:linear-gradient(150deg,#fff,#eefbfa)}
+    .learn-polish-card .learn-word-card::before{content:'♪';position:absolute;right:10px;top:9px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.72);color:#7d93aa;font-size:.72rem;font-weight:900;box-shadow:0 4px 10px rgba(57,80,105,.06)}
+    .learn-polish-card .learn-word-card:hover{transform:translateY(-4px) scale(1.008);box-shadow:0 16px 30px rgba(55,78,106,.115),inset 0 1px 0 #fff,inset 0 0 0 3px rgba(181,218,241,.42)}
+    .learn-polish-card .learn-word-card.playing{transform:translateY(-3px) scale(1.018);box-shadow:0 0 0 5px rgba(99,190,239,.40),0 18px 32px rgba(66,135,173,.15);filter:saturate(1.05)}
+    .learn-polish-card .learn-word-card img{width:122px;height:122px}
+    .learn-polish-card .learn-word-card span{font-size:1.12rem;color:#334861}
+    .learn-actions{margin-top:18px;padding-top:14px;border-top:1px solid rgba(110,139,165,.09)}
+    .learn-actions .big-btn{background:linear-gradient(180deg,#ffdc70,#ffc94b);box-shadow:0 7px 0 #d9a634,0 13px 24px rgba(202,149,34,.13)}
+
+    /* Sorting */
+    .sort-polish-card{position:relative;overflow:hidden;padding:22px 24px 22px;background:radial-gradient(circle at 8% 4%,rgba(190,238,204,.25),transparent 25%),radial-gradient(circle at 94% 3%,rgba(200,225,255,.27),transparent 24%),linear-gradient(155deg,rgba(255,255,255,.975),rgba(249,253,251,.93));box-shadow:0 22px 54px rgba(55,79,107,.105),inset 0 1px 0 #fff}
+    .sort-task-panel{background:linear-gradient(135deg,rgba(231,249,231,.95),rgba(237,249,255,.93) 58%,rgba(255,248,219,.91))}
+    .sort-eyebrow{color:#5d9d6a}.sort-box-icon{color:#5ea978}
+    .sort-polish-stage{min-height:410px;border:1px solid rgba(255,255,255,.96);background:radial-gradient(circle at 14px 14px,rgba(106,147,176,.065) 1.5px,transparent 1.6px) 0 0/28px 28px,linear-gradient(180deg,#f8fcff 0%,#f1f8ff 52%,#eef8ef 52%,#eaf6e9 100%);box-shadow:inset 0 0 0 2px rgba(226,238,246,.72),inset 0 -25px 45px rgba(117,190,128,.055),0 8px 20px rgba(56,79,105,.055)}
+    .sort-polish-stage::before{content:'MOVE THIS CARD';position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:1;font-size:.58rem;letter-spacing:.13em;font-weight:900;color:#9aa9b8;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.72);box-shadow:0 3px 9px rgba(55,78,104,.045)}
+    .sort-polish-stage::after{content:'';position:absolute;left:0;right:0;bottom:0;height:48%;pointer-events:none;background:radial-gradient(ellipse at 12% 100%,rgba(104,187,123,.10),transparent 48%),radial-gradient(ellipse at 86% 100%,rgba(104,187,123,.08),transparent 48%)}
+    .sort-polish-card #dragItem{border:1px solid rgba(255,255,255,.98)!important;background:linear-gradient(145deg,#fff,#f5fbff)!important;box-shadow:0 14px 30px rgba(55,79,107,.13),inset 0 1px 0 #fff,inset 0 0 0 2px rgba(221,235,245,.72)!important}
+    .sort-polish-card #dragItem::before{content:'↕';position:absolute;right:7px;top:6px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#eef7fd;color:#80a0b8;font-size:.65rem;font-weight:900}
+    .sort-polish-card .drop-zone-grid{z-index:2;gap:12px;bottom:14px;padding:0 11px}
+    .sort-polish-card .drop-zone{position:relative;overflow:hidden;min-height:142px;border:1px solid rgba(255,255,255,.98);box-shadow:0 9px 19px rgba(55,78,106,.07),inset 0 1px 0 #fff,inset 0 0 0 2px rgba(229,238,246,.62);animation:none!important}
+    .sort-polish-card .drop-zone::before{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:var(--zone-accent,#8fc7ff);opacity:.8}
+    .sort-polish-card .drop-zone[data-category="animals"]{--zone-accent:#72b9ee;background:linear-gradient(150deg,#fff,#eef8ff)}
+    .sort-polish-card .drop-zone[data-category="fruits"]{--zone-accent:#7fcf87;background:linear-gradient(150deg,#fff,#effaf0)}
+    .sort-polish-card .drop-zone[data-category="vehicles"]{--zone-accent:#aa8ee9;background:linear-gradient(150deg,#fff,#f5f0ff)}
+    .sort-polish-card .drop-zone[data-category="body"]{--zone-accent:#ef9ab0;background:linear-gradient(150deg,#fff,#fff1f5)}
+    .sort-polish-card .drop-zone[data-category="emotions"]{--zone-accent:#efc55b;background:linear-gradient(150deg,#fff,#fff8e5)}
+    .sort-polish-card .drop-zone.magnetic-zone{transform:translateY(-5px) scale(1.025);box-shadow:0 0 0 5px rgba(255,207,85,.36),0 15px 29px rgba(55,78,106,.12);background:#fffdf3}
+    .sort-polish-card .drop-zone.correct{box-shadow:0 0 0 6px rgba(102,210,121,.42),0 15px 28px rgba(74,169,93,.13)!important}
+    .sort-polish-card .sort-category-img{width:78px;height:78px;filter:drop-shadow(0 5px 5px rgba(55,78,106,.08))}
+    .sort-polish-card .sort-category-label{color:#3a4f66;font-size:1.02rem}
+    .sort-polish-card #sortFeedback{margin-top:9px}
+
+    /* Whack-a-Word */
+    .whack-polish-card{position:relative;overflow:hidden;padding:22px 24px 24px;background:radial-gradient(circle at 9% 4%,rgba(204,231,255,.28),transparent 24%),radial-gradient(circle at 94% 4%,rgba(255,228,159,.22),transparent 24%),linear-gradient(155deg,rgba(255,255,255,.975),rgba(249,252,255,.93));box-shadow:0 22px 54px rgba(55,79,107,.105),inset 0 1px 0 #fff}
+    .whack-task-panel{background:linear-gradient(135deg,rgba(237,248,255,.95),rgba(245,241,255,.93) 58%,rgba(255,246,217,.92))}
+    .whack-eyebrow{color:#8a74ca}.whack-task-note{margin-top:6px!important}
+    .whack-audio-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;position:relative;z-index:2}
+    .whack-main-speaker{width:72px;height:72px;margin:0;display:grid;place-items:center;border-radius:50%;background:linear-gradient(180deg,#7fd8ff,#52bff1);box-shadow:0 7px 0 #3ba6d8,0 12px 24px rgba(57,161,211,.16)}
+    .whack-main-speaker svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .whack-main-speaker:active{transform:translateY(5px);box-shadow:0 2px 0 #3ba6d8,0 7px 14px rgba(57,161,211,.12)}
+    .whack-audio-wrap small{font-size:.62rem;color:#8295a9;font-weight:900}
+    .whack-polish-board{position:relative;max-width:620px;padding:18px 18px 16px;border-radius:30px;background:linear-gradient(180deg,#eef9ff 0 58%,#dff3d6 58% 100%);box-shadow:inset 0 0 0 2px rgba(223,236,245,.86),0 10px 22px rgba(55,78,106,.065);overflow:hidden}
+    .whack-polish-board::before{content:'';position:absolute;left:-12%;right:-12%;height:82px;bottom:40%;border-radius:50%;background:#e9f7e2;box-shadow:0 -18px 0 rgba(255,255,255,.16);pointer-events:none}
+    .whack-polish-board::after{content:'✦     •     ✦';position:absolute;left:0;right:0;top:9px;text-align:center;color:rgba(111,167,203,.17);font-size:.78rem;letter-spacing:18px;pointer-events:none}
+    .whack-polish-board .whack-hole{height:156px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.70),rgba(255,255,255,.38));box-shadow:inset 0 0 0 2px rgba(255,255,255,.66),0 7px 16px rgba(55,78,106,.055)}
+    .whack-polish-board .whack-hole::after{left:15%;right:15%;bottom:11px;height:30px;background:linear-gradient(180deg,rgba(74,84,100,.25),rgba(53,65,82,.17));box-shadow:inset 0 6px 9px rgba(39,49,64,.15),0 4px 0 rgba(255,255,255,.38)}
+    .whack-polish-board .whack-mole{border-radius:24px;background:linear-gradient(145deg,#fff,#f8fbff);box-shadow:0 10px 22px rgba(55,78,106,.12),inset 0 0 0 2px rgba(229,238,247,.80)}
+    .whack-polish-card .whack-feedback{margin-top:8px;color:#516b84}
+
+    /* Result */
+    .result-polish-screen.active{justify-content:center}
+    .result-polish-card{padding-top:24px;background:radial-gradient(circle at 50% 0,rgba(255,222,110,.20),transparent 32%),radial-gradient(circle at 10% 12%,rgba(204,232,255,.24),transparent 26%),linear-gradient(155deg,rgba(255,255,255,.98),rgba(255,252,242,.94))}
+    .result-complete-badge{display:inline-flex;align-items:center;justify-content:center;min-height:25px;padding:4px 11px;margin:0 auto 3px;border-radius:999px;background:linear-gradient(180deg,#fff7cc,#ffeaa0);color:#9b7720;font-size:.62rem;font-weight:900;letter-spacing:.13em;box-shadow:0 6px 13px rgba(191,145,37,.08),inset 0 1px 0 #fff}
+    .result-polish-card .result-review{padding:10px;border-radius:24px;background:rgba(246,250,253,.64);box-shadow:inset 0 0 0 1px rgba(226,237,245,.76)}
+    .result-polish-card .review-card{border:1px solid rgba(255,255,255,.98);box-shadow:0 7px 17px rgba(55,78,106,.065),inset 0 1px 0 #fff}
+    .result-polish-card .review-card:nth-child(5n+1){background:linear-gradient(150deg,#fff,#eef8ff)}
+    .result-polish-card .review-card:nth-child(5n+2){background:linear-gradient(150deg,#fff,#fff8e5)}
+    .result-polish-card .review-card:nth-child(5n+3){background:linear-gradient(150deg,#fff,#f4efff)}
+    .result-polish-card .review-card:nth-child(5n+4){background:linear-gradient(150deg,#fff,#eef9f0)}
+    .result-polish-card .review-card:nth-child(5n+5){background:linear-gradient(150deg,#fff,#fff0f4)}
+
+    @media(max-width:760px){
+      .mode-polish-screen.active{padding-top:max(8px,env(safe-area-inset-top));padding-bottom:max(8px,env(safe-area-inset-bottom))}
+      .mode-polish-topbar{margin-bottom:7px}
+      .learn-polish-card,.sort-polish-card,.whack-polish-card{padding:10px 10px 12px}
+      .mode-task-panel{width:100%;min-height:92px;grid-template-columns:72px 1fr 70px;gap:7px;padding:7px 9px;margin-bottom:7px;border-radius:20px}
+      .mode-task-mascot{width:68px;height:68px}.mode-task-mascot img{width:64px;height:64px}.mode-task-halo{inset:6px}.mode-task-spark{display:none}
+      .mode-task-eyebrow{font-size:.53rem;min-height:18px;padding:3px 6px;margin-bottom:2px}
+      .mode-task-copy h2{font-size:1.12rem}.mode-task-copy p{font-size:.72rem;margin-top:3px}
+      .mode-task-icon{width:58px;height:58px;border-radius:18px}.mode-task-icon svg{width:31px;height:31px}
+      .mode-section-divider{width:100%;margin-bottom:6px;gap:6px}.mode-section-divider strong{font-size:.69rem}.mode-section-divider small{font-size:.55rem}
+      .learn-grid{gap:8px}.learn-polish-card .learn-word-card{min-height:143px;border-radius:19px;padding:7px}.learn-polish-card .learn-word-card img{width:86px;height:86px}.learn-polish-card .learn-word-card span{font-size:.94rem}.learn-polish-card .learn-word-card::before{width:22px;height:22px;right:7px;top:7px;font-size:.6rem}
+      .learn-actions{margin-top:9px;padding-top:8px;gap:7px}.learn-actions .big-btn,.learn-actions .secondary-btn{padding:10px 14px;font-size:.86rem}
+      .sort-polish-stage{min-height:390px;border-radius:20px}.sort-polish-stage::before{top:7px;font-size:.5rem}.sort-polish-card #dragItem{}.sort-polish-card .drop-zone-grid{gap:7px;bottom:8px;padding:0 3px}.sort-polish-card .drop-zone{min-height:108px;border-radius:18px}.sort-polish-card .sort-category-img{width:58px;height:58px}.sort-polish-card .sort-category-label{font-size:.88rem}
+      .whack-audio-wrap{gap:2px}.whack-main-speaker{width:56px;height:56px}.whack-main-speaker svg{width:27px;height:27px}.whack-audio-wrap small{font-size:.5rem}.whack-polish-board{max-width:360px;padding:8px;border-radius:21px;gap:8px}.whack-polish-board .whack-hole{height:118px;border-radius:18px}.whack-polish-board .whack-hole::after{height:24px;bottom:7px}.whack-polish-card .whack-feedback{height:29px;line-height:29px;margin-top:4px}
+      .result-polish-card{padding:16px 12px}.result-complete-badge{font-size:.52rem;min-height:21px;padding:3px 8px}.result-polish-card .result-review{padding:6px;border-radius:18px}
+    }
+
+    @media(max-width:900px) and (orientation:landscape) and (max-height:520px){
+      .mode-task-panel{min-height:68px;grid-template-columns:54px 1fr 56px;padding:4px 7px;margin-bottom:4px}.mode-task-mascot{width:50px;height:50px}.mode-task-mascot img{width:48px;height:48px}.mode-task-eyebrow{display:none}.mode-task-copy h2{font-size:.92rem}.mode-task-copy p{font-size:.62rem;margin-top:1px}.mode-task-icon{width:46px;height:46px;border-radius:14px}.mode-task-icon svg{width:25px;height:25px}.mode-section-divider{display:none}
+      .learn-polish-card{padding:7px}.learn-grid{grid-template-columns:repeat(3,1fr);gap:7px}.learn-polish-card .learn-word-card{min-height:112px}.learn-polish-card .learn-word-card img{width:70px;height:70px}.learn-actions{margin-top:5px;padding-top:4px}
+      .sort-polish-stage{min-height:300px}.sort-polish-card #dragItem{}.sort-polish-card .drop-zone{min-height:95px}.sort-polish-card .sort-category-img{width:49px;height:49px}
+      .whack-polish-board{max-width:620px;grid-template-columns:repeat(4,1fr);gap:7px;padding:6px}.whack-polish-board .whack-hole{height:104px}.whack-polish-board .whack-mole{width:70px;height:76px}.whack-polish-board .whack-mole img{width:56px;height:56px}
+    }
+
+    @media(hover:none){
+      .learn-polish-card .learn-word-card:hover{transform:none;box-shadow:0 10px 23px rgba(55,78,106,.085),inset 0 1px 0 #fff,inset 0 0 0 2px rgba(231,238,246,.66)}
+    }
+    @media(prefers-reduced-motion:reduce){.mode-task-mascot img{animation:none!important}}
+
   </style>
 </head>
 <body>
@@ -3328,16 +3490,31 @@
     </div>
   </section>
 
-  <section id="learnGame" class="screen">
-    <div class="topbar">
+  <section id="learnGame" class="screen mode-polish-screen learn-polish-screen">
+    <div class="topbar mode-polish-topbar">
       <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div id="learnCategoryLabel" class="pill topic-pill">Animals</div>
       <div class="pill">Tap &amp; Listen</div>
     </div>
 
-    <div class="learn-card-wrap">
-      <h2 class="learn-title">Tap &amp; Learn!</h2>
-      <p class="learn-note">點圖片聽英文，再跟著唸一次。</p>
+    <div class="learn-card-wrap learn-polish-card">
+      <div class="mode-task-panel learn-task-panel">
+        <div class="mode-task-mascot learn-task-mascot" aria-hidden="true">
+          <span class="mode-task-halo"></span>
+          <img src="images/animals/alpaca.webp" alt="" decoding="async">
+          <span class="mode-task-spark mts-a">✦</span>
+          <span class="mode-task-spark mts-b">✦</span>
+        </div>
+        <div class="mode-task-copy">
+          <div class="mode-task-eyebrow learn-eyebrow">WORD EXPLORER</div>
+          <h2 class="learn-title">Tap &amp; Learn!</h2>
+          <p class="learn-note">點一張圖片，聽英文，再跟著唸一次。</p>
+        </div>
+        <div class="mode-task-icon learn-book-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M8 11.5c6-2 11.3-.8 16 3.2v24c-4.7-4-10-5.2-16-3.2z"/><path d="M40 11.5c-6-2-11.3-.8-16 3.2v24c4.7-4 10-5.2 16-3.2z"/><path d="M24 14.7v24"/></svg>
+        </div>
+      </div>
+      <div class="mode-section-divider" aria-hidden="true"><span></span><strong>Pick a card</strong><small>選一張單字卡</small><span></span></div>
       <div id="learnGrid" class="learn-grid"></div>
       <div class="learn-actions">
         <button class="big-btn" onclick="refreshLearnCards()">↻ 換一組</button>
@@ -3393,18 +3570,32 @@
     </div>
   </section>
 
-  <section id="sortGame" class="screen">
-    <div class="topbar">
+  <section id="sortGame" class="screen mode-polish-screen sort-polish-screen">
+    <div class="topbar mode-polish-topbar">
       <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div class="pill topic-pill">Sorting</div>
       <div id="sortProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
 
-    <div class="sort-card">
-      <h2>Which group?</h2>
-      <div class="drag-instruction">點一下，或把圖片拖進正確的家！</div>
+    <div class="sort-card sort-polish-card">
+      <div class="mode-task-panel sort-task-panel">
+        <div class="mode-task-mascot sort-task-mascot" aria-hidden="true">
+          <span class="mode-task-halo"></span>
+          <img src="images/animals/alpaca.webp" alt="" decoding="async">
+          <span class="mode-task-spark mts-a">✦</span>
+        </div>
+        <div class="mode-task-copy">
+          <div class="mode-task-eyebrow sort-eyebrow">SORTING MISSION</div>
+          <h2>Which group?</h2>
+          <p class="drag-instruction">點一下，或把圖片送回正確的家！</p>
+        </div>
+        <div class="mode-task-icon sort-box-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M9 17 24 9l15 8v18L24 43 9 35z"/><path d="m9 17 15 8 15-8M24 25v18"/><path d="m17 13 15 8"/></svg>
+        </div>
+      </div>
+      <div class="mode-section-divider sort-divider" aria-hidden="true"><span></span><strong>Find its home</strong><small>找到正確分類</small><span></span></div>
 
-      <div id="dragStage" class="drag-stage">
+      <div id="dragStage" class="drag-stage sort-polish-stage">
         <button id="dragItem" class="drag-item" type="button" aria-label="draggable word card">
           <img id="sortItemImage" class="sort-item-img" alt="" decoding="async">
           <div id="sortItemWord" class="sort-word"></div>
@@ -3442,20 +3633,36 @@
     </div>
   </section>
 
-  <section id="whackGame" class="screen">
-    <div class="topbar">
+  <section id="whackGame" class="screen mode-polish-screen whack-polish-screen">
+    <div class="topbar mode-polish-topbar">
       <button class="game-exit" onclick="backToGameMenu()" aria-label="回遊戲選單">←</button>
       <div id="whackCategoryLabel" class="pill topic-pill">Animals</div>
       <div id="whackProgress" class="progress-stars">☆☆☆☆☆</div>
     </div>
 
-    <div class="whack-card">
-      <div class="whack-prompt">
-        <h2 id="whackQuestionText">Listen!</h2>
-        <button class="whack-speaker" onclick="speakWhackQuestion()" aria-label="播放題目語音">🔊</button>
+    <div class="whack-card whack-polish-card">
+      <div class="mode-task-panel whack-task-panel">
+        <div class="mode-task-mascot whack-task-mascot" aria-hidden="true">
+          <span class="mode-task-halo"></span>
+          <img src="images/animals/alpaca.webp" alt="" decoding="async">
+          <span class="mode-task-spark mts-a">✦</span>
+          <span class="mode-task-spark mts-b">✦</span>
+        </div>
+        <div class="mode-task-copy">
+          <div class="mode-task-eyebrow whack-eyebrow">WHACK-A-WORD</div>
+          <h2 id="whackQuestionText">Listen!</h2>
+          <p class="whack-task-note">聽英文，找到正確圖片再點下去！</p>
+        </div>
+        <div class="whack-audio-wrap">
+          <button class="whack-speaker whack-main-speaker" onclick="speakWhackQuestion()" aria-label="播放題目語音">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 20h8l9-8v24l-9-8h-8z"></path><path d="M32 18c2.3 2.1 3.4 4.1 3.4 6s-1.1 3.9-3.4 6"></path><path d="M36.5 13.5c3.5 3.1 5.3 6.6 5.3 10.5s-1.8 7.4-5.3 10.5"></path></svg>
+          </button>
+          <small>Tap to listen</small>
+        </div>
       </div>
+      <div class="mode-section-divider whack-divider" aria-hidden="true"><span></span><strong>Tap the right one</strong><small>找到正確圖片</small><span></span></div>
 
-      <div id="whackBoard" class="whack-board">
+      <div id="whackBoard" class="whack-board whack-polish-board">
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
         <div class="whack-hole"></div>
@@ -3466,8 +3673,9 @@
     </div>
   </section>
 
-  <section id="result" class="screen">
-    <div class="card final-result-card">
+  <section id="result" class="screen mode-polish-screen result-polish-screen">
+    <div class="card final-result-card result-polish-card">
+      <div class="result-complete-badge">MISSION COMPLETE</div>
       <div class="result-mascot-wrap" aria-hidden="true">
         <span class="result-spark rs1">✦</span><span class="result-spark rs2">★</span><span class="result-spark rs3">✦</span>
         <div class="result-mascot-halo"></div>
@@ -4305,7 +4513,9 @@
       const itemRect = item.getBoundingClientRect();
 
       const left = (stageRect.width - itemRect.width) / 2;
-      const top = 18;
+      const isCompactSort = window.matchMedia('(max-width:760px)').matches;
+      const isLandscapeCompact = window.matchMedia('(max-width:900px) and (orientation:landscape) and (max-height:520px)').matches;
+      const top = isLandscapeCompact ? 22 : (isCompactSort ? 32 : 44);
 
       item.style.left = `${left}px`;
       item.style.top = `${top}px`;
