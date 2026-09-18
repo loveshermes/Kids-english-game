@@ -3346,10 +3346,188 @@
     }
     @media(prefers-reduced-motion:reduce){.mode-task-mascot img{animation:none!important}}
 
+  
+
+    /* =========================================================
+       V4.3 Micro-FX — premium motion without visual overload
+       ========================================================= */
+    :root{
+      --fx-blue:rgba(94,190,240,.32);
+      --fx-gold:rgba(255,205,91,.30);
+      --fx-green:rgba(112,205,139,.28);
+      --fx-purple:rgba(174,145,242,.26);
+      --fx-pink:rgba(241,150,181,.25);
+    }
+
+    /* Ambient atmosphere */
+    .app-ambient::before,
+    .app-ambient::after{
+      content:'';
+      position:absolute;
+      width:46vw;
+      height:46vw;
+      min-width:320px;
+      min-height:320px;
+      border-radius:50%;
+      filter:blur(42px);
+      opacity:.14;
+      pointer-events:none;
+      will-change:transform;
+    }
+    .app-ambient::before{
+      left:8%;top:8%;
+      background:radial-gradient(circle,var(--fx-blue),transparent 67%);
+      animation:fxAuroraA 18s ease-in-out infinite alternate;
+    }
+    .app-ambient::after{
+      right:5%;bottom:2%;
+      background:radial-gradient(circle,var(--fx-gold),transparent 68%);
+      animation:fxAuroraB 21s ease-in-out infinite alternate;
+    }
+    .ambient-orb{animation:fxOrbDrift 12s ease-in-out infinite alternate}
+    .orb-two{animation-duration:15s;animation-direction:alternate-reverse}
+    .ambient-star{animation:fxAmbientTwinkle 4.8s ease-in-out infinite}
+    .ambient-star-two{animation-delay:1.7s}
+    .ambient-dot{animation:fxDotBreathe 5.4s ease-in-out infinite}
+    .dot-two{animation-delay:2.2s}
+    @keyframes fxAuroraA{0%{transform:translate3d(-3%,0,0) scale(.94)}100%{transform:translate3d(10%,7%,0) scale(1.08)}}
+    @keyframes fxAuroraB{0%{transform:translate3d(4%,3%,0) scale(1)}100%{transform:translate3d(-9%,-6%,0) scale(1.09)}}
+    @keyframes fxOrbDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(16px,-12px,0) scale(1.045)}}
+    @keyframes fxAmbientTwinkle{0%,100%{opacity:.16;transform:scale(.82) rotate(-7deg)}45%{opacity:.42;transform:scale(1.18) rotate(8deg)}}
+    @keyframes fxDotBreathe{0%,100%{opacity:.55;transform:scale(.82)}50%{opacity:.98;transform:scale(1.14)}}
+
+    /* Screen-specific ambient hues */
+    body[data-screen="topicMenu"] .orb-one{background:radial-gradient(circle,rgba(115,201,246,.45),rgba(115,201,246,0) 70%)}
+    body[data-screen="gameMenu"] .orb-two{background:radial-gradient(circle,rgba(183,157,246,.32),rgba(183,157,246,0) 70%)}
+    body[data-screen="learnGame"] .orb-two{background:radial-gradient(circle,rgba(255,215,105,.33),rgba(255,215,105,0) 70%)}
+    body[data-screen="game"] .orb-one{background:radial-gradient(circle,rgba(104,203,249,.43),rgba(104,203,249,0) 70%)}
+    body[data-screen="sortGame"] .orb-two{background:radial-gradient(circle,rgba(119,209,143,.31),rgba(119,209,143,0) 70%)}
+    body[data-screen="whackGame"] .orb-one{background:radial-gradient(circle,rgba(126,195,240,.37),rgba(126,195,240,0) 70%)}
+    body[data-screen="result"] .orb-two{background:radial-gradient(circle,rgba(255,207,79,.39),rgba(255,207,79,0) 70%)}
+
+    /* Micro FX overlay */
+    #microFxLayer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:80}
+    .fx-page-spark{position:fixed;pointer-events:none;color:#fff;text-shadow:0 0 12px rgba(107,184,230,.32);animation:fxPageSpark .9s ease-out forwards}
+    @keyframes fxPageSpark{0%{opacity:0;transform:translate(-50%,-50%) scale(.35) rotate(0deg)}28%{opacity:.9}100%{opacity:0;transform:translate(calc(-50% + var(--fx-x)),calc(-50% + var(--fx-y))) scale(1.15) rotate(120deg)}}
+    .fx-tap-ripple{position:fixed;width:22px;height:22px;border-radius:50%;border:2px solid rgba(113,190,234,.48);box-shadow:0 0 16px rgba(113,190,234,.24);transform:translate(-50%,-50%) scale(.4);animation:fxTapRipple .52s ease-out forwards}
+    @keyframes fxTapRipple{0%{opacity:.75;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)}}
+    .fx-sound-ring{position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;border:2px solid rgba(101,198,244,.42);transform:translate(-50%,-50%) scale(.72);pointer-events:none;animation:fxSoundRing .72s ease-out forwards;z-index:0}
+    .listen-main-speaker svg,.whack-main-speaker svg{position:relative;z-index:2}
+    @keyframes fxSoundRing{0%{opacity:.9;transform:translate(-50%,-50%) scale(.72)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.75)}}
+
+    /* Premium screen entrance stagger */
+    #topicMenu.active .topic-card-v1,
+    #gameMenu.active .mode-card-v1,
+    #learnGame.active .learn-word-card,
+    #result.active .review-card{animation:fxCardRise .46s cubic-bezier(.18,.82,.23,1) both}
+    #topicMenu.active .topic-card-v1:nth-child(2),#gameMenu.active .mode-card-v1:nth-child(2),#learnGame.active .learn-word-card:nth-child(2),#result.active .review-card:nth-child(2){animation-delay:.045s}
+    #topicMenu.active .topic-card-v1:nth-child(3),#gameMenu.active .mode-card-v1:nth-child(3),#learnGame.active .learn-word-card:nth-child(3),#result.active .review-card:nth-child(3){animation-delay:.09s}
+    #topicMenu.active .topic-card-v1:nth-child(4),#gameMenu.active .mode-card-v1:nth-child(4),#learnGame.active .learn-word-card:nth-child(4),#result.active .review-card:nth-child(4){animation-delay:.135s}
+    #topicMenu.active .topic-card-v1:nth-child(5),#learnGame.active .learn-word-card:nth-child(5),#result.active .review-card:nth-child(5){animation-delay:.18s}
+    #topicMenu.active .topic-card-v1:nth-child(6),#learnGame.active .learn-word-card:nth-child(6){animation-delay:.225s}
+    @keyframes fxCardRise{from{opacity:0;transform:translateY(15px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+    /* Home scene: richer but calm */
+    #home.active .scene-cloud{animation:fxCloudDrift 8s ease-in-out infinite alternate}
+    #home.active .cloud-b{animation-duration:10.5s;animation-direction:alternate-reverse}
+    #home.active .scene-spark{animation:fxSceneTwinkle 3.8s ease-in-out infinite}
+    #home.active .spark-b{animation-delay:1.2s}#home.active .spark-c{animation-delay:2.1s}
+    #home.active .character-halo{animation:fxHaloBreathe 4.2s ease-in-out infinite}
+    @keyframes fxCloudDrift{from{transform:translateX(-4px)}to{transform:translateX(10px)}}
+    @keyframes fxSceneTwinkle{0%,100%{opacity:.25;transform:scale(.75) rotate(-6deg)}50%{opacity:.82;transform:scale(1.18) rotate(8deg)}}
+    @keyframes fxHaloBreathe{0%,100%{transform:scale(.94);opacity:.62}50%{transform:scale(1.07);opacity:.92}}
+    .final-play-btn{background-size:180% 180%;animation:fxCtaGlow 6.5s ease-in-out infinite}
+    @keyframes fxCtaGlow{0%,100%{filter:saturate(1) brightness(1)}50%{filter:saturate(1.055) brightness(1.018)}}
+
+    /* Topic cards */
+    .topic-card-v1 img{transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s ease}
+    @media(hover:hover){
+      .topic-card-v1:hover img{transform:translateY(-7px) scale(1.055);filter:drop-shadow(0 10px 8px rgba(62,83,110,.12))}
+      .topic-card-v1:hover{box-shadow:0 18px 36px rgba(55,79,107,.13),inset 0 1px 0 #fff}
+      .mode-card-v1:hover .mode-symbol{transform:translateY(-3px) scale(1.06)}
+    }
+    .topic-card-v1{background-size:160% 160%;transition:transform .2s ease,box-shadow .2s ease,background-position .5s ease}
+    .topic-card-v1:hover{background-position:100% 100%}
+
+    /* Mode cards */
+    .mode-card-v1 .mode-symbol{transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease,filter .24s ease}
+    .mode-card-v1:hover .mode-symbol{filter:saturate(1.08);box-shadow:0 11px 24px rgba(57,80,106,.12),inset 0 1px 0 rgba(255,255,255,.95)}
+    .mode-card-v1:active .mode-symbol{transform:translateY(2px) scale(.96)}
+
+    /* Shared mission panels */
+    .mode-task-panel{transition:box-shadow .3s ease,transform .3s ease}
+    .mode-task-icon{overflow:visible}
+    .mode-task-icon::before{content:'';position:absolute;inset:-5px;border-radius:29px;border:1px solid currentColor;opacity:.12;animation:fxTaskIconHalo 3.6s ease-in-out infinite}
+    @keyframes fxTaskIconHalo{0%,100%{transform:scale(.96);opacity:.06}50%{transform:scale(1.07);opacity:.16}}
+    .mode-task-spark{animation:fxSceneTwinkle 3.2s ease-in-out infinite}.mts-b{animation-delay:1.3s}
+
+    /* Learn: audio-card magic */
+    .learn-polish-card .learn-word-card::after{content:'';position:absolute;inset:7px;border-radius:18px;border:2px solid rgba(101,190,238,0);pointer-events:none}
+    .learn-polish-card .learn-word-card.playing::after{animation:fxLearnRing .62s ease-out}
+    @keyframes fxLearnRing{0%{opacity:.85;border-color:rgba(101,190,238,.55);transform:scale(.92)}100%{opacity:0;border-color:rgba(101,190,238,.08);transform:scale(1.08)}}
+    .fx-note{position:fixed;pointer-events:none;z-index:82;font-weight:900;color:#6fb9e5;text-shadow:0 3px 8px rgba(63,115,150,.12);animation:fxNoteFloat .78s ease-out forwards}
+    @keyframes fxNoteFloat{0%{opacity:0;transform:translate(-50%,-20%) scale(.72) rotate(-8deg)}25%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--nx)),calc(-95% + var(--ny))) scale(1.12) rotate(16deg)}}
+
+    /* Listen: sound focus and richer answer cards */
+    .listen-main-speaker,.whack-main-speaker{position:relative;overflow:visible;isolation:isolate}
+    .listen-main-speaker::before,.whack-main-speaker::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(99,197,243,.18);animation:fxSpeakerIdle 2.7s ease-in-out infinite;z-index:-1}
+    @keyframes fxSpeakerIdle{0%,100%{transform:scale(.92);opacity:.14}50%{transform:scale(1.12);opacity:.42}}
+    .listen-choices .choice::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.85),rgba(255,255,255,0) 58%);opacity:.24;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+    @media(hover:hover){.listen-choices .choice:hover::before{opacity:.62;transform:scale(1.02)}}
+    .listen-choices .choice.correct::before{animation:fxCorrectFlash .6s ease-out}
+    @keyframes fxCorrectFlash{0%{opacity:.2;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(137,229,150,.22) 45%,transparent 70%)}45%{opacity:1}100%{opacity:.25}}
+
+    /* Progress gets a tiny celebratory pop */
+    .progress-stars.progress-pop{animation:fxProgressPop .42s cubic-bezier(.2,.8,.2,1)}
+    @keyframes fxProgressPop{0%{transform:scale(1)}40%{transform:scale(1.075);box-shadow:0 0 0 5px rgba(255,211,90,.18),0 10px 24px rgba(57,80,106,.08)}100%{transform:scale(1)}}
+
+    /* Sorting: responsive stage energy */
+    .sort-polish-stage{transition:box-shadow .28s ease,filter .28s ease}
+    .sort-polish-stage:has(.drop-zone.magnetic-zone){box-shadow:inset 0 0 0 2px rgba(226,238,246,.72),0 0 0 5px rgba(255,214,97,.10),0 15px 34px rgba(56,79,105,.08)}
+    .sort-polish-stage:has(.drop-zone.correct){animation:fxSortSuccess .62s ease-out}
+    @keyframes fxSortSuccess{0%{filter:brightness(1)}35%{filter:brightness(1.06) saturate(1.06);box-shadow:inset 0 0 0 2px rgba(188,236,198,.85),0 0 34px rgba(101,210,124,.18)}100%{filter:brightness(1)}}
+    .drag-item.dragging{filter:drop-shadow(0 14px 18px rgba(62,95,120,.16));animation:fxDragLift .9s ease-in-out infinite alternate}
+    @keyframes fxDragLift{from{filter:drop-shadow(0 12px 14px rgba(62,95,120,.14))}to{filter:drop-shadow(0 18px 22px rgba(62,95,120,.22))}}
+    .trail-star{animation-duration:.68s;filter:drop-shadow(0 2px 8px rgba(255,205,60,.46))}
+
+    /* Whack: stage reacts to hits */
+    .whack-polish-board{transition:filter .22s ease,box-shadow .22s ease}
+    .whack-polish-board:has(.correct-hit){animation:fxWhackGood .52s ease-out}
+    .whack-polish-board:has(.wrong-hit){animation:fxWhackBad .32s ease-out}
+    @keyframes fxWhackGood{0%{filter:brightness(1)}38%{filter:brightness(1.08) saturate(1.06);box-shadow:inset 0 0 0 2px rgba(214,242,219,.95),0 0 34px rgba(98,207,120,.18)}100%{filter:brightness(1)}}
+    @keyframes fxWhackBad{0%,100%{filter:brightness(1)}45%{filter:brightness(1.015) saturate(.96)}}
+    .whack-polish-board .whack-hole::before{content:'';position:absolute;left:18%;right:18%;bottom:4px;height:20px;border-radius:50%;background:radial-gradient(ellipse,rgba(112,181,103,.13),transparent 68%);pointer-events:none;animation:fxGrassGlow 3.4s ease-in-out infinite}
+    @keyframes fxGrassGlow{0%,100%{opacity:.28;transform:scaleX(.92)}50%{opacity:.62;transform:scaleX(1.06)}}
+
+    /* Result: controlled celebration */
+    .result-mascot-wrap{position:relative}
+    .result-mascot-wrap::before{content:'';position:absolute;left:50%;top:48%;width:210px;height:210px;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,207,83,.16) 0 4deg,transparent 4deg 15deg);mask-image:radial-gradient(circle,transparent 0 43%,#000 44% 70%,transparent 71%);animation:fxResultRays 18s linear infinite;pointer-events:none}
+    @keyframes fxResultRays{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    .result-complete-badge{background-size:180% 100%;animation:fxBadgeShine 3.8s ease-in-out infinite}
+    @keyframes fxBadgeShine{0%,100%{filter:brightness(1)}48%{filter:brightness(1.06)}55%{filter:brightness(1.01)}}
+    .result-polish-card .review-card{transition:transform .18s ease,box-shadow .18s ease}
+    @media(hover:hover){.result-polish-card .review-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 13px 25px rgba(55,78,106,.11),inset 0 1px 0 #fff}}
+
+    /* Accessibility and performance */
+    @media(max-width:760px){
+      .app-ambient::before,.app-ambient::after{opacity:.09;filter:blur(50px)}
+      .mode-task-icon::before{display:none}
+      .result-mascot-wrap::before{width:155px;height:155px;opacity:.72}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .app-ambient::before,.app-ambient::after,.ambient-orb,.ambient-star,.ambient-dot,
+      #home.active .scene-cloud,#home.active .scene-spark,#home.active .character-halo,
+      .final-play-btn,.mode-task-icon::before,.mode-task-spark,
+      .listen-main-speaker::before,.whack-main-speaker::before,
+      .whack-polish-board .whack-hole::before,.result-mascot-wrap::before,
+      .result-complete-badge,.drag-item.dragging{animation:none!important}
+      #topicMenu.active .topic-card-v1,#gameMenu.active .mode-card-v1,#learnGame.active .learn-word-card,#result.active .review-card{animation:none!important}
+    }
+
   </style>
 </head>
 <body>
-  <!-- Little English Club V4 Visual Final -->
+  <!-- Little English Club V4.3 Visual Final + Micro FX -->
   <div id="stars" class="stars"></div>
   <div class="app-ambient" aria-hidden="true">
     <span class="ambient-orb orb-one"></span>
@@ -4139,7 +4317,16 @@
 
     function setRoundProgress(id,done,total=QUESTION_COUNT){
       const el = document.getElementById(id);
-      if(el) el.textContent = progressStars(done,total);
+      if(!el) return;
+      const next = progressStars(done,total);
+      const changed = el.textContent !== next;
+      el.textContent = next;
+      if(changed){
+        el.classList.remove('progress-pop');
+        void el.offsetWidth;
+        el.classList.add('progress-pop');
+        setTimeout(()=>el.classList.remove('progress-pop'),460);
+      }
     }
 
     function getCurrentRoundItems(){
@@ -4165,8 +4352,12 @@
 
     function showScreen(id){
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      const nextScreen = document.getElementById(id);
+      if(!nextScreen) return;
+      nextScreen.classList.add('active');
+      document.body.dataset.screen = id;
       window.scrollTo(0,0);
+      requestAnimationFrame(()=>spawnPageSparkles(id));
     }
 
     async function startGame(){
@@ -5071,6 +5262,112 @@
     }
 
     function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  
+
+    /* =========================================================
+       V4.3 Micro-FX helpers
+       ========================================================= */
+    function ensureMicroFxLayer(){
+      let layer = document.getElementById('microFxLayer');
+      if(!layer){
+        layer = document.createElement('div');
+        layer.id = 'microFxLayer';
+        layer.setAttribute('aria-hidden','true');
+        document.body.appendChild(layer);
+      }
+      return layer;
+    }
+
+    function motionAllowed(){
+      return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function spawnPageSparkles(screenId){
+      if(!motionAllowed()) return;
+      const allowed = new Set(['home','topicMenu','gameMenu','learnGame','game','sortGame','whackGame','result']);
+      if(!allowed.has(screenId)) return;
+      const layer = ensureMicroFxLayer();
+      const count = screenId==='result' ? 8 : 4;
+      const icons = ['✦','·','✧'];
+      for(let i=0;i<count;i++){
+        const el = document.createElement('span');
+        el.className = 'fx-page-spark';
+        el.textContent = icons[i%icons.length];
+        const left = 20 + Math.random()*60;
+        const top = 15 + Math.random()*60;
+        el.style.left = left+'vw';
+        el.style.top = top+'vh';
+        el.style.fontSize = (.6 + Math.random()*.55)+'rem';
+        el.style.setProperty('--fx-x', ((Math.random()-.5)*34)+'px');
+        el.style.setProperty('--fx-y', (-16-Math.random()*32)+'px');
+        el.style.animationDelay = (Math.random()*.13)+'s';
+        layer.appendChild(el);
+        setTimeout(()=>el.remove(),1100);
+      }
+    }
+
+    function spawnTapRipple(x,y){
+      if(!motionAllowed()) return;
+      const layer = ensureMicroFxLayer();
+      const el = document.createElement('span');
+      el.className = 'fx-tap-ripple';
+      el.style.left = x+'px';
+      el.style.top = y+'px';
+      layer.appendChild(el);
+      setTimeout(()=>el.remove(),600);
+    }
+
+    function emitSoundRings(btn){
+      if(!motionAllowed() || !btn) return;
+      for(let i=0;i<2;i++){
+        const ring = document.createElement('span');
+        ring.className = 'fx-sound-ring';
+        ring.style.animationDelay = (i*.12)+'s';
+        btn.appendChild(ring);
+        setTimeout(()=>ring.remove(),950);
+      }
+    }
+
+    function emitLearnNotes(card){
+      if(!motionAllowed() || !card) return;
+      const rect = card.getBoundingClientRect();
+      const layer = ensureMicroFxLayer();
+      ['♪','♫','♪'].forEach((icon,i)=>{
+        const note = document.createElement('span');
+        note.className = 'fx-note';
+        note.textContent = icon;
+        note.style.left = (rect.left + rect.width*(.38+i*.12))+'px';
+        note.style.top = (rect.top + rect.height*.38)+'px';
+        note.style.fontSize = (.85+i*.12)+'rem';
+        note.style.setProperty('--nx', ((i-1)*18)+'px');
+        note.style.setProperty('--ny', (-28-i*8)+'px');
+        note.style.animationDelay = (i*.055)+'s';
+        layer.appendChild(note);
+        setTimeout(()=>note.remove(),980);
+      });
+    }
+
+    function initPremiumMicroFx(){
+      ensureMicroFxLayer();
+      document.body.dataset.screen = document.querySelector('.screen.active')?.id || 'home';
+
+      document.addEventListener('pointerup',e=>{
+        const target = e.target.closest('button,.topic-card-v1,.mode-card-v1,.review-card');
+        if(!target) return;
+        spawnTapRipple(e.clientX,e.clientY);
+      },{passive:true});
+
+      document.addEventListener('click',e=>{
+        const soundBtn = e.target.closest('.listen-main-speaker,.whack-main-speaker,.speaker,.whack-speaker');
+        if(soundBtn) emitSoundRings(soundBtn);
+
+        const learnCard = e.target.closest('.learn-word-card');
+        if(learnCard) emitLearnNotes(learnCard);
+      });
+    }
+
+    initPremiumMicroFx();
+
   </script>
 </body>
 </html>
