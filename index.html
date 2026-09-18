@@ -4551,6 +4551,91 @@
       #sortGame .sort-cloud{animation:none!important}
     }
 
+
+    /* =========================================================
+       V5.1 Sorting polish fixes
+       - remove Drag me helper
+       - make destination houses read as full houses, not only roofs
+       ========================================================= */
+    #sortGame .sort-drag-tip{display:none!important}
+
+    #sortGame .sort-polish-card .drop-zone{
+      min-height:160px;
+      padding:24px 12px 14px;
+      border-radius:26px 26px 24px 24px;
+      border:1px solid rgba(255,255,255,.98);
+      background-clip:padding-box;
+      box-shadow:
+        0 12px 22px rgba(58,85,113,.08),
+        inset 0 0 0 2px rgba(226,235,243,.82),
+        inset 0 18px 0 rgba(255,255,255,.22),
+        inset 0 -10px 18px rgba(186,204,220,.08);
+    }
+    #sortGame .sort-polish-card .drop-zone::before{
+      left:9%;
+      right:9%;
+      top:-10px;
+      height:30px;
+      border-radius:20px 20px 7px 7px;
+      opacity:1;
+      filter:drop-shadow(0 5px 5px rgba(62,85,105,.08));
+    }
+    #sortGame .sort-polish-card .drop-zone::after{
+      top:9px;
+      right:10px;
+      padding:4px 9px;
+      background:rgba(255,255,255,.92);
+      color:#89a0b4;
+      box-shadow:0 3px 8px rgba(55,78,106,.05);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="animals"]{
+      background:linear-gradient(180deg,#f9fcff 0%,#edf5ff 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="fruits"]{
+      background:linear-gradient(180deg,#fbfffc 0%,#eefaf1 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="vehicles"]{
+      background:linear-gradient(180deg,#fcfaff 0%,#f1ebff 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="body"]{
+      background:linear-gradient(180deg,#fffafd 0%,#fff0f6 100%);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{
+      background:linear-gradient(180deg,#fffef8 0%,#fff4db 100%);
+    }
+    #sortGame .sort-polish-card .sort-category-img{
+      width:88px;
+      height:88px;
+      margin-bottom:6px;
+    }
+    #sortGame .sort-polish-card .sort-category-label{
+      padding:6px 15px;
+      background:rgba(255,255,255,.92);
+      box-shadow:0 4px 10px rgba(58,85,113,.05);
+    }
+
+    @media(max-width:760px){
+      #sortGame .sort-polish-card .drop-zone{
+        min-height:116px;
+        padding:16px 5px 9px;
+        border-radius:21px 21px 19px 19px;
+      }
+      #sortGame .sort-polish-card .drop-zone::before{
+        left:8%;
+        right:8%;
+        top:-7px;
+        height:22px;
+      }
+      #sortGame .sort-polish-card .sort-category-img{
+        width:58px;
+        height:58px;
+        margin-bottom:3px;
+      }
+      #sortGame .sort-polish-card .sort-category-label{
+        padding:3px 8px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4876,11 +4961,6 @@
           <img id="sortItemImage" class="sort-item-img" alt="" decoding="async">
           <div id="sortItemWord" class="sort-word"></div>
         </button>
-        <div class="sort-drag-tip" aria-hidden="true">
-          <span class="sort-drag-hand">☝</span>
-          <span class="sort-drag-text">Drag me!</span>
-        </div>
-
         <div class="drop-zone-grid">
           <div id="dropZoneAnimals" class="drop-zone" data-category="animals">
             <img id="sortAnimalButtonImage" class="sort-category-img" alt="Animals" decoding="async">
