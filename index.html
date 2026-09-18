@@ -3349,7 +3349,7 @@
   
 
     /* =========================================================
-       V4.4 Voice Enhanced — natural child-friendly speech system
+       V4.5 US English Locked — natural child-friendly speech system
        ========================================================= */
     :root{
       --fx-blue:rgba(94,190,240,.32);
@@ -3526,7 +3526,7 @@
 
 
     /* =========================================================
-       V4.4 Voice Enhanced — unified natural speech controls
+       V4.5 US English Locked — unified natural speech controls
        ========================================================= */
     .voice-settings-fab{
       position:fixed;
@@ -3613,7 +3613,7 @@
   </style>
 </head>
 <body>
-  <!-- Little English Club V4.4 Visual Final + Voice Enhanced -->
+  <!-- Little English Club V4.5 Visual Final + US English Locked -->
   <div id="stars" class="stars"></div>
   <div class="app-ambient" aria-hidden="true">
     <span class="ambient-orb orb-one"></span>
@@ -3640,7 +3640,7 @@
         <h2 id="voiceSettingsTitle" class="voice-settings-title">語音設定</h2>
         <button class="voice-close-btn" type="button" aria-label="關閉語音設定" onclick="closeVoiceSettings()">×</button>
       </div>
-      <p class="voice-settings-subtitle">統一Learn、Listen &amp; Find、Sorting與Whack-a-Word的美式英文朗讀。</p>
+      <p class="voice-settings-subtitle">Learn、Listen &amp; Find、Sorting與Whack-a-Word全部固定使用美式英文(en-US)。</p>
 
       <div class="voice-setting-row">
         <div class="voice-setting-label"><span>朗讀速度</span><span class="voice-setting-hint">幼兒建議Normal或Slow</span></div>
@@ -3651,9 +3651,9 @@
       </div>
 
       <div class="voice-setting-row">
-        <div class="voice-setting-label"><span>英文語音</span><span class="voice-setting-hint">優先自然美式英文</span></div>
-        <select id="voiceSelect" class="voice-select" aria-label="英文語音"></select>
-        <div id="voiceStatus" class="voice-status"><span class="voice-speaking-dot"></span>正在尋找裝置上的英文語音…</div>
+        <div class="voice-setting-label"><span>美式英文語音</span><span class="voice-setting-hint">固定en-US</span></div>
+        <select id="voiceSelect" class="voice-select" aria-label="美式英文語音"></select>
+        <div id="voiceStatus" class="voice-status"><span class="voice-speaking-dot"></span>正在尋找裝置上的美式英文語音…</div>
       </div>
 
       <div class="voice-setting-row">
@@ -4013,9 +4013,9 @@
     window.addEventListener('resize', syncViewportHeight, {passive:true});
 
     /* =========================================================
-       V4.4 Unified Voice Engine
+       V4.5 Unified Voice Engine — US English Locked
        ========================================================= */
-    const VOICE_PREFS_KEY = 'littleEnglishClubVoicePrefsV44';
+    const VOICE_PREFS_KEY = 'littleEnglishClubVoicePrefsV45US';
     const defaultVoicePrefs = {speed:'normal',volume:1,voiceKey:'auto'};
     let voicePrefs = {...defaultVoicePrefs};
     let englishVoices = [];
@@ -4035,18 +4035,20 @@
       return voice.voiceURI || `${voice.name}::${voice.lang}`;
     }
 
+    function isUSEnglishVoice(voice){
+      const lang=String(voice?.lang||'').replace('_','-').toLowerCase();
+      return lang==='en-us' || lang.startsWith('en-us-');
+    }
+
     function scoreVoice(voice){
       const name=(voice.name||'').toLowerCase();
-      const lang=(voice.lang||'').toLowerCase();
-      let score=0;
-      if(lang==='en-us') score+=120;
-      else if(lang.startsWith('en-us')) score+=115;
-      else if(lang.startsWith('en')) score+=55;
-      if(/natural|neural|online/.test(name)) score+=38;
-      if(/google us english/.test(name)) score+=34;
+      let score=100;
+      if(/natural|neural|online|enhanced|premium/.test(name)) score+=42;
+      if(/google us english/.test(name)) score+=36;
       if(/aria|jenny|ava|emma|michelle|ana|samantha|allison|susan|zira/.test(name)) score+=24;
-      if(/microsoft/.test(name)) score+=8;
-      if(/google/.test(name)) score+=7;
+      if(/microsoft/.test(name)) score+=10;
+      if(/google/.test(name)) score+=8;
+      if(/apple/.test(name)) score+=7;
       if(voice.localService) score+=3;
       if(/david|mark|guy|male/.test(name)) score-=4;
       return score;
@@ -4055,10 +4057,20 @@
     function refreshEnglishVoices(){
       if(!('speechSynthesis' in window)) return;
       const all=window.speechSynthesis.getVoices() || [];
+      // V4.5: only expose voices explicitly reported as US English.
       englishVoices=all
-        .filter(v=>/^en(?:-|$)/i.test(v.lang||''))
+        .filter(isUSEnglishVoice)
         .sort((a,b)=>scoreVoice(b)-scoreVoice(a) || (a.name||'').localeCompare(b.name||''));
-      autoVoice=englishVoices[0] || all.find(v=>/^en/i.test(v.lang||'')) || null;
+      autoVoice=englishVoices[0] || null;
+
+      // If a previous saved voice is not en-US, immediately fall back to Auto US English.
+      if(voicePrefs.voiceKey && voicePrefs.voiceKey!=='auto'){
+        const valid=englishVoices.some(v=>voiceKey(v)===voicePrefs.voiceKey);
+        if(!valid){
+          voicePrefs.voiceKey='auto';
+          saveVoicePrefs();
+        }
+      }
       renderVoiceOptions();
     }
 
@@ -4086,9 +4098,10 @@
       window.speechSynthesis.cancel();
       const profile=getVoiceProfile(kind);
       const utter=new SpeechSynthesisUtterance(String(text));
+      // Accent lock: every mode always requests US English, regardless of device locale.
       const voice=getSelectedVoice();
       if(voice) utter.voice=voice;
-      utter.lang=(voice && voice.lang) || 'en-US';
+      utter.lang='en-US';
       utter.rate=options.rate ?? profile.rate;
       utter.pitch=options.pitch ?? profile.pitch;
       utter.volume=Math.max(0,Math.min(1,Number(voicePrefs.volume ?? 1)));
@@ -4112,20 +4125,20 @@
       select.innerHTML='';
       const autoOpt=document.createElement('option');
       autoOpt.value='auto';
-      autoOpt.textContent=autoVoice ? `自動｜${autoVoice.name}` : '自動選擇最佳英文語音';
+      autoOpt.textContent=autoVoice ? `Auto US｜${autoVoice.name}` : 'Auto US｜系統美式英文(en-US)';
       select.appendChild(autoOpt);
       englishVoices.forEach(v=>{
         const opt=document.createElement('option');
         opt.value=voiceKey(v);
-        opt.textContent=`${v.name} (${v.lang})`;
+        opt.textContent=`🇺🇸 ${v.name} (${v.lang})`;
         select.appendChild(opt);
       });
       select.value=[...select.options].some(o=>o.value===current)?current:'auto';
       voicePrefs.voiceKey=select.value;
       const active=getSelectedVoice();
       status.innerHTML=active
-        ? `<span class="voice-speaking-dot"></span>目前使用：${escapeVoiceText(active.name)} · ${escapeVoiceText(active.lang)}`
-        : '這個瀏覽器目前沒有回傳可用英文語音，會使用系統預設語音。';
+        ? `<span class="voice-speaking-dot"></span>固定美式英文：${escapeVoiceText(active.name)} · en-US`
+        : '<span class="voice-speaking-dot"></span>固定美式英文(en-US)；此裝置未列出可選Voice，將由系統依en-US播放。';
       syncVoiceControls();
     }
 
@@ -4169,7 +4182,7 @@
     }
 
     function testSelectedVoice(){
-      speakWithProfile("Hello! Let's learn English together.",'preview');
+      speakWithProfile("Hello! Let's learn American English together.",'preview');
     }
 
     function initVoiceControls(){
