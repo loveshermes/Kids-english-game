@@ -4636,6 +4636,438 @@
       }
     }
 
+
+    /* =========================================================
+       V5.2 Sorting mockup match
+       - tuned to closely match approved reference artwork
+       ========================================================= */
+    #sortGame .sort-polish-card{
+      padding:18px 22px 20px;
+      background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(249,252,251,.965));
+      box-shadow:0 24px 52px rgba(69,94,122,.10),inset 0 1px 0 #fff;
+      border-radius:34px;
+    }
+
+    #sortGame .sort-task-panel{
+      position:relative;
+      overflow:hidden;
+      grid-template-columns:132px minmax(0,1fr) 210px;
+      gap:18px;
+      min-height:146px;
+      padding:18px 24px;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at 15% 22%,rgba(255,255,255,.54) 0 34px,transparent 35px),
+        linear-gradient(180deg,#eef8ec 0%,#f8f3de 100%);
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.68),0 10px 20px rgba(68,95,119,.05);
+    }
+    #sortGame .sort-task-panel::before{
+      content:'';
+      position:absolute;
+      inset:auto 0 0 0;
+      height:48px;
+      background:
+        radial-gradient(ellipse at 18% 100%,rgba(185,224,156,.33) 0 52%,transparent 53%),
+        radial-gradient(ellipse at 48% 100%,rgba(193,228,160,.25) 0 54%,transparent 55%),
+        radial-gradient(ellipse at 82% 100%,rgba(205,229,165,.24) 0 52%,transparent 53%);
+      pointer-events:none;
+      z-index:0;
+    }
+    #sortGame .sort-task-panel>*{position:relative;z-index:1}
+    #sortGame .sort-task-mascot{width:116px;height:116px;display:grid;place-items:center}
+    #sortGame .sort-task-mascot img{width:102px;height:102px;filter:drop-shadow(0 10px 10px rgba(73,102,126,.13))}
+    #sortGame .sort-task-copy h2{
+      font-size:clamp(2rem,4vw,3rem);
+      line-height:1;
+      color:#243f8b;
+      letter-spacing:-.035em;
+      text-shadow:0 3px 0 rgba(255,255,255,.52),0 6px 16px rgba(65,88,160,.08);
+    }
+    #sortGame .sort-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 18px;
+      border-radius:999px;
+      border:2px solid rgba(143,199,117,.38);
+      background:#eef8dd;
+      color:#55a054;
+      font-weight:900;
+      box-shadow:0 4px 10px rgba(95,150,85,.07);
+    }
+    #sortGame .sort-task-copy .drag-instruction{
+      margin-top:10px;
+      color:#4f6089;
+      font-size:1rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+    #sortGame .sort-task-copy .sort-subinstruction{
+      margin-top:6px;
+      color:#6c84b1;
+      font-size:.82rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+    #sortGame .sort-box-icon{
+      width:176px;
+      height:132px;
+      margin-left:auto;
+      border-radius:32px;
+      gap:8px;
+      padding:10px 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      color:#44b48f;
+      background:rgba(255,255,255,.84);
+      box-shadow:0 12px 24px rgba(71,96,120,.08),inset 0 0 0 2px rgba(238,234,215,.95);
+    }
+    #sortGame .sort-box-icon::before{display:none}
+    #sortGame .sort-box-icon svg{width:42px;height:42px}
+    #sortGame .sort-box-copy strong{
+      display:block;
+      font-size:.98rem;
+      color:#516988;
+      line-height:1.15;
+    }
+    #sortGame .sort-box-copy small{
+      display:block;
+      margin-top:4px;
+      font-size:.80rem;
+      color:#6f86a2;
+      font-weight:900;
+      line-height:1.15;
+    }
+
+    #sortGame .sort-divider{
+      margin:14px 0 12px;
+    }
+    #sortGame .sort-divider strong{font-size:1rem;color:#5a7091}
+    #sortGame .sort-divider small{font-size:.78rem;color:#8da0b4}
+
+    #sortGame .sort-polish-stage{
+      position:relative;
+      min-height:432px;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.96);
+      background:linear-gradient(180deg,#c0e8ff 0%,#e2f3ff 48%,#d8efcc 48%,#d4ebc5 100%);
+      box-shadow:inset 0 0 0 2px rgba(232,242,248,.82),0 12px 24px rgba(60,88,116,.06);
+    }
+    #sortGame .sort-polish-stage::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 10% 16%,rgba(255,255,255,.88) 0 24px,transparent 25px),
+        radial-gradient(circle at 14% 15%,rgba(234,244,251,.7) 0 42px,transparent 43px),
+        radial-gradient(circle at 80% 30%,rgba(255,255,255,.74) 0 20px,transparent 21px),
+        radial-gradient(circle at 84% 29%,rgba(230,242,250,.62) 0 38px,transparent 39px),
+        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 45%);
+      pointer-events:none;
+      z-index:0;
+    }
+    #sortGame .sort-polish-stage::after{
+      content:'';
+      position:absolute;
+      left:-7%;right:-7%;bottom:82px;
+      height:126px;
+      border-radius:50% 50% 0 0/84% 84% 0 0;
+      background:
+        radial-gradient(ellipse at 16% 100%,rgba(182,225,167,.24) 0 44%,transparent 45%),
+        radial-gradient(ellipse at 54% 100%,rgba(125,205,118,.21) 0 44%,transparent 45%),
+        radial-gradient(ellipse at 88% 100%,rgba(170,222,150,.18) 0 42%,transparent 43%),
+        linear-gradient(180deg,rgba(215,241,212,.05),rgba(186,228,171,.5));
+      pointer-events:none;
+      z-index:0;
+    }
+    #sortGame .sort-stage-scene{z-index:1}
+    #sortGame .sort-rainbow{
+      position:absolute;
+      right:82px;
+      top:20px;
+      width:170px;
+      height:104px;
+      border-radius:180px 180px 0 0;
+      background:radial-gradient(circle at 50% 100%,transparent 0 52%,#f1b6d4 53% 59%,#ffd864 60% 66%,#92de88 67% 73%,#88ceff 74% 80%,transparent 81%);
+      opacity:.96;
+    }
+    #sortGame .sort-sun{
+      position:absolute;
+      right:26px;
+      top:46px;
+      width:76px;
+      height:76px;
+      border-radius:50%;
+      background:radial-gradient(circle at 32% 28%,#fff6b6 0 12px,#ffd55a 40%,#f4be3d 100%);
+      box-shadow:0 0 0 12px rgba(255,205,86,.15);
+    }
+    #sortGame .sort-sun::before{
+      content:'';
+      position:absolute;
+      inset:-12px;
+      border-radius:50%;
+      background:repeating-conic-gradient(from 0deg,rgba(245,199,68,.88) 0 13deg,transparent 13deg 31deg);
+      -webkit-mask:radial-gradient(circle,transparent 0 65%,#000 66%);
+      mask:radial-gradient(circle,transparent 0 65%,#000 66%);
+    }
+    #sortGame .sort-sign-home{
+      position:absolute;
+      left:14px;
+      top:176px;
+      padding:10px 16px;
+      border-radius:16px;
+      background:linear-gradient(180deg,#f6d99e,#ebb96c);
+      color:#8d6034;
+      font-size:1rem;
+      font-weight:900;
+      letter-spacing:.04em;
+      transform:rotate(-8deg);
+      box-shadow:0 8px 14px rgba(121,92,61,.12),inset 0 0 0 2px rgba(255,245,224,.42);
+    }
+    #sortGame .sort-sign-home::before{
+      content:'';
+      position:absolute;
+      left:20px;
+      top:100%;
+      width:10px;
+      height:44px;
+      border-radius:8px;
+      background:#c99967;
+    }
+    #sortGame .sort-fence{
+      position:absolute;
+      bottom:80px;
+      width:88px;
+      height:40px;
+      background:
+        linear-gradient(90deg,transparent 0 8px,#d2a36e 8px 12px,transparent 12px 31px,#d2a36e 31px 35px,transparent 35px 54px,#d2a36e 54px 58px,transparent 58px 100%),
+        linear-gradient(180deg,transparent 0 10px,#ddb27d 10px 14px,transparent 14px 21px,#ddb27d 21px 25px,transparent 25px 100%);
+      opacity:.82;
+    }
+    #sortGame .sort-fence-left{left:20px}
+    #sortGame .sort-fence-right{right:22px}
+    #sortGame .sort-cloud{background:rgba(255,255,255,.9)}
+    #sortGame .sort-cloud-a{left:34px;top:54px;transform:scale(.86);opacity:.84}
+    #sortGame .sort-cloud-b{right:160px;top:86px;transform:scale(.7);opacity:.76}
+    #sortGame .sort-launch-pad{
+      top:50px;
+      width:190px;
+      height:150px;
+      background:radial-gradient(circle,rgba(255,255,255,.88) 0 31%,rgba(228,239,255,.56) 32% 56%,rgba(228,239,255,0) 72%);
+      opacity:.96;
+    }
+    #sortGame .sort-launch-pad::before{
+      width:110px;
+      height:22px;
+      bottom:16px;
+    }
+    #sortGame .sort-launch-pad::after{
+      bottom:4px;
+      font-size:.48rem;
+      color:rgba(104,139,159,.55);
+      letter-spacing:.16em;
+    }
+    #sortGame .sort-route{
+      top:168px;
+      height:114px;
+      opacity:.36;
+      background:repeating-linear-gradient(to bottom,rgba(120,164,205,.72) 0 6px,transparent 6px 13px);
+    }
+    #sortGame .sort-route::after{font-size:.52rem;color:rgba(102,148,190,.72)}
+    #sortGame .sort-route-left{transform:translateX(-50%) rotate(62deg)}
+    #sortGame .sort-route-mid{transform:translateX(-50%)}
+    #sortGame .sort-route-right{transform:translateX(-50%) rotate(-62deg)}
+    #sortGame .sort-ground-dot{bottom:145px;background:rgba(126,195,115,.3)}
+    #sortGame .sort-flower{
+      position:absolute;
+      width:22px;height:22px;border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 50%,#ffd45f 0 18%,transparent 19%),
+        radial-gradient(circle at 26% 36%,#fff 0 22%,transparent 23%),
+        radial-gradient(circle at 74% 36%,#fff 0 22%,transparent 23%),
+        radial-gradient(circle at 30% 76%,#fff 0 22%,transparent 23%),
+        radial-gradient(circle at 70% 76%,#fff 0 22%,transparent 23%);
+      opacity:.95;
+    }
+    #sortGame .sort-flower.sf-a{left:148px;bottom:88px;transform:scale(.84)}
+    #sortGame .sort-flower.sf-b{left:430px;bottom:102px}
+    #sortGame .sort-flower.sf-c{right:248px;bottom:98px;transform:scale(.86)}
+    #sortGame .sort-flower.sf-d{right:104px;bottom:74px;transform:scale(.82)}
+
+    #sortGame .sort-polish-card #dragItem{
+      width:140px!important;
+      min-width:140px!important;
+      max-width:140px!important;
+      min-height:128px!important;
+      max-height:128px!important;
+      padding:10px 8px 40px!important;
+      border-radius:28px!important;
+      background:linear-gradient(145deg,#fff,#f7f6ff)!important;
+      box-shadow:0 18px 34px rgba(142,149,220,.16),0 0 0 5px rgba(255,255,255,.58),inset 0 0 0 3px rgba(210,212,248,.78)!important;
+      z-index:8;
+    }
+    #sortGame .sort-polish-card #dragItem::before{
+      content:'⋮';
+      right:8px;
+      top:7px;
+      width:20px;height:20px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:#edf2ff;
+      color:#95a3de;
+      font-size:.98rem;
+      line-height:1;
+      box-shadow:0 3px 8px rgba(75,101,138,.06);
+    }
+    #sortGame .sort-polish-card #sortItemImage{
+      width:84px!important;height:84px!important;max-width:84px!important;max-height:84px!important;
+      filter:drop-shadow(0 7px 8px rgba(71,92,140,.1));
+    }
+    #sortGame .sort-polish-card #sortItemWord{
+      left:10px!important;right:10px!important;bottom:7px!important;
+      min-height:30px!important;
+      border-radius:16px!important;
+      font-size:.92rem!important;
+      background:rgba(255,255,255,.96)!important;
+      color:#2f4b8f;
+      box-shadow:0 4px 10px rgba(72,90,134,.06)!important;
+    }
+    #sortGame .sort-drag-tip{
+      position:absolute;
+      left:calc(50% + 98px);
+      top:150px;
+      display:flex!important;
+      align-items:center;
+      gap:8px;
+      z-index:8;
+      transform:rotate(-13deg);
+      color:#4f7af3;
+      font-weight:900;
+      pointer-events:none;
+      text-shadow:0 1px 0 rgba(255,255,255,.72);
+    }
+    #sortGame .sort-drag-hand{font-size:2.05rem;line-height:1;filter:drop-shadow(0 6px 8px rgba(79,122,243,.15))}
+    #sortGame .sort-drag-text{font-size:1rem}
+
+    #sortGame .sort-polish-card .drop-zone-grid{
+      gap:14px;
+      bottom:12px;
+      padding:0 12px;
+      z-index:6;
+    }
+    #sortGame .sort-polish-card .drop-zone{
+      position:relative;
+      min-height:156px;
+      padding:20px 10px 12px;
+      border-radius:28px 28px 22px 22px;
+      justify-content:flex-end;
+      background-clip:padding-box;
+      box-shadow:0 10px 20px rgba(58,85,113,.07),inset 0 0 0 2px rgba(229,236,243,.7),inset 0 1px 0 rgba(255,255,255,.94);
+      overflow:visible;
+    }
+    #sortGame .sort-polish-card .drop-zone::before{
+      content:'';
+      position:absolute;
+      left:10%;right:10%;top:-12px;
+      height:30px;
+      border-radius:22px 22px 7px 7px;
+      background:linear-gradient(180deg,var(--zone-accent),color-mix(in srgb,var(--zone-accent) 74%,white));
+      opacity:1;
+      clip-path:polygon(50% 0,100% 72%,94% 100%,6% 100%,0 72%);
+      filter:drop-shadow(0 5px 5px rgba(62,85,105,.08));
+      z-index:-1;
+    }
+    #sortGame .sort-polish-card .drop-zone::after{
+      content:'HOME';
+      position:absolute;
+      right:12px;top:9px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.9);
+      color:#89a1b5;
+      font-size:.50rem;
+      letter-spacing:.12em;
+      font-weight:900;
+      box-shadow:0 3px 8px rgba(55,78,106,.05);
+    }
+    #sortGame .sort-polish-card .drop-zone[data-category="animals"]{--zone-accent:#5eaaff;--label-color:#2f5da0;background:linear-gradient(180deg,#f9fcff,#edf6ff)}
+    #sortGame .sort-polish-card .drop-zone[data-category="fruits"]{--zone-accent:#42c862;--label-color:#2f7d4d;background:linear-gradient(180deg,#fbfffc,#eefaf0)}
+    #sortGame .sort-polish-card .drop-zone[data-category="vehicles"]{--zone-accent:#a97bf2;--label-color:#6950a3;background:linear-gradient(180deg,#fbf9ff,#f3edff)}
+    #sortGame .sort-polish-card .drop-zone[data-category="body"]{--zone-accent:#f39ab8;--label-color:#a65275;background:linear-gradient(180deg,#fff9fc,#fff0f6)}
+    #sortGame .sort-polish-card .drop-zone[data-category="emotions"]{--zone-accent:#f7bd2d;--label-color:#9a620f;background:linear-gradient(180deg,#fffef8,#fff3d7)}
+    #sortGame .sort-polish-card .sort-category-img{
+      width:86px;height:86px;
+      margin-bottom:4px;
+      filter:drop-shadow(0 7px 8px rgba(66,93,122,.1));
+    }
+    #sortGame .sort-polish-card .sort-category-label{
+      font-size:1rem;
+      color:var(--label-color,#3a4f66);
+      font-weight:900;
+      padding:6px 15px;
+      border-radius:999px;
+      background:rgba(255,255,255,.92);
+      box-shadow:0 4px 10px rgba(58,85,113,.05);
+    }
+    #sortGame .sort-polish-card .drop-zone.magnetic-zone{
+      transform:translateY(-4px) scale(1.025);
+      box-shadow:0 0 0 6px rgba(255,211,98,.32),0 15px 26px rgba(64,86,112,.11)!important;
+      background:#fffef8;
+    }
+    #sortGame .sort-polish-card .drop-zone.correct{
+      box-shadow:0 0 0 6px rgba(118,213,124,.36),0 15px 26px rgba(90,169,97,.14)!important;
+    }
+
+    @media(max-width:760px){
+      #sortGame .sort-polish-card{padding:10px 10px 12px;border-radius:24px}
+      #sortGame .sort-task-panel{grid-template-columns:74px minmax(0,1fr) 84px;gap:8px;min-height:96px;padding:10px 10px 9px;border-radius:24px}
+      #sortGame .sort-task-mascot{width:68px;height:68px}
+      #sortGame .sort-task-mascot img{width:62px;height:62px}
+      #sortGame .sort-task-copy h2{font-size:1.38rem}
+      #sortGame .sort-task-copy .drag-instruction{font-size:.74rem;margin-top:4px}
+      #sortGame .sort-task-copy .sort-subinstruction{display:none}
+      #sortGame .sort-box-icon{width:78px;height:78px;padding:8px;border-radius:22px;gap:4px}
+      #sortGame .sort-box-icon svg{width:24px;height:24px}
+      #sortGame .sort-box-copy strong{font-size:.58rem}
+      #sortGame .sort-box-copy small{display:none}
+      #sortGame .sort-polish-stage{min-height:410px;border-radius:24px}
+      #sortGame .sort-rainbow{right:54px;top:28px;width:112px;height:68px}
+      #sortGame .sort-sun{right:10px;top:56px;width:46px;height:46px}
+      #sortGame .sort-sign-home{left:10px;top:176px;padding:9px 11px;font-size:.72rem}
+      #sortGame .sort-sign-home::before{left:12px;height:34px}
+      #sortGame .sort-fence{display:none}
+      #sortGame .sort-cloud-a{left:14px;top:60px}
+      #sortGame .sort-cloud-b{right:100px;top:102px}
+      #sortGame .sort-launch-pad{top:48px;width:150px;height:126px}
+      #sortGame .sort-route{top:147px;height:96px;opacity:.23}
+      #sortGame .sort-ground-dot{bottom:116px}
+      #sortGame .sort-flower.sf-a{left:92px;bottom:88px}
+      #sortGame .sort-flower.sf-b{left:176px;bottom:104px}
+      #sortGame .sort-flower.sf-c{right:116px;bottom:98px}
+      #sortGame .sort-flower.sf-d{right:24px;bottom:76px}
+      #sortGame .sort-polish-card #dragItem{width:108px!important;min-width:108px!important;max-width:108px!important;min-height:108px!important;max-height:108px!important;padding:7px 6px 34px!important;border-radius:22px!important}
+      #sortGame .sort-polish-card #sortItemImage{width:66px!important;height:66px!important;max-width:66px!important;max-height:66px!important}
+      #sortGame .sort-polish-card #sortItemWord{font-size:.78rem!important;min-height:27px!important}
+      #sortGame .sort-drag-tip{left:calc(50% + 52px);top:132px;gap:4px}
+      #sortGame .sort-drag-hand{font-size:1.55rem}
+      #sortGame .sort-drag-text{font-size:.76rem}
+      #sortGame .sort-polish-card .drop-zone-grid{gap:7px;bottom:8px;padding:0 4px}
+      #sortGame .sort-polish-card .drop-zone{min-height:112px;padding:14px 4px 8px;border-radius:20px}
+      #sortGame .sort-polish-card .drop-zone::before{top:-8px;height:22px}
+      #sortGame .sort-polish-card .drop-zone::after{display:none}
+      #sortGame .sort-polish-card .sort-category-img{width:58px;height:58px}
+      #sortGame .sort-polish-card .sort-category-label{font-size:.83rem;padding:3px 8px}
+    }
+    @media(max-width:390px){
+      #sortGame .sort-rainbow{display:none}
+      #sortGame .sort-drag-tip{left:auto;right:20px;top:134px}
+      #sortGame .sort-polish-card .drop-zone{min-height:104px}
+      #sortGame .sort-polish-card .sort-category-img{width:52px;height:52px}
+    }
+
   </style>
 </head>
 <body>
