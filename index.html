@@ -407,7 +407,7 @@
 
     .drop-zone-grid{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:14px;
       position:absolute;
       left:0;
@@ -446,6 +446,10 @@
       animation:glowBody 2.4s ease-in-out infinite .75s;
     }
 
+    .drop-zone[data-category="emotions"]{
+      animation:glowEmotions 2.4s ease-in-out infinite 1s;
+    }
+
     @keyframes glowAnimals{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(104,180,255,0)}
       50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #d9edff,0 0 34px rgba(104,180,255,.72)}
@@ -464,6 +468,11 @@
     @keyframes glowBody{
       0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(255,165,190,0)}
       50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #ffe3eb,0 0 34px rgba(255,165,190,.72)}
+    }
+
+    @keyframes glowEmotions{
+      0%,100%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #edf4fb,0 0 0 rgba(255,205,105,0)}
+      50%{box-shadow:0 8px 20px rgba(47,65,90,.11),inset 0 0 0 4px #fff0c7,0 0 34px rgba(255,205,105,.72)}
     }
 
     .drop-zone.active-zone{
@@ -1764,11 +1773,10 @@
           <div class="topic-zh">身體部位</div>
         </button>
 
-        <button class="topic-card-v1 coming" disabled>
-          <div class="coming-icon">😊</div>
+        <button class="topic-card-v1" onclick="chooseTopic('emotions')">
+          <img src="images/emotion/happy.webp" alt="Emotions" decoding="async">
           <div class="topic-en">Emotions</div>
           <div class="topic-zh">情緒</div>
-          <div class="coming-badge">Coming soon</div>
         </button>
       </div>
     </div>
@@ -1882,6 +1890,11 @@
           <div id="dropZoneBody" class="drop-zone" data-category="body">
             <img class="sort-category-img" src="images/body/hand.webp" alt="Body" decoding="async">
             <div class="sort-category-label">Body</div>
+          </div>
+
+          <div id="dropZoneEmotions" class="drop-zone" data-category="emotions">
+            <img class="sort-category-img" src="images/emotion/happy.webp" alt="Emotions" decoding="async">
+            <div class="sort-category-label">Emotions</div>
           </div>
         </div>
       </div>
@@ -2012,18 +2025,34 @@
       {word:'tooth', image:'images/body/tooth.webp'}
     ];
 
+    const emotions = [
+      {word:'angry', image:'images/emotion/angry.webp'},
+      {word:'calm', image:'images/emotion/calm.webp'},
+      {word:'cry', image:'images/emotion/cry.webp'},
+      {word:'excited', image:'images/emotion/excited.webp'},
+      {word:'frustrated', image:'images/emotion/frustrated.webp'},
+      {word:'happy', image:'images/emotion/happy.webp'},
+      {word:'scared', image:'images/emotion/scared.webp'},
+      {word:'shy', image:'images/emotion/shy.webp'},
+      {word:'surprised', image:'images/emotion/surprised.webp'},
+      {word:'tired', image:'images/emotion/tired.webp'},
+      {word:'worry', image:'images/emotion/worry.webp'}
+    ];
+
     const categories = {
       animals,
       fruits,
       vehicles,
-      body:bodyParts
+      body:bodyParts,
+      emotions
     };
 
     const categoryInfo = {
       animals:{label:'Animals', zh:'動物', result:'你完成動物關卡了！', image:null},
       fruits:{label:'Fruits', zh:'水果', result:'你完成水果關卡了！', image:'images/fruits/apple.webp'},
       vehicles:{label:'Vehicles', zh:'交通工具', result:'你完成交通工具關卡了！', image:'images/vehicles/car.webp'},
-      body:{label:'Body', zh:'身體部位', result:'你完成身體部位關卡了！', image:'images/body/hand.webp'}
+      body:{label:'Body', zh:'身體部位', result:'你完成身體部位關卡了！', image:'images/body/hand.webp'},
+      emotions:{label:'Emotions', zh:'情緒', result:'你完成情緒關卡了！', image:'images/emotion/happy.webp'}
     };
 
     categoryInfo.animals.image = animals[0]?.image || '';
@@ -2124,7 +2153,8 @@
         animals:[523.25,659.25,783.99],
         fruits:[587.33,739.99,880.00],
         vehicles:[392.00,523.25,659.25],
-        body:[493.88,659.25,783.99]
+        body:[493.88,659.25,783.99],
+        emotions:[659.25,783.99,987.77]
       };
 
       const seq = notes[category] || notes.animals;
@@ -2313,7 +2343,8 @@
         ...animals.map(item=>({...item,category:'animals'})),
         ...fruits.map(item=>({...item,category:'fruits'})),
         ...vehicles.map(item=>({...item,category:'vehicles'})),
-        ...bodyParts.map(item=>({...item,category:'body'}))
+        ...bodyParts.map(item=>({...item,category:'body'})),
+        ...emotions.map(item=>({...item,category:'emotions'}))
       ];
 
       return shuffle(allItems).slice(0,Math.min(QUESTION_COUNT,allItems.length));
@@ -2855,10 +2886,25 @@
       }
     }
 
+    function renderSortZonesForQuestion(correctCategory){
+      const allCategoryKeys = Object.keys(categoryInfo).filter(key=>
+        document.querySelector(`.drop-zone[data-category="${key}"]`)
+      );
+      const distractors = shuffle(
+        allCategoryKeys.filter(key=>key!==correctCategory)
+      ).slice(0,2);
+      const visibleKeys = new Set(shuffle([correctCategory,...distractors]));
+
+      document.querySelectorAll('.drop-zone').forEach(zone=>{
+        zone.style.display = visibleKeys.has(zone.dataset.category) ? 'flex' : 'none';
+      });
+    }
+
     function renderSortQuestion(){
       sortLocked = false;
 
       const q = sortQuestions[sortCurrent];
+      renderSortZonesForQuestion(q.category);
 
       setRoundProgress('sortProgress',sortCurrent,sortQuestions.length);
       document.getElementById('sortItemImage').src = q.image;
