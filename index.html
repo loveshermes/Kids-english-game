@@ -3746,6 +3746,15 @@
       .result-stars .v47-result-star{opacity:1!important}
     }
 
+    /* 手機開啟「減少動態效果」時，地鼠不能停留在opacity:0。 */
+    @media(prefers-reduced-motion:reduce){
+      #whackGame .whack-mole{
+        opacity:1!important;
+        transform:translate(-50%,0) scale(1)!important;
+        animation:none!important;
+      }
+    }
+
   
 
     /* =========================================================
@@ -5082,7 +5091,9 @@
       playTone(220.00,.10,.07,.018);
     }
 
-    const preloadedImages = new Map();
+    // 圖片載入狀態：避免手機端同一張圖同時被重複下載／解碼。
+    const loadedImageUrls = new Set();
+    const imageLoadJobs = new Map();
 
     function openTopicMenu(){
       speechSynthesis.cancel();
@@ -5233,29 +5244,54 @@
       preloadItems(learnCards);
     }
 
-    function preloadItems(items){
-      const jobs = items.map(item=>{
-        if(preloadedImages.has(item.image)){
-          return Promise.resolve();
-        }
+    function preloadImage(src){
+      if(!src) return Promise.resolve(false);
+      if(loadedImageUrls.has(src)) return Promise.resolve(true);
+      if(imageLoadJobs.has(src)) return imageLoadJobs.get(src);
 
-        return new Promise(resolve=>{
-          const img = new Image();
-          img.decoding = 'async';
-          img.onload = ()=>{
-            preloadedImages.set(item.image,img);
-            if(img.decode){
-              img.decode().catch(()=>{}).finally(resolve);
-            }else{
-              resolve();
-            }
-          };
-          img.onerror = resolve;
-          img.src = item.image;
-        });
+      const job = new Promise(resolve=>{
+        const img = new Image();
+        let settled = false;
+
+        const finish = ok=>{
+          if(settled) return;
+          settled = true;
+          if(ok) loadedImageUrls.add(src);
+          img.onload = null;
+          img.onerror = null;
+          resolve(ok);
+        };
+
+        img.loading = 'eager';
+        img.decoding = 'async';
+        img.onload = async ()=>{
+          // decode()在部分Safari版本可能拒絕Promise，因此失敗時仍以onload為成功。
+          try{
+            if(img.decode) await img.decode();
+          }catch(_err){}
+          finish(true);
+        };
+        img.onerror = ()=>finish(false);
+        img.src = src;
+
+        // 已在瀏覽器快取中的圖片可能立刻complete，不必再等待事件。
+        if(img.complete && img.naturalWidth > 0) finish(true);
+      }).finally(()=>{
+        imageLoadJobs.delete(src);
       });
 
-      return Promise.all(jobs);
+      imageLoadJobs.set(src, job);
+      return job;
+    }
+
+    function preloadItems(items){
+      const urls = [...new Set(
+        (items || [])
+          .map(item=>item && item.image)
+          .filter(Boolean)
+      )];
+
+      return Promise.all(urls.map(preloadImage));
     }
 
     function preloadCategory(category){
@@ -5477,6 +5513,26 @@
     }
 
 
+    function createWhackImage(src,alt){
+      const img = document.createElement('img');
+      img.alt = alt || '';
+      img.loading = 'eager';
+      img.decoding = 'sync';
+      try{ img.fetchPriority = 'high'; }catch(_err){}
+
+      // 手機瀏覽器若發生瞬間解碼／快取失敗，原網址自動再嘗試1次。
+      let retried = false;
+      img.onerror = ()=>{
+        if(retried) return;
+        retried = true;
+        img.removeAttribute('src');
+        requestAnimationFrame(()=>{ img.src = src; });
+      };
+
+      img.src = src;
+      return img;
+    }
+
     function renderWhackQuestion(){
       whackLocked = false;
 
@@ -5538,8 +5594,8 @@
         btn.style.setProperty('--whack-i',index);
         btn.type = 'button';
         btn.setAttribute('aria-label', opt.word);
-        btn.innerHTML =
-          `<img src="${opt.image}" alt="${opt.word}" decoding="async">`;
+        const img = createWhackImage(opt.image,opt.word);
+        btn.appendChild(img);
 
         btn.onclick = ()=>checkWhackAnswer(opt,btn,hole);
         hole.appendChild(btn);
