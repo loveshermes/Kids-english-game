@@ -3610,6 +3610,142 @@
       .voice-settings-overlay.open,.voice-settings-panel{animation:none!important}
     }
 
+  
+
+    /* =========================================================
+       V4.7 Immersive Visual Layer
+       場景感＋題目轉場＋Mascot反應＋集中式回饋
+       ========================================================= */
+    body[data-screen="learnGame"]{background:linear-gradient(145deg,#edf8ff 0%,#fff8e9 48%,#f2edff 100%)}
+    body[data-screen="game"]{background:linear-gradient(145deg,#edf7ff 0%,#f8f4ff 48%,#fff5df 100%)}
+    body[data-screen="sortGame"]{background:linear-gradient(145deg,#eefaf2 0%,#eef8ff 50%,#fff6df 100%)}
+    body[data-screen="whackGame"]{background:linear-gradient(145deg,#eefaf0 0%,#eaf7ff 48%,#fff1df 100%)}
+    body[data-screen="result"]{background:linear-gradient(145deg,#fff7dc 0%,#f1f5ff 48%,#f8edff 100%)}
+
+    .mode-polish-screen,.listen-game-screen{isolation:isolate}
+    .mode-polish-screen::before,.listen-game-screen::before{
+      content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+      background:
+        radial-gradient(circle at 13% 22%,rgba(255,255,255,.95) 0 3px,transparent 4px),
+        radial-gradient(circle at 82% 16%,rgba(255,255,255,.8) 0 2px,transparent 3px),
+        radial-gradient(circle at 73% 72%,rgba(255,255,255,.75) 0 3px,transparent 4px),
+        radial-gradient(circle at 25% 78%,rgba(255,255,255,.65) 0 2px,transparent 3px);
+      animation:v47AmbientDrift 14s ease-in-out infinite alternate;
+    }
+    @keyframes v47AmbientDrift{from{transform:translate3d(-5px,-3px,0)}to{transform:translate3d(7px,5px,0)}}
+
+    /* 進度HUD增加細小數字，不搶星星 */
+    .progress-stars{position:relative;padding-bottom:18px!important}
+    .progress-stars::after{
+      content:attr(data-progress);position:absolute;left:50%;bottom:4px;transform:translateX(-50%);
+      font-size:.62rem;line-height:1;color:#93a0b2;letter-spacing:.08em;font-weight:900;
+    }
+
+    /* Mode專屬舞台：場景有辨識度但保持低對比 */
+    .learn-polish-card{overflow:hidden;position:relative}
+    .learn-polish-card::before{
+      content:'';position:absolute;inset:0;pointer-events:none;opacity:.55;
+      background:radial-gradient(circle at 9% 15%,rgba(112,197,244,.12),transparent 19%),radial-gradient(circle at 92% 82%,rgba(183,145,255,.10),transparent 22%);
+    }
+    .sort-polish-stage{background:
+      linear-gradient(180deg,rgba(246,252,255,.98) 0 58%,rgba(231,247,226,.92) 58% 100%),
+      radial-gradient(circle,#c7ddec 1.1px,transparent 1.2px)!important;background-size:auto,18px 18px!important}
+    .sort-polish-stage::before{
+      content:'';position:absolute;left:0;right:0;bottom:31%;height:46px;pointer-events:none;opacity:.44;
+      background:radial-gradient(ellipse at 10% 100%,rgba(116,190,111,.22) 0 34%,transparent 35%),radial-gradient(ellipse at 36% 100%,rgba(116,190,111,.17) 0 31%,transparent 32%),radial-gradient(ellipse at 68% 100%,rgba(116,190,111,.16) 0 34%,transparent 35%),radial-gradient(ellipse at 92% 100%,rgba(116,190,111,.22) 0 29%,transparent 30%);
+    }
+    .whack-polish-board{position:relative;overflow:hidden;border-radius:28px;padding:18px 16px 25px;background:linear-gradient(180deg,rgba(234,249,255,.72),rgba(225,247,222,.85));box-shadow:inset 0 0 0 2px rgba(255,255,255,.72)}
+    .whack-polish-board::before{
+      content:'';position:absolute;left:-5%;right:-5%;bottom:-16px;height:62px;pointer-events:none;
+      background:radial-gradient(ellipse at 12% 100%,#cfe9c9 0 38%,transparent 39%),radial-gradient(ellipse at 42% 100%,#d8efd3 0 42%,transparent 43%),radial-gradient(ellipse at 73% 100%,#cce8c7 0 39%,transparent 40%),radial-gradient(ellipse at 95% 100%,#d9efd4 0 42%,transparent 43%);
+      opacity:.86;
+    }
+    .whack-polish-board::after{
+      content:'✦  ·  ✦';position:absolute;right:20px;top:10px;color:rgba(112,169,211,.20);font-size:.8rem;letter-spacing:.55em;pointer-events:none;
+    }
+
+    /* 物件本身比卡片更有立體感 */
+    .animal-img,.learn-word-card img,.sort-item-img,.sort-category-img,.whack-mole img,.review-card img{
+      filter:drop-shadow(0 9px 8px rgba(58,77,101,.11));
+      transition:filter .25s ease,transform .25s cubic-bezier(.2,.8,.25,1);
+    }
+    .choice:hover .animal-img,.learn-word-card:hover img{filter:drop-shadow(0 12px 10px rgba(58,77,101,.16));transform:translateY(-3px)}
+
+    /* 題目換場，不使用大幅位移 */
+    .choices.round-enter .choice{animation:v47ChoiceIn .46s cubic-bezier(.2,.8,.25,1) both;animation-delay:calc(var(--choice-i,0) * 65ms)}
+    @keyframes v47ChoiceIn{0%{opacity:0;transform:translateY(12px) scale(.965);filter:blur(2px)}100%{opacity:1;transform:none;filter:none}}
+    .learn-word-card{animation:v47LearnCardIn .42s cubic-bezier(.2,.8,.25,1) both;animation-delay:calc(var(--card-i,0) * 48ms)}
+    @keyframes v47LearnCardIn{0%{opacity:0;transform:translateY(9px) scale(.97)}100%{opacity:1;transform:none}}
+    .drag-item.v47-new-round{animation:v47SortCardIn .5s cubic-bezier(.2,.8,.25,1) both}
+    @keyframes v47SortCardIn{0%{opacity:0;filter:blur(2px) brightness(1.08)}55%{opacity:1;filter:none}100%{opacity:1;filter:none}}
+    .whack-mole{animation:v47WhackPop .38s cubic-bezier(.18,.85,.28,1.18) both!important;animation-delay:calc(var(--whack-i,0) * 65ms)!important}
+    @keyframes v47WhackPop{0%{opacity:0;transform:translate(-50%,82%) scale(.78)}72%{opacity:1;transform:translate(-50%,-4%) scale(1.04)}100%{opacity:1;transform:translate(-50%,0) scale(1)}}
+
+    /* Mascot反應：成功是小跳躍，答錯只是溫和左右看 */
+    .listen-mascot,.mode-task-mascot,.result-mascot-wrap{transform-origin:50% 85%}
+    .mascot-react-success{animation:v47MascotSuccess .68s cubic-bezier(.2,.8,.25,1)!important}
+    .mascot-react-wrong{animation:v47MascotWrong .52s ease!important}
+    @keyframes v47MascotSuccess{0%,100%{transform:translateY(0) rotate(0)}32%{transform:translateY(-10px) rotate(-3deg) scale(1.045)}62%{transform:translateY(1px) rotate(2deg) scale(.99)}}
+    @keyframes v47MascotWrong{0%,100%{transform:rotate(0)}30%{transform:rotate(-4deg)}65%{transform:rotate(4deg)}}
+
+    /* Listen答對：焦點集中，不整頁狂閃 */
+    .listen-game-screen.v47-success-focus .listen-final-card::after{
+      content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;
+      background:radial-gradient(circle at 50% 70%,rgba(255,239,153,.24),transparent 34%);
+      animation:v47FocusGlow .7s ease-out forwards;
+    }
+    @keyframes v47FocusGlow{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+    .choice.correct::before{
+      content:'';position:absolute;inset:-8px;border-radius:inherit;pointer-events:none;
+      background:radial-gradient(circle,rgba(255,238,133,.27),transparent 68%);z-index:-1;
+      animation:v47CorrectAura .72s ease-out forwards;
+    }
+    @keyframes v47CorrectAura{0%{opacity:0;transform:scale(.82)}28%{opacity:1}100%{opacity:0;transform:scale(1.14)}}
+
+    /* 答錯降低紅色侵略感 */
+    .choice.wrong,.drop-zone.wrong{background:#fff9f9!important;box-shadow:0 0 0 4px rgba(244,144,144,.50),0 10px 24px rgba(85,65,75,.08)!important}
+    .feedback.bad,.whack-feedback[style*="d64c4c"]{color:#c95d68!important}
+
+    /* 語音播放時才有聲波 */
+    .listen-main-speaker,.whack-main-speaker{position:relative;overflow:visible}
+    .listen-main-speaker.speaking::before,.listen-main-speaker.speaking::after,.whack-main-speaker.speaking::before,.whack-main-speaker.speaking::after{
+      content:'';position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(90,183,237,.38);pointer-events:none;animation:v47SoundRing .9s ease-out infinite;
+    }
+    .listen-main-speaker.speaking::after,.whack-main-speaker.speaking::after{animation-delay:.28s}
+    @keyframes v47SoundRing{0%{opacity:.8;transform:scale(.82)}100%{opacity:0;transform:scale(1.5)}}
+
+    /* Sorting互動成功時舞台亮一下 */
+    .sort-polish-stage.v47-sort-success{animation:v47StageSuccess .72s ease-out}
+    @keyframes v47StageSuccess{0%,100%{box-shadow:inset 0 0 0 3px rgba(209,230,242,.75)}38%{box-shadow:inset 0 0 0 5px rgba(123,214,142,.48),0 0 35px rgba(123,214,142,.16)}}
+
+    /* Whack成功聚焦 */
+    .whack-polish-board.v47-hit-success{animation:v47WhackBoardSuccess .62s ease-out}
+    @keyframes v47WhackBoardSuccess{0%,100%{filter:none}36%{filter:brightness(1.065) saturate(1.05)}}
+
+    /* Result：星星逐顆落下，複習卡片依序進場 */
+    .result-stars{min-height:1.25em}
+    .result-stars .v47-result-star{display:inline-block;opacity:0;animation:v47ResultStar .54s cubic-bezier(.2,.8,.25,1.2) forwards;animation-delay:calc(var(--star-i,0) * 120ms)}
+    @keyframes v47ResultStar{0%{opacity:0;transform:translateY(-16px) scale(.45) rotate(-18deg)}70%{opacity:1;transform:translateY(2px) scale(1.16) rotate(5deg)}100%{opacity:1;transform:none}}
+    .result-review .review-card{animation:v47ReviewIn .45s cubic-bezier(.2,.8,.25,1) both;animation-delay:calc(var(--review-i,0) * 65ms)}
+    @keyframes v47ReviewIn{0%{opacity:0;transform:translateY(12px) scale(.97)}100%{opacity:1;transform:none}}
+
+    /* Learn播放小音符 */
+    .learn-word-card.learn-chime::after{content:'♪';position:absolute;right:20%;top:18%;font-size:1.2rem;color:#65b8e7;pointer-events:none;animation:v47NoteFloat .7s ease-out forwards}
+    @keyframes v47NoteFloat{0%{opacity:0;transform:translateY(8px) scale(.7)}25%{opacity:1}100%{opacity:0;transform:translateY(-28px) translateX(10px) scale(1.05)}}
+
+    @media(max-width:760px){
+      .progress-stars{padding-bottom:15px!important}.progress-stars::after{font-size:.56rem;bottom:2px}
+      .whack-polish-board{border-radius:21px;padding:10px 8px 18px}
+      .sort-polish-stage::before{bottom:29%;height:34px}
+    }
+    @media(hover:none){
+      .choice:hover .animal-img,.learn-word-card:hover img{transform:none;filter:drop-shadow(0 9px 8px rgba(58,77,101,.11))}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .mode-polish-screen::before,.listen-game-screen::before,.choices.round-enter .choice,.learn-word-card,.drag-item.v47-new-round,.whack-mole,.mascot-react-success,.mascot-react-wrong,.result-stars .v47-result-star,.result-review .review-card{animation:none!important}
+      .result-stars .v47-result-star{opacity:1!important}
+    }
+
   </style>
 </head>
 <body>
@@ -4013,7 +4149,7 @@
     window.addEventListener('resize', syncViewportHeight, {passive:true});
 
     /* =========================================================
-       V4.5 Unified Voice Engine — US English Locked
+       V4.7 Unified Voice Engine — US English Locked
        ========================================================= */
     const VOICE_PREFS_KEY = 'littleEnglishClubVoicePrefsV45US';
     const defaultVoicePrefs = {speed:'normal',volume:1,voiceKey:'auto'};
@@ -4527,6 +4663,49 @@
       startSelectedListen();
     }
 
+
+
+    /* =========================================================
+       V4.7 interaction helpers
+       ========================================================= */
+    function v47MascotSelector(mode){
+      if(mode==='learn') return '#learnGame .learn-task-mascot';
+      if(mode==='listen') return '#game .listen-mascot';
+      if(mode==='sort') return '#sortGame .sort-task-mascot';
+      if(mode==='whack') return '#whackGame .whack-task-mascot';
+      if(mode==='result') return '#result .result-mascot-wrap';
+      return null;
+    }
+
+    function triggerMascotReaction(mode,type='success'){
+      const selector=v47MascotSelector(mode);
+      const el=selector ? document.querySelector(selector) : null;
+      if(!el) return;
+      const cls=type==='wrong' ? 'mascot-react-wrong' : 'mascot-react-success';
+      el.classList.remove('mascot-react-success','mascot-react-wrong');
+      void el.offsetWidth;
+      el.classList.add(cls);
+      setTimeout(()=>el.classList.remove(cls),760);
+    }
+
+    function pulseVoiceButton(selector,duration=980){
+      const btn=document.querySelector(selector);
+      if(!btn) return;
+      btn.classList.remove('speaking');
+      void btn.offsetWidth;
+      btn.classList.add('speaking');
+      setTimeout(()=>btn.classList.remove('speaking'),duration);
+    }
+
+    function flashModeStage(selector,cls,duration=760){
+      const el=document.querySelector(selector);
+      if(!el) return;
+      el.classList.remove(cls);
+      void el.offsetWidth;
+      el.classList.add(cls);
+      setTimeout(()=>el.classList.remove(cls),duration);
+    }
+
     function startLearnMode(){
       if(!selectedCategory) return openTopicMenu();
       currentMode = 'learn';
@@ -4544,16 +4723,18 @@
       if(!grid) return;
       grid.innerHTML = '';
 
-      learnCards.forEach(item=>{
+      learnCards.forEach((item,index)=>{
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'learn-word-card';
+        btn.style.setProperty('--card-i',index);
         btn.innerHTML = `<img src="${item.image}" alt="${item.word}" decoding="async"><span>${capitalize(item.word)}</span>`;
         btn.onclick = ()=>{
           document.querySelectorAll('.learn-word-card').forEach(card=>card.classList.remove('playing'));
-          btn.classList.add('playing');
+          btn.classList.add('playing','learn-chime');
+          triggerMascotReaction('learn','success');
           speakWord(item.word);
-          setTimeout(()=>btn.classList.remove('playing'),650);
+          setTimeout(()=>btn.classList.remove('playing','learn-chime'),720);
         };
         grid.appendChild(btn);
       });
@@ -4662,6 +4843,7 @@
       const next = progressStars(done,total);
       const changed = el.textContent !== next;
       el.textContent = next;
+      el.dataset.progress = `${Math.max(0,Math.min(done,total))} / ${total}`;
       if(changed){
         el.classList.remove('progress-pop');
         void el.offsetWidth;
@@ -4681,9 +4863,10 @@
       if(!box) return;
       box.innerHTML = '';
 
-      getCurrentRoundItems().slice(0,QUESTION_COUNT).forEach(item=>{
+      getCurrentRoundItems().slice(0,QUESTION_COUNT).forEach((item,index)=>{
         const btn = document.createElement('button');
         btn.className = 'review-card';
+        btn.style.setProperty('--review-i',index);
         btn.type = 'button';
         btn.innerHTML = `<img src="${item.image}" alt="${item.word}" decoding="async"><span>${capitalize(item.word)}</span>`;
         btn.onclick = ()=>speakWord(item.word);
@@ -4781,12 +4964,13 @@
 
       // 每一題開始前清除上一題的「答對後其他選項變淡/停用」狀態
       // 否則answer-correct會留在choices上，導致第2題開始無法點擊
-      box.classList.remove('answer-correct');
+      box.classList.remove('answer-correct','round-enter');
       box.innerHTML='';
 
-      q.options.forEach(opt=>{
+      q.options.forEach((opt,index)=>{
         const btn = document.createElement('button');
         btn.className='choice';
+        btn.style.setProperty('--choice-i',index);
         btn.innerHTML=`<img class="animal-img" src="${opt.image}" alt="${opt.word}" decoding="async"><div class="label">${capitalize(opt.word)}</div>`;
         btn.onclick=()=>{
           btn.classList.add('reveal-label');
@@ -4794,6 +4978,8 @@
         };
         box.appendChild(btn);
       });
+      requestAnimationFrame(()=>box.classList.add('round-enter'));
+      setTimeout(()=>box.classList.remove('round-enter'),720);
 
       setTimeout(speakQuestion,350);
     }
@@ -4858,6 +5044,7 @@
 
         const btn = document.createElement('button');
         btn.className = 'whack-mole';
+        btn.style.setProperty('--whack-i',index);
         btn.type = 'button';
         btn.setAttribute('aria-label', opt.word);
         btn.innerHTML =
@@ -4867,12 +5054,15 @@
         hole.appendChild(btn);
       });
 
+      const whackBoard=document.getElementById('whackBoard');
+      if(whackBoard){whackBoard.classList.remove('v47-round-enter');void whackBoard.offsetWidth;whackBoard.classList.add('v47-round-enter');}
       setTimeout(speakWhackQuestion,320);
     }
 
     function speakWhackQuestion(){
       const q = whackQuestions[whackCurrent];
       if(!q) return;
+      pulseVoiceButton('#whackGame .whack-main-speaker');
       speakPrompt(q.target.word);
     }
 
@@ -4978,6 +5168,8 @@
       if(opt.word===q.target.word){
         whackLocked = true;
         btn.classList.add('correct-hit');
+        triggerMascotReaction('whack','success');
+        flashModeStage('#whackGame .whack-polish-board','v47-hit-success');
 
         document.querySelectorAll('#whackBoard .whack-hole').forEach(other=>{
           if(other!==hole) other.classList.add('dim-hole');
@@ -5009,6 +5201,7 @@
         },980);
 
       }else{
+        triggerMascotReaction('whack','wrong');
         btn.classList.remove('wrong-hit');
         void btn.offsetWidth;
         btn.classList.add('wrong-hit');
@@ -5225,6 +5418,10 @@
 
       // 新題目直接依原始layout尺寸放到舞台正中央，避免上一題scale動畫影響座標。
       centerDragItem({immediate:true});
+      item.classList.remove('v47-new-round');
+      void item.offsetWidth;
+      item.classList.add('v47-new-round');
+      setTimeout(()=>item.classList.remove('v47-new-round'),560);
 
       setTimeout(()=>speakWord(q.word),250);
     }
@@ -5284,6 +5481,8 @@
       if(category===q.category){
         sortLocked = true;
         zone.classList.add('correct','flash-zone');
+        triggerMascotReaction('sort','success');
+        flashModeStage('#sortGame .sort-polish-stage','v47-sort-success');
 
         // 成功音效＋分類框閃光＋星星爆開
         playSuccessSound(category);
@@ -5311,6 +5510,7 @@
         });
       }else{
         zone.classList.add('wrong');
+        triggerMascotReaction('sort','wrong');
         feedback.textContent = '再試一次！';
         feedback.className = 'feedback bad';
 
@@ -5449,6 +5649,7 @@
 
     function speakQuestion(){
       if(!questions[current]) return;
+      pulseVoiceButton('#game .listen-main-speaker');
       speakPrompt(questions[current].target.word);
     }
 
@@ -5493,6 +5694,9 @@
 
         // 正確圖片周圍爆出小星星
         burstChoiceStars(btn);
+        triggerMascotReaction('listen','success');
+        const listenScreen=document.getElementById('game');
+        if(listenScreen){listenScreen.classList.add('v47-success-focus');setTimeout(()=>listenScreen.classList.remove('v47-success-focus'),760);}
 
         score++;
         setRoundProgress('listenProgress',score,questions.length);
@@ -5526,6 +5730,7 @@
 
         feedback.textContent='再試一次！';
         feedback.className='feedback bad';
+        triggerMascotReaction('listen','wrong');
 
         // 較輕的錯誤提示音
         playListenWrongSound();
@@ -5580,8 +5785,12 @@
       }
       document.getElementById('resultBackButton').textContent = '← 選其他遊戲';
 
-      document.getElementById('resultStars').textContent='⭐⭐⭐⭐⭐';
+      const resultStars=document.getElementById('resultStars');
+      if(resultStars){
+        resultStars.innerHTML=Array.from({length:5},(_,i)=>`<span class="v47-result-star" style="--star-i:${i}">⭐</span>`).join('');
+      }
       renderResultReview();
+      triggerMascotReaction('result','success');
       burstStars();
       speakFeedback('Awesome! Great job!');
     }
